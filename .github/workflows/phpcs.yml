@@ -1,0 +1,36 @@
+name: PHP Code Sniffer CI
+
+on:
+  workflow_call:
+    inputs:
+      version:
+      	default: '8.0'
+        required: false
+        type: string
+      composer_command:
+      	default: "lint"
+      	require: false
+      	type: string
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      
+      - name: Setup PHP with composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+        
+      - name: Run PHP CS
+        run: composer ${{ inputs.composer_command }}
