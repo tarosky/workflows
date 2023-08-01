@@ -20,4 +20,3 @@ runs:
             rm -frv $item
           fi
         done
-
