@@ -21,7 +21,7 @@ jobs:
       - name: Setup PHP with composer
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php }}
+          php-version: ${{ inputs.version }}
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
