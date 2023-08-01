@@ -11,7 +11,7 @@ on:
       composer_command:
         description: 'Command in composer.json. Default "lint"'
         default: lint
-        require: false
+        required: false
         type: string
 
 jobs:
