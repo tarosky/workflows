@@ -1,0 +1,66 @@
+name: PHPUnitTest in WordPress CI
+
+on:
+  workflow_call:
+    inputs:
+      php_version:
+        description: 'PHP Version to run PHPUnitTest'
+        default: 8.0
+        required: false
+        type: string
+      wp_version:
+        description: 'WordPress Version to Install'
+        default: latest
+        required: false
+        type: string
+      composer_command:
+        description: 'Command in composer.json. Default "test"'
+        default: test
+        required: false
+        type: string
+
+jobs:
+  wp-unit-test:
+    name: "PHP Unit test with WordPress ${{ inputs.wp_version }} in PHP ${{ inputs.php_version }}"
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        options:
+          --health-cmd "mysqladmin ping --host 127.0.0.1 --port 3306"
+          --health-interval=20s
+          --health-timeout=10s
+          --health-retries=10
+        ports:
+          - 3306/tcp
+        env:
+          MYSQL_ROOT_PASSWORD: root
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup PHP with composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ inputs.php_version }}
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-suggest
+
+      - name: Start MySQL
+        run: |
+          sudo systemctl start mysql
+          mysql -h 127.0.0.1 --port 3306 -u root --password=root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';"
+
+      - name: Install WordPress
+        run: |
+          wget https://raw.githubusercontent.com/wp-cli/sample-plugin/master/bin/install-wp-tests.sh
+          bash ./install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ inputs.wp_version }}
+
+      - name: Run test suite
+        run: composer ${{ inputs.composer_command }}
