@@ -1,0 +1,40 @@
+name: NPM syntax check CI
+
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        description: 'Node version to Run test'
+        default: 14
+        required: false
+      command:
+        description: 'Command in package.json to run syntax check. Default "lint"'
+        default: "lint"
+        required: false
+        type: string
+      package:
+        description: 'Command in package.json to build files. Default "" and not executed if empty.'
+        default: ''
+        required: false
+        type: string
+
+jobs:
+  npm-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node_version }}
+
+      - name: Install NPM Packages
+        run: npm install
+
+      - name: Run Syntax Check
+        run: npm run ${{ inputs.command }}
+
+      - name: Check build script to check if compilation success
+        if: '' != inputs.package
+        run: npm run ${{ inputs.package }}
