@@ -7,9 +7,10 @@ on:
         description: 'Node version to Run test'
         default: 14
         required: false
+        type: number
       command:
         description: 'Command in package.json to run syntax check. Default "lint"'
-        default: "lint"
+        default: lint
         required: false
         type: string
       package:
@@ -30,11 +31,11 @@ jobs:
           node-version: ${{ inputs.node_version }}
 
       - name: Install NPM Packages
-        run: npm install
+        run:  npm install
 
       - name: Run Syntax Check
-        run: npm run ${{ inputs.command }}
+        run:  npm run ${{ inputs.command }}
 
       - name: Check build script to check if compilation success
-        if: '' != inputs.package
-        run: npm run ${{ inputs.package }}
+        if:   ${{ inputs.package != '' }}
+        run:  "npm run ${{ inputs.package }}"

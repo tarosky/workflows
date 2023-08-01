@@ -1,0 +1,17 @@
+# https://zenn.dev/tmknom/books/pragmatic-composite-action/viewer/lint
+extends: default
+rules:
+  # GitHub Actionsの文法とコンフリクトしないよう調整
+  document-start: disable
+  truthy:
+    allowed-values: ["true", "false", "on"]
+
+  # Prettierのポリシーとコンフリクトしないよう調整
+  comments:
+    min-spaces-from-content: 1
+  braces:
+    max-spaces-inside: 1
+
+  # デフォルトの最大長が80文字でさすがに厳しすぎるので長くする
+  line-length:
+    max: 150

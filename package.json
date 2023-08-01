@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "lint": "yamllint .github/workflows/**/*.yml"
+  },
+  "devDependencies": {
+    "yaml-lint": "^1.7.0"
+  }
+}
