@@ -1,0 +1,23 @@
+name: Distignore 
+description: Remove files listed in .distignore.
+
+runs:
+  using: "composite"
+  steps:
+    - name: Add Prefix
+      id: check_files
+      uses: andstor/file-existence-action@v1
+      with:
+        files: ".distignore"
+
+    - name: Remove Files
+      if: steps.check_files.outputs.files_exists == 'true'
+      shell: bash
+      run: |
+        files=(`cat ".distignore"`)
+        for item in "${files[@]}"; do
+          if [ -e $item ]; then
+            rm -frv $item
+          fi
+        done
+
