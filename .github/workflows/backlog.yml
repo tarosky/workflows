@@ -1,0 +1,24 @@
+name: Backlog Notification
+
+on:
+  workflow_call:
+    inputs:
+      project:
+        description: 'Project ID of backlog. e.g. PJ_STANDARD'
+        required: true
+        type: string
+      host:
+        description: 'Backlog API host'
+        default: 'tarosky.backlog.jp'
+        type: string
+
+jobs:
+  npm-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Notification to Backlog
+        uses: bicstone/backlog-notify@master
+        env:
+          PROJECT_KEY: ${{ inputs.project }}
+          API_HOST: ${{ inputs.host }}
+          API_KEY: ${{ secrets.BACKLOG_API_KEY }}
