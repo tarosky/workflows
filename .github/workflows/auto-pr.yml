@@ -1,0 +1,39 @@
+name: Auto create Pull Request
+
+on:
+  workflow_call:
+    inputs:
+      destination_branch:
+        description: 'Which branch to merge into'
+        default: main
+        required: false
+        type: string
+      pr_title:
+        description: 'Title of the pull request'
+        default: 'Pull staging into main'
+        required: false
+        type: string
+      pr_body:
+        description: 'Body of the pull request'
+        default: ':rocket: 最新の staging ブランチを main ブランチへマージするPRです。<br />*PRは staging ブランチへの push をトリガーにして自動生成しています。*'
+        required: false
+        type: string
+      pr_label:
+        description: 'Label to add to the pull request'
+        default: 'for release'
+        required: false
+        type: string
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: ${{ inputs.destination_branch }}
+          pr_title: ${{ inputs.pr_title }}
+          pr_body: ${{ inputs.pr_body }}
+          pr_label: ${{ inputs.pr_label }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
