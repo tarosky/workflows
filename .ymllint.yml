@@ -1,5 +1,7 @@
 # https://zenn.dev/tmknom/books/pragmatic-composite-action/viewer/lint
 extends: default
+ignore:
+  - /node_modules/
 rules:
   # GitHub Actionsの文法とコンフリクトしないよう調整
   document-start: disable

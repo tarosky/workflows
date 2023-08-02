@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "yamllint .github/workflows/**/*.yml"
+    "test": "yamllint ./**/*.yml"
   },
   "devDependencies": {
     "yaml-lint": "^1.7.0"
