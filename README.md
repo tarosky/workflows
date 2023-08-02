@@ -44,9 +44,21 @@ jobs:
   assets:
     uses: tarosky/workflows/.github/workflows/npm.yml@main
     with:
-      
       package: package
 ```
+
+### backlog
+
+Backlogの課題番号がコミットメッセージに含まれている場合、通知を行います。tarosky-bot というユーザーがBacklogの当該プロジェクトのメンバーになっている必要があります。
+
+```
+jobs:
+  notify:
+    uses: tarosky/workflows/.github/workflows/backlog.yml@main
+    with:
+      project: PJ_STANDARD
+```
+
 
 ## 複合アクション
 
@@ -62,21 +74,6 @@ jobs:
     steps:
       - name: Clean Package
         uses: tarosky/workflows/actions/distignore@main
-```
-
-### backlog
-
-Backlogの課題番号がコミットメッセージに含まれている場合、通知を行います。tarosky-bot というユーザーがBacklogの当該プロジェクトのメンバーになっている必要があります。
-
-```
-jobs:
-  test:
-    steps:
-      # stepのどこかに以下を記載。
-      - name: Notify Backlog
-        uses: tarosky/workflows/actions/backlog@main
-        with:
-          project: PJ_STANDARD
 ```
 
 -----
