@@ -64,6 +64,21 @@ jobs:
         uses: tarosky/workflows/actions/distignore@main
 ```
 
+### backlog
+
+Backlogの課題番号がコミットメッセージに含まれている場合、通知を行います。tarosky-bot というユーザーがBacklogの当該プロジェクトのメンバーになっている必要があります。
+
+```
+jobs:
+  test:
+    steps:
+      # stepのどこかに以下を記載。
+      - name: Notify Backlog
+        uses: tarosky/workflows/actions/backlog@main
+        with:
+          project: PJ_STANDARD
+```
+
 -----
 
 W.I.P
