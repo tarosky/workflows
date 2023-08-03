@@ -10,6 +10,7 @@ $files = [
 	'phpcs.ruleset.xml'     => '',
 	'phpunit.xml.dist'      => '',
 	'.browserslistrc'       => '',
+	'.distignore'       => '',
 	'.eslintrc.json'        => '',
 	'.gitignore'            => '',
 	'.stylelintrc.json'     => '',
