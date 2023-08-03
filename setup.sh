@@ -2,9 +2,9 @@
 
 set -e
 
-# curl -L https://raw.githubusercontent.com/tarosky/workflow/main/setup.sh | bash
+# curl -L https://raw.githubusercontent.com/tarosky/workflows/main/setup.sh | bash
 # Run PHP
-curl -L https://raw.githubusercontent.com/tarosky/workflow/main/setup.php | php
+curl -L https://raw.githubusercontent.com/tarosky/workflows/main/setup.php | php
 
 # If package.json exists, install dependencies.
 if [ -f package.json ]; then
