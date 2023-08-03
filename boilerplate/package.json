@@ -1,0 +1,38 @@
+{
+	"name": "$PROJECT$",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "wp-env start",
+		"update": "wp-env start --update",
+		"stop": "wp-env stop",
+		"env": "wp-env",
+		"cli": "wp-env run cli wp",
+		"cli:test": "wp-env run tests-cli wp",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"test:plugin": "RESULT=${PWD##*/} && wp-env run tests-cli ./wp-content/plugins/$RESULT/vendor/bin/phpunit -c ./wp-content/plugins/$RESULT/phpunit.xml.dist",
+		"test:theme": "RESULT=${PWD##*/} && wp-env run tests-cli ./wp-content/themes/$RESULT/vendor/bin/phpunit -c ./wp-content/themes/$RESULT/phpunit.xml.dist",
+		"build:js": "wp-scripts build ./src/**/*.js",
+		"lint:js": "wp-scripts lint-js ./src",
+		"lint:css": "wp-scripts lint-style ./src",
+		"format:js": "wp-scripts format-js ./src"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tarosky/$PROJECT$.git"
+	},
+	"keywords": [
+		"wordpress"
+	],
+	"engines": {
+		"node": ">=16.20.0"
+	},
+	"author": "Tarosky INC.",
+	"license": "GPL-3.0-or-later",
+	"bugs": {
+		"url": "https://github.com/tarosky/$PROJECT$/issues"
+	},
+	"homepage": "https://github.com/tarosky/$PROJECT$#readme",
+	"devDependencies": {}
+}
