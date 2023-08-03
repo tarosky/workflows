@@ -59,6 +59,20 @@ jobs:
       project: PJ_STANDARD
 ```
 
+### 自動PR
+
+設定したトリガーから指定するブランチへのPRを自動で作成します。デフォルト値では `main` ブランチへのPRが指定されており、`staging` ブランチから `main` ブランチへの自動PR作成を想定しています。PRのマージ先ブランチ名、PRタイトル、PRボディテキスト、付与するラベルを指定できます。
+
+```
+name: Auto PR to main branch from staging
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  auto-pr:
+    uses: tarosky/workflows/.github/workflows/auto-pr.yml@main
+```
 
 ## 複合アクション
 
