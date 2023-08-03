@@ -1,0 +1,25 @@
+{
+	"name": "tarosky/$PROJECT$",
+	"description": "",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0-or-later",
+	"authors": [
+		{
+			"name": "Tarosky INC.",
+			"email": "hi@tarosky.co.jp"
+		}
+	],
+	"scripts": {
+		"test": "phpunit",
+		"lint": [
+			"phpcs --standard=phpcs.ruleset.xml $(find ./ -name '*.php')"
+		],
+		"fix": [
+			"phpcbf --standard=phpcs.ruleset.xml $(find ./ -name '*.php')"
+		]
+	},
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=7.4"
+	}
+}
