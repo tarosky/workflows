@@ -4,6 +4,9 @@
 # WordPress Coding Standards
 # https://make.wordpress.org/core/handbook/coding-standards/
 
+# Note: .json uses tab indent
+# https://core.trac.wordpress.org/ticket/40946
+
 root = true
 
 [*]
