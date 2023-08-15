@@ -1,5 +1,5 @@
 {
-	"extends": [ "@wordpress/stylelint-config/scss" ]
+	"extends": [ "@wordpress/stylelint-config/scss" ],
 	"rules": {
 		"value-keyword-case": [ "lower", {
 			"ignoreProperties": [ "font-family" ]
