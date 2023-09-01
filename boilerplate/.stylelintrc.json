@@ -6,7 +6,6 @@
 		} ],
 		"number-leading-zero": null,
 		"rule-empty-line-before": null,
-		"declaration-property-unit-whitelist": null,
 	  	"selector-class-pattern": null,
 		"at-rule-empty-line-before": null,
 		"no-descending-specificity": null
