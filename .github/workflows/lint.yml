@@ -26,3 +26,30 @@ jobs:
         run: |
           npm install
           npm test
+
+  readme:
+    name: Test if readme
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: tarosky/workflows/actions/wp-readme@main
+      
+      - name: Check file existence.
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "readme.txt"
+
+      - name: Generate readme.txt
+        if: steps.check_files.outputs.files_exists != 'true'
+        shell: bash
+        run: exit 1
+
+  status-check:
+    name: Status Check
+    runs-on: ubuntu-latest
+    needs: [ readme, lint ]
+    steps:
+      - name: Display Status
+        run: echo "OK"

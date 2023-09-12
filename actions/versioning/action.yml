@@ -1,0 +1,41 @@
+name: Versioning
+description: Change version string in readme, plugin file, or style.css.
+inputs:
+  version:
+    description: 'Version string. In many cases, github.ref'
+    required: true
+    type: string
+  files:
+    description: 'Files to convert in CSV format. e.g. style.css, readme.txt'
+    required: true
+    type: string
+  prefix:
+    description: 'Prefix to remove'
+    required: false
+    default: 'refs/tags/'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check file existence.
+      id: check_files
+      uses: andstor/file-existence-action@v1
+      with:
+        files: ${{ inputs.files }}
+
+    - name: Change version and remove .bak
+      if: steps.check_files.outputs.files_exists == 'true'
+      shell: bash
+      run: |
+        # Set variables.
+        PREFIX="${{ inputs.prefix }}"
+        VERSIONSTR="${{ inputs.version }}"
+        VERSION=${VERIONSTR#"$PREFIX"}
+        FILES="${{ inputs.files }}"
+        for file in ${FILES//,/ }
+        do
+          # call your procedure/other scripts here below
+          echo "$i"
+        done
+
+
