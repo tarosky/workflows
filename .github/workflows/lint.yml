@@ -52,7 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: tarosky/workflows/actions/versioning@feature/versioning
+      - uses: tarosky/workflows/actions/versioning@main
         with:
           version: "prefix/tag/99.99.99"
           files: "tests/plugin-main.php,tests/style.css"
