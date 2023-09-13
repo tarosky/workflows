@@ -27,13 +27,21 @@ runs:
       run: |
         # Set variables.
         PREFIX="${{ inputs.prefix }}"
-        VERSIONSTR="${{ inputs.version }}"
-        VERSION=${VERSIONSTR#"$PREFIX"}
+        VERSION_STR="${{ inputs.version }}"
+        VERSION=${VERSION_STR#"$PREFIX"}
         FILES="${{ inputs.files }}"
         for file in ${FILES//,/ }
         do
           # call your procedure/other scripts here below
-          echo "$file"
+          sed -i.bak "s/\(Version\|Stable Tag\)\(:[[:space:]]*\).*$/\1\2$VERSION/i" $file
+          cat $file
+          EXISTS=$(cat $file | grep $VERSION)
+          if [ -z "$EXISTS" ]; then
+              echo "Version string not found in $file"
+              exit 1
+          fi
+          echo "$file is updated to $VERSION."
+          rm "$file.bak"
         done
 
 
