@@ -40,8 +40,8 @@ runs:
               echo "Version string not found in $file"
               exit 1
           fi
-          echo "{$file} is updated to {$VERSION}."
-          rm "{$file}.bak"
+          echo "$file is updated to $VERSION."
+          rm "$file.bak"
         done
 
 
