@@ -28,7 +28,7 @@ runs:
         # Set variables.
         PREFIX="${{ inputs.prefix }}"
         VERSIONSTR="${{ inputs.version }}"
-        VERSION=${VERIONSTR#"$PREFIX"}
+        VERSION=${VERSIONSTR#"$PREFIX"}
         FILES="${{ inputs.files }}"
         for file in ${FILES//,/ }
         do
