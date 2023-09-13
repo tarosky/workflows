@@ -33,7 +33,7 @@ runs:
         for file in ${FILES//,/ }
         do
           # call your procedure/other scripts here below
-          sed -i.bak "s/\(Version\|Stable Tag\)\(:[[:space:]]*\).*$/\1\2{$VERSION}/i" $file
+          sed -i.bak "s/\(Version\|Stable Tag\)\(:[[:space:]]*\).*$/\1\2$VERSION/i" $file
           cat $file
           EXISTS=$(cat $file | grep $VERSION)
           if [ -z "$EXISTS" ]; then
@@ -41,6 +41,7 @@ runs:
               exit 1
           fi
           echo "{$file} is updated to {$VERSION}."
+          rm "{$file}.bak"
         done
 
 
