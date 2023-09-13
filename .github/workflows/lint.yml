@@ -9,7 +9,7 @@ on:
   pull_request:
     branches:
       - main
- 
+
 jobs:
   lint:
     name: Syntax Check
@@ -28,13 +28,13 @@ jobs:
           npm test
 
   readme:
-    name: Test if readme
+    name: Generate readme.txt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
       - uses: tarosky/workflows/actions/wp-readme@main
-      
+
       - name: Check file existence.
         id: check_files
         uses: andstor/file-existence-action@v1
@@ -45,6 +45,18 @@ jobs:
         if: steps.check_files.outputs.files_exists != 'true'
         shell: bash
         run: exit 1
+
+  versioning:
+    name: Version really changed?
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: tarosky/workflows/actions/versioning@main
+        with:
+          version: "prefix/tag/99.99.99"
+          files: "tests/plugin-main.php,tests/style.css"
+          prefix: "prefix/tag/"
 
   status-check:
     name: Status Check
