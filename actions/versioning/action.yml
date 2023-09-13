@@ -33,7 +33,9 @@ runs:
         for file in ${FILES//,/ }
         do
           # call your procedure/other scripts here below
+          sed -i.bak "s/(Version:[\t ]+).*$/$1$VERSION/" "$file"
           echo "$file"
+          cat "$file"
         done
 
 
