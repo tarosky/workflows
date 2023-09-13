@@ -33,9 +33,13 @@ runs:
         for file in ${FILES//,/ }
         do
           # call your procedure/other scripts here below
-          sed -i.bak "s/(Version:[\t ]+).*$/$1$VERSION/" "$file"
-          echo "$file"
-          cat "$file"
+          sed -i.bak "s/(Version:[\t ]+).*$/\1{$VERSION}/gi" $file
+          EXISTS=$(cat $file | grep $VERSION)
+          if [ -z "$EXISTS" ]; then
+              echo "Version string not found in $file"
+              exit 1
+          fi
+          echo "{$file} is updated to {$VERISON}."
         done
 
 
