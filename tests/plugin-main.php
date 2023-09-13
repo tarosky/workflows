@@ -1,5 +1,5 @@
 <?php
 /**
  * Plugin Name: Sample Plugin
- * Version: nightly
+ * Stable tag:  nightly
  */
