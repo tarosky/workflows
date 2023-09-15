@@ -10,7 +10,7 @@
 	<testsuites>
 		<testsuite name="Plugin Basic Test">
 			<directory suffix="Test.php">./tests/</directory>
-			<exclude>./tests/test-sample.php</exclude>
+			<exclude>./tests/SampleTest.php</exclude>
 		</testsuite>
 	</testsuites>
 </phpunit>
