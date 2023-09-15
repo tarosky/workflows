@@ -10,21 +10,25 @@ $files = [
 	'phpcs.ruleset.xml'     => '',
 	'phpunit.xml.dist'      => '',
 	'.browserslistrc'       => '',
-	'.distignore'       => '',
+	'.distignore'           => '',
 	'.eslintrc.json'        => '',
 	'.gitignore'            => '',
 	'.stylelintrc.json'     => '',
 	'.wp-env.json'          => '',
 	'tests/bootstrap.php'   => '',
-	'tests/test-sample.php' => '',
+	'tests/SampleTest.php'  => '',
+	'bin/imagemin.mjs'      => '',
+	'bin/compiler.js'       => '',
 	'package.json'          => '',
 	'composer.json'         => '',
 ];
 
 // Ensure directory exists.
-if ( ! is_dir( 'tests' ) ) {
-	if ( ! mkdir( 'tests', 0755, true ) ) {
-		die( 'Failed to create tests directory.' );
+foreach ( [ 'tests', 'bin' ] as $dir ) {
+	if ( ! is_dir( $dir ) ) {
+		if ( ! mkdir( $dir, 0755, true ) ) {
+			die( 'Failed to create tests directory.' );
+		}
 	}
 }
 

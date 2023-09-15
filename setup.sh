@@ -8,7 +8,7 @@ curl -L https://raw.githubusercontent.com/tarosky/workflows/main/setup.php | php
 
 # If package.json exists, install dependencies.
 if [ -f package.json ]; then
-	npm install --save-dev @wordpress/env @wordpress/scripts @wordpress/stylelint-config
+	npm install --save-dev @wordpress/env @wordpress/scripts @wordpress/stylelint-config @wordpress/create-block @kunoichi/grab-deps cssnano glob imagemin imaggemin-gifsicle imagemin-pngquant imagemin-svo npm-watch postcss-cli
 fi
 
 # If composer.json exists, install dependencies.

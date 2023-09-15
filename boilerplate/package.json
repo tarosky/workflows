@@ -8,15 +8,25 @@
 		"update": "wp-env start --update",
 		"stop": "wp-env stop",
 		"env": "wp-env",
+		"env:install": "wp core download --path=wordpress --locale=ja",
+		"env:download" : "node ./bin/compiler.js env",
 		"cli": "wp-env run cli wp",
 		"cli:test": "wp-env run tests-cli wp",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"test:plugin": "RESULT=${PWD##*/} && wp-env run tests-cli ./wp-content/plugins/$RESULT/vendor/bin/phpunit -c ./wp-content/plugins/$RESULT/phpunit.xml.dist",
 		"test:theme": "RESULT=${PWD##*/} && wp-env run tests-cli ./wp-content/themes/$RESULT/vendor/bin/phpunit -c ./wp-content/themes/$RESULT/phpunit.xml.dist",
-		"build:js": "wp-scripts build ./src/**/*.js",
+		"build" : "npm run build:js && npm run build:css && npm run build:block && npm run lib:normalize && npm run dump && npm run imagemin",
+		"build:block" : "wp-scripts build --webpack-src-dir=src/blocks --output-path=build/blocks",
+		"build:css" : "sass ./src/scss/:./build/css/ && postcss ./build/css/**/*.css --replace",
+		"build:js" : "node ./bin/compiler.js js",
+		"create:block" : "node ./bin/compiler.js block",
+		"dump" : "node ./bin/compiler.js dump",
+		"lint" : "npm run lint:js && npm run lint:css",
+		"lint:css" : "wp-scripts lint-style ./src/**/*.scss",
 		"lint:js": "wp-scripts lint-js ./src",
-		"lint:css": "wp-scripts lint-style ./src",
-		"format:js": "wp-scripts format-js ./src"
+		"imagemin" : "node ./bin/imagemin.mjs src/image build/image",
+		"format:js": "wp-scripts format-js ./src",
+		"watch" : "npm-watch"
 	},
 	"repository": {
 		"type": "git",
@@ -26,7 +36,7 @@
 		"wordpress"
 	],
 	"engines": {
-		"node": ">=16.20.0"
+		"node": ">=16.0.0"
 	},
 	"author": "Tarosky INC.",
 	"license": "GPL-3.0-or-later",
@@ -34,5 +44,51 @@
 		"url": "https://github.com/tarosky/$PROJECT$/issues"
 	},
 	"homepage": "https://github.com/tarosky/$PROJECT$#readme",
-	"devDependencies": {}
+	"devDependencies": {},
+	"watch" : {
+		"build:block" : {
+			"extensions" : "js,scss,json",
+			"patterns" : [
+				"src/blocks"
+			]
+		},
+		"build:css" : {
+			"extensions" : "scss",
+			"patterns" : [
+				"src/scss"
+			]
+		},
+		"build:js" : {
+			"extensions" : "js",
+			"patterns" : [
+				"src/js"
+			]
+		},
+		"dump" : {
+			"extensions" : "js,css,php,json",
+			"patterns" : [
+				"build/js",
+				"build/css",
+				"build/blocks"
+			]
+		},
+		"imagemin" : {
+			"extensions" : "jpg,jpeg,gif,png,svg",
+			"patterns" : [
+				"src/image"
+			]
+		},
+		"lint:css" : {
+			"extensions" : "scss",
+			"patterns" : [
+				"src/scss"
+			]
+		},
+		"lint:js" : {
+			"extensions" : "js",
+			"patterns" : [
+				"src"
+			]
+		}
+	}
 }
