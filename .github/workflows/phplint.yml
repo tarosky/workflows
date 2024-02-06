@@ -1,13 +1,15 @@
-name: PHP Code Sniffer CI
+name: PHP Syntax Check
 
 on:
   workflow_call:
     inputs:
-      version:
-        description: 'PHP Version to run lint'
-        default: 8.0
+      path:
+        description: 'Path to run php lint'
+        default: "."
         required: false
         type: string
+  workflow_dispatch:
+    inputs:
       path:
         description: 'Path to run php lint'
         default: "."
@@ -17,8 +19,19 @@ on:
 jobs:
   phplint:
     runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            php: [7.4, 8.0, 8.1]
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
+
+      - name: Setup PHP with composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run PHP lint
         run: find ${{ inputs.path }} -name "*.php" -exec php -l {} \;

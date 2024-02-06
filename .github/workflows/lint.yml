@@ -11,8 +11,8 @@ on:
       - main
 
 jobs:
-  phpcs:
-    name: Code Sniffer
+  lint:
+    name: Yaml Syntax Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -27,16 +27,8 @@ jobs:
           npm install
           npm test
 
-  lint:
-    name: PHP Syntax Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-
-      - uses: tarosky/workflows/actions/phplint@main
-        with:
-          version: "8.0"
-          path: "."
+  phplint:
+    uses: tarosky/workflows/.github/workflows/phplint.yml@php-syntax-check
 
   readme:
     name: Generate readme.txt
