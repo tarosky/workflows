@@ -28,7 +28,7 @@ jobs:
           npm test
 
   phplint:
-    uses: tarosky/workflows/.github/workflows/phplint.yml@php-syntax-check
+    uses: tarosky/workflows/.github/workflows/phplint.yml@feature/php-syntax-check
 
   readme:
     name: Generate readme.txt
