@@ -1,0 +1,24 @@
+name: PHP Code Sniffer CI
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        description: 'PHP Version to run lint'
+        default: 8.0
+        required: false
+        type: string
+      path:
+        description: 'Path to run php lint'
+        default: "."
+        required: false
+        type: string
+
+jobs:
+  phplint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Run PHP lint
+        run: find ${{ inputs.path }} -name "*.php" -exec php -l {} \;
