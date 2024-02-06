@@ -34,4 +34,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run PHP lint
-        run: find ${{ inputs.path }} -name "*.php" -exec php -l {} \;
+        run: |
+          find ${{ inputs.path }} -name "*.php" -exec php -l {} \; | grep -v "No syntax errors" > output.txt
+          if [ ! -s output.txt ]; then
+            echo "No syntax error"
+            exit 0
+          else
+            cat output.txt
+            exit 1
+          fi

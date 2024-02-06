@@ -11,6 +11,6 @@ $str = 'Hello, World!';
 
 <?php
 echo $str;
-$b=====;
+$b===true;
 
 
