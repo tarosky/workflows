@@ -35,7 +35,13 @@ jobs:
 
       - name: Run PHP lint and save as file.
         run: |
-          find ${{ inputs.path }} -name "*.php" -exec php -l {} \; | grep -v "No syntax errors"
+          find ${{ inputs.path }} -name "*.php" -exec php -l {} \; > output.txt
+
+      - name: Remove no syntax error file
+        run: |
+          sed '/^No syntax errors/d' output.txt
+          cat output.txt
+          php -r 'if ( 1 >= filesize( "output.txt" ) ) { unlink( "output.txt" ); }'
 
       - name: Check error file exists.
         id: check_files
