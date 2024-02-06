@@ -40,6 +40,6 @@ jobs:
             echo "No syntax error"
             exit 0
           else
-            cat output.txt
+            cat output.txt >&2
             exit 1
           fi
