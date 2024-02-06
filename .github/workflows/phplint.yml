@@ -35,7 +35,11 @@ jobs:
 
       - name: Run PHP lint
         run: |
+          # Run PHP lint
           find ${{ inputs.path }} -name "*.php" -exec php -l {} \; | grep -v "No syntax errors" > output.txt
+          # Remove empty lines
+          sed -i '/^$/d' output.txt
+          # If output.txt is empty, then no syntax error
           if [ ! -s output.txt ]; then
             echo "No syntax error"
             exit 0
