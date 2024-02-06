@@ -41,7 +41,7 @@ jobs:
         run: |
           sed '/^No syntax errors/d' output.txt
           cat output.txt
-          php -r 'if ( 1 >= filesize( "output.txt" ) ) { unlink( "output.txt" ); }'
+          php -r 'if ( 1 >= filesize( "output.txt" ) ) { echo "No error detected."; unlink( "output.txt" ); }'
 
       - name: Check error file exists.
         id: check_files
