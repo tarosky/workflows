@@ -50,6 +50,6 @@ jobs:
           files: "output.txt"
 
       - name: Check if lint error exists
-        if: steps.check_files.outputs.files_exists != 'true'
+        if: steps.check_files.outputs.files_exists == 'true'
         shell: bash
         run: exit 1
