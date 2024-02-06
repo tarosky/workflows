@@ -37,8 +37,6 @@ jobs:
         run: |
           # Run PHP lint
           find ${{ inputs.path }} -name "*.php" -exec php -l {} \; | grep -v "No syntax errors" > output.txt
-          # Remove empty lines
-          php -r 'if ( 1 >= filesize( "output.txt" ) ) { unlink( "output.txt" ); }'
 
       - name: Check error file exists.
         id: check_files
