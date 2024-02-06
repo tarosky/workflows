@@ -35,7 +35,6 @@ jobs:
 
       - name: Run PHP lint and save as file.
         run: |
-          # Run PHP lint
           find ${{ inputs.path }} -name "*.php" -exec php -l {} \; | grep -v "No syntax errors" > output.txt
 
       - name: Check error file exists.
