@@ -64,7 +64,7 @@ jobs:
   status-check:
     name: Status Check
     runs-on: ubuntu-latest
-    needs: [ readme, lint, versioning, phpcs ]
+    needs: [ readme, lint, versioning, phplint ]
     steps:
       - name: Display Status
         run: echo "OK"
