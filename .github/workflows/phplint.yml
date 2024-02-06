@@ -33,17 +33,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run PHP lint
+      - name: Run PHP lint and save as file.
         run: |
           # Run PHP lint
           find ${{ inputs.path }} -name "*.php" -exec php -l {} \; | grep -v "No syntax errors" > output.txt
           # Remove empty lines
-          php -r 'echo (filesize("output.txt"));' >&2
-          # If output.txt is empty, then no syntax error
-          if [ ! -s output.txt ]; then
-            echo "No syntax error"
-            exit 0
-          else
-            cat output.txt >&2
-            exit 1
-          fi
+          php -r 'if ( 1 >= filesize( "output.txt" ) ) { unlink( "output.txt" ); }'
+
+      - name: Check error file exists.
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "output.txt"
+
+      - name: Check if lint error exists
+        if: steps.check_files.outputs.files_exists != 'true'
+        shell: bash
+        run: exit 1
