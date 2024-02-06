@@ -1,0 +1,55 @@
+name: PHP Syntax Check
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: 'Path to run php lint'
+        default: "."
+        required: false
+        type: string
+  workflow_dispatch:
+    inputs:
+      path:
+        description: 'Path to run php lint'
+        default: "."
+        required: false
+        type: string
+
+jobs:
+  phplint:
+    runs-on: ubuntu-latest
+    strategy:
+        matrix:
+            php: [7.4, 8.0, 8.1]
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Setup PHP with composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run PHP lint and save as file.
+        run: |
+          find ${{ inputs.path }} -name "*.php" -exec php -l {} \; > output.txt
+
+      - name: Remove no syntax error file
+        run: |
+          sed -i '/^No syntax errors/d' output.txt
+          cat output.txt
+          php -r 'echo filesize( "output.txt" ) . "Byte"; if ( 1 >= filesize( "output.txt" ) ) { echo "No error detected."; unlink( "output.txt" ); }'
+
+      - name: Check error file exists.
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "output.txt"
+
+      - name: Check if lint error exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        shell: bash
+        run: exit 1
