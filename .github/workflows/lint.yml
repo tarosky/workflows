@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: tarosky/workflows/actions/phplint@php-syntax-check
+      - uses: tarosky/workflows/actions/phplint@main
         with:
           version: "8.0"
           path: "."
@@ -72,7 +72,7 @@ jobs:
   status-check:
     name: Status Check
     runs-on: ubuntu-latest
-    needs: [ readme, lint, versioning ]
+    needs: [ readme, lint, versioning, phpcs ]
     steps:
       - name: Display Status
         run: echo "OK"
