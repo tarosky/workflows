@@ -31,7 +31,7 @@ jobs:
     uses: tarosky/workflows/.github/workflows/phplint.yml@main
 
   php-shor-open-tag:
-    uses: tarosky/workflows/.github/workflows/phplint.yml@feature/find-short-tags
+    uses: tarosky/workflows/.github/workflows/php-short-open-tag.yml@feature/find-short-tags
 
   readme:
     name: Generate readme.txt
