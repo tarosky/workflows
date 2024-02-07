@@ -9,7 +9,7 @@ $str = 'Hello, World!';
 
 <?= $str; ?>
 
-<?
+<?php
 echo $str;
 $b=true;
 

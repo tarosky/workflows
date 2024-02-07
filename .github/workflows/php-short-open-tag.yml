@@ -68,7 +68,7 @@ jobs:
             });
             if ( shorts.length ) {
               shorts.unshift( 'Short open tag found:' );
-             return shorts.join( "\t" );
+              return shorts.join( "\t" );
             } else {
               return "OK";
             }
@@ -77,5 +77,5 @@ jobs:
         if: steps.short-open-tags.outputs.result != 'OK'
         shell: bash
         run: |
-          echo "${{ steps.short-open-tags.outputs.result }}"
+          echo "${{ steps.short-open-tags.outputs.result }}" >&2
           exit 1
