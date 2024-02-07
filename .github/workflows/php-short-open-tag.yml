@@ -1,0 +1,81 @@
+name: PHP Short Open Tag Check
+
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: 'Path to search short open tag.'
+        default: "."
+        required: false
+        type: string
+      version:
+        description: 'PHP version to run'
+        default: "8.0"
+        required: false
+        type: string
+  workflow_dispatch:
+    inputs:
+      path:
+        description: 'Path to search short open tag.'
+        default: "."
+        required: false
+        type: string
+      version:
+        description: 'PHP version to run'
+        default: "8.0"
+        required: false
+        type: string
+
+jobs:
+  short-open-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Setup PHP with composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ inputs.version }}
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Search Short Open tags
+        uses: actions/github-script@v7
+        id: short-open-tags
+        with:
+          result-encoding: string
+          script: |
+            const fs = require( 'fs');
+            const files = [];
+            const readFile = (dir) => {
+              fs.readdirSync( dir ).forEach( (file) => {
+                const path = dir + '/' + file;
+                if ( fs.statSync( path ).isDirectory() ) {
+                  readFile( path );
+                } else if( /\.php$/.test( file ) ) {
+                  files.push( path );
+                }
+              });
+            };
+            readFile( '${{ inputs.path }}' );
+            const shorts = [];
+            files.forEach( (file) => {
+              const content = fs.readFileSync( file, 'utf8' );
+              if ( /<\?( |\n|\t)/m.test( content ) ) {
+                shorts.push( file );
+              }
+            });
+            if ( shorts.length ) {
+              shorts.unshift( 'Short open tag found:' );
+              return shorts.join( "\t" );
+            } else {
+              return "OK";
+            }
+
+      - name: Show Results
+        if: steps.short-open-tags.outputs.result != 'OK'
+        shell: bash
+        run: |
+          echo "${{ steps.short-open-tags.outputs.result }}" >&2
+          exit 1

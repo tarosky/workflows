@@ -28,7 +28,10 @@ jobs:
           npm test
 
   phplint:
-    uses: tarosky/workflows/.github/workflows/phplint.yml@feature/php-syntax-check
+    uses: tarosky/workflows/.github/workflows/phplint.yml@main
+
+  php-shor-open-tag:
+    uses: tarosky/workflows/.github/workflows/php-short-open-tag.yml@feature/find-short-tags
 
   readme:
     name: Generate readme.txt
@@ -64,7 +67,7 @@ jobs:
   status-check:
     name: Status Check
     runs-on: ubuntu-latest
-    needs: [ readme, lint, versioning, phplint ]
+    needs: [ readme, lint, versioning, phplint, php-shor-open-tag ]
     steps:
       - name: Display Status
         run: echo "OK"
