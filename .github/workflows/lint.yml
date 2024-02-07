@@ -28,7 +28,10 @@ jobs:
           npm test
 
   phplint:
-    uses: tarosky/workflows/.github/workflows/phplint.yml@feature/php-syntax-check
+    uses: tarosky/workflows/.github/workflows/phplint.yml@main
+
+  php-shor-open-tag:
+    uses: tarosky/workflows/.github/workflows/phplint.yml@feature/find-short-tags
 
   readme:
     name: Generate readme.txt
