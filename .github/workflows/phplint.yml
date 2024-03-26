@@ -32,6 +32,16 @@ jobs:
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Check file existence.
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: composer.json
+      
+      - name: Install composer if exists.
+        if: steps.check_files.outputs.file_exists == 'true'
+        run: composer install --no-dev --prefer-dist
 
       - name: Run PHP lint and save as file.
         run: |
