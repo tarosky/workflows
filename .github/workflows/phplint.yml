@@ -33,14 +33,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Check file existence.
-        id: check_composer_json
-        uses: andstor/file-existence-action@v3
-        with:
-          files: "composer.json"
-      
-      - name: Install composer if exists.
-        if: steps.check_composer_json.outputs.file_exists
+      - name: Install composer if exists
+        if: ${{ hashFiles('./composer.json') != '' }}
         run: composer install --no-dev --prefer-dist
 
       - name: Run PHP lint and save as file.
@@ -53,13 +47,7 @@ jobs:
           cat output.txt
           php -r 'echo filesize( "output.txt" ) . "Byte:\t"; if ( 1 >= filesize( "output.txt" ) ) { echo "No error detected."; unlink( "output.txt" ); }'
 
-      - name: Check error file exists.
-        id: check_files
-        uses: andstor/file-existence-action@v3
-        with:
-          files: "output.txt"
-
       - name: Check if lint error exists
-        if: steps.check_files.outputs.files_exists
+        if: ${{ hashFiles('output.txt') != '' }}
         shell: bash
         run: exit 1
