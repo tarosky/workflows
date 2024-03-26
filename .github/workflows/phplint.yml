@@ -40,7 +40,7 @@ jobs:
           files: "composer.json"
       
       - name: Install composer if exists.
-        if: steps.check_composer_json.outputs.file_exists == 'true'
+        if: steps.check_composer_json.outputs.file_exists
         run: composer install --no-dev --prefer-dist
 
       - name: Run PHP lint and save as file.
@@ -60,6 +60,6 @@ jobs:
           files: "output.txt"
 
       - name: Check if lint error exists
-        if: steps.check_files.outputs.files_exists == 'true'
+        if: steps.check_files.outputs.files_exists
         shell: bash
         run: exit 1
