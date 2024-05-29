@@ -26,6 +26,7 @@
 		"lint:js": "wp-scripts lint-js ./src",
 		"imagemin" : "node ./bin/imagemin.mjs src/image build/image",
 		"format:js": "wp-scripts format-js ./src",
+		"lib:normalize": "postcss ./node_modules/normalize.css/normalize.css --dir ./build/vendor",
 		"watch" : "npm-watch"
 	},
 	"repository": {
