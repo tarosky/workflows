@@ -35,7 +35,7 @@ jobs:
       
       - name: Install composer if exists
         if: ${{ hashFiles('./composer.json') != '' }}
-        run: composer install --no-dev --prefer-dist
+        run: composer install --no-dev
 
       - name: Run PHP lint and save as file.
         run: |
