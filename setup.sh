@@ -13,5 +13,5 @@ fi
 
 # If composer.json exists, install dependencies.
 if [ -f composer.json ]; then
-	composer require --dev phpunit/phpunit squizlabs/php_codesniffer wp-coding-standards/wpcs yoast/phpunit-polyfills phpcompatibility/php-compatibility dealerdirect/phpcodesniffer-composer-installer
+	composer require --dev phpunit/phpunit squizlabs/php_codesniffer wp-coding-standards/wpcs yoast/phpunit-polyfills dealerdirect/phpcodesniffer-composer-installer
 fi
