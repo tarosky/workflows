@@ -67,7 +67,9 @@ jobs:
   status-check:
     name: Status Check
     runs-on: ubuntu-latest
+    if: always()
     needs: [ readme, lint, versioning, phplint, php-shor-open-tag ]
     steps:
-      - name: Display Status
-        run: echo "OK"
+      - uses: re-actors/alls-green@release/v1
+        with:
+          jobs: ${{ toJSON(needs) }}
