@@ -59,7 +59,7 @@ jobs:
 
       - name: Install WordPress
         run: |
-          wget https://raw.githubusercontent.com/wp-cli/sample-plugin/master/bin/install-wp-tests.sh
+          wget https://raw.githubusercontent.com/wp-cli/scaffold-command/blob/main/templates/install-wp-tests.sh
           bash ./install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ inputs.wp_version }}
 
       - name: Run test suite
