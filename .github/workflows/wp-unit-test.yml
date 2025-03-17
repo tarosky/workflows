@@ -38,6 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
+      # ubuntu-latest requires subversion.
+      # see: https://github.com/10up/action-wordpress-plugin-deploy/releases/tag/2.3.0
+      - name: Install SVN
+        run: sudo apt-get install -y subversion
+        
       - name: Setup PHP with composer
         uses: shivammathur/setup-php@v2
         with:
