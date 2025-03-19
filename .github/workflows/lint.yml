@@ -69,7 +69,7 @@ jobs:
     uses: tarosky/workflows/.github/workflows/check-tag-in-branch.yml@main
     if: contains(github.ref, 'refs/tags/')
     with:
-      allowed_branches: "main"
+      allowed_branch: "main"
 
   status-check:
     name: Status Check
