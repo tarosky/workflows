@@ -1,0 +1,38 @@
+name: "Check if this commit is in allowed branch"
+description: "Ensure that a tag is created from an allowed branch before deployment"
+inputs:
+  allowed_branches:
+    description: "Comma-separated list of allowed branches (e.g. 'master,release')"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Check if full history is available
+      shell: bash
+      run: |
+        COMMIT_COUNT=$(git rev-list --count HEAD)
+        echo "🔍 Number of commits available: $COMMIT_COUNT"
+        if [[ "$COMMIT_COUNT" -le 1 ]]; then
+          echo "::error title=Missing Git History::Only a single commit is available. Ensure 'fetch-depth: 0' is set in checkout."
+          exit 1
+        fi
+
+    - name: Verify if tag belongs to an allowed branch
+      shell: bash
+      run: |
+        IFS=',' read -r -a ALLOWED_BRANCHES <<< "${{ inputs.allowed_branches }}"
+        BRANCHES=$(git branch --contains ${{ github.ref_name }} | sed 's/\*//g' | awk '{$1=$1};1')
+
+        echo "🔍 Tagged commit exists in branches: $BRANCHES"
+
+        for BRANCH in $BRANCHES; do
+          for ALLOWED in "${ALLOWED_BRANCHES[@]}"; do
+            if [[ "$BRANCH" == "$ALLOWED" ]]; then
+              echo "✅ The tag belongs to an allowed branch ($ALLOWED)."
+              exit 0
+            fi
+          done
+        done
+
+        echo "::error title=Invalid Tag Branch::The tag is not on an allowed branch. Deployment aborted."
+        exit 1
