@@ -69,10 +69,10 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.ref, 'refs/tags/')
     steps:
-      - uses: actions/checkout@vmain
+      - uses: actions/checkout@main
         with:
           fetch-depth: 0
-      - uses: actions/tag-in-branch@v1
+      - uses: actions/tag-in-branch@main
         with:
           allowed_branches: main
 
