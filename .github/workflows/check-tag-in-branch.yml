@@ -20,7 +20,7 @@ jobs:
       - name: Debug Git Information
         run: |
           echo "🔍 Checkout to revision."
-          git fetch --depth=0 --tags
+          git fetch --unshallow
           git checkout ${{ github.sha }}
           echo "🔍 Git HEAD info:"
           git log -n 1 --oneline
