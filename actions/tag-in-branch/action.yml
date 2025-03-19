@@ -21,7 +21,7 @@ runs:
       shell: bash
       run: |
         IFS=',' read -r -a ALLOWED_BRANCHES <<< "${{ inputs.allowed_branches }}"
-        BRANCHES=$(git branch --contains ${{ github.ref_name }} | sed 's/\*//g' | awk '{$1=$1};1')
+        BRANCH=$(git name-rev --name-only HEAD | awk '{print $1}')
 
         echo "🔍 Tagged commit exists in branches: $BRANCHES"
 
