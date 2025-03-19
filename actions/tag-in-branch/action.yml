@@ -20,7 +20,13 @@ runs:
     - name: Verify if tag belongs to an allowed branch
       shell: bash
       run: |
+        set -x
         IFS=',' read -r -a ALLOWED_BRANCHES <<< "${{ inputs.allowed_branches }}"
+        echo "🔍 Allowed branches: ${ALLOWED_BRANCHES[@]}"
+        # デバッグ出力 直接実行し、出力を確認
+        echo "🏷️ Checking tag ownership..."
+        echo "⌘ git branch --contains HEAD output: "
+        git branch --contains ${{ github.ref_name }}
 
         # タグが属するブランチ名を取得し、detached HEAD の行を除外
         BRANCHES=$(git branch --contains ${{ github.ref_name }} | grep -v 'detached' | awk '{$1=$1};1')
