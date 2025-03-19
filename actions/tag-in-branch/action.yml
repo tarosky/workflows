@@ -23,7 +23,7 @@ runs:
         IFS=',' read -r -a ALLOWED_BRANCHES <<< "${{ inputs.allowed_branches }}"
 
         # タグが属するブランチ名を取得し、detached HEAD の行を除外
-        BRANCHES=$(git branch --contains HEAD | grep -v 'detached' | awk '{$1=$1};1')
+        BRANCHES=$(git branch --contains ${{ github.ref_name }} | grep -v 'detached' | awk '{$1=$1};1')
 
         echo "🔍 Tagged commit ${{ github.ref_name }} exists in branches: $BRANCHES"
 
