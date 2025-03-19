@@ -15,7 +15,7 @@ jobs:
     name: Yaml Syntax Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       - name: Install Node
         uses: actions/setup-node@v3
@@ -37,7 +37,7 @@ jobs:
     name: Generate readme.txt
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       - uses: tarosky/workflows/actions/wp-readme@main
 
@@ -56,13 +56,25 @@ jobs:
     name: Version really changed?
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@main
 
       - uses: tarosky/workflows/actions/versioning@main
         with:
           version: "prefix/tag/99.99.99"
           files: "tests/plugin-main.php,tests/style.css"
           prefix: "prefix/tag/"
+
+  tag-in-branch:
+    name: "Check if this commit is in allowed branch"
+    runs-on: ubuntu-latest
+    if: contains(github.ref, 'refs/tags/')
+    steps:
+      - uses: actions/checkout@vmain
+        with:
+          fetch-depth: 0
+      - uses: actions/tag-in-branch@v1
+        with:
+          allowed_branches: main
 
   status-check:
     name: Status Check
