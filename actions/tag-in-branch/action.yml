@@ -21,15 +21,19 @@ runs:
       shell: bash
       run: |
         IFS=',' read -r -a ALLOWED_BRANCHES <<< "${{ inputs.allowed_branches }}"
-        BRANCH=$(git show-branch -a --current | grep '*' | head -n1 | awk '{print $2}')
 
-        echo "🔍 Tagged commit ${{ github.ref_name }} exists in a branch: $BRANCH"
+        # タグが属するブランチ名を取得し、detached HEAD の行を除外
+        BRANCHES=$(git branch --contains HEAD | grep -v 'detached' | awk '{$1=$1};1')
 
-        for ALLOWED in "${ALLOWED_BRANCHES[@]}"; do
-          if [[ "$BRANCH" == "$ALLOWED" ]]; then
-            echo "✅ The tag belongs to an allowed branch ($ALLOWED)."
-            exit 0
-          fi
+        echo "🔍 Tagged commit ${{ github.ref_name }} exists in branches: $BRANCHES"
+
+        for BRANCH in $BRANCHES; do
+          for ALLOWED in "${ALLOWED_BRANCHES[@]}"; do
+            if [[ "$BRANCH" == "$ALLOWED" ]]; then
+              echo "✅ The tag belongs to an allowed branch ($ALLOWED)."
+              exit 0
+            fi
+          done
         done
 
         echo "::error title=Invalid Tag Branch::The tag is not on an allowed branch. Deployment aborted."
