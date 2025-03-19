@@ -66,15 +66,10 @@ jobs:
 
   tag-in-branch:
     name: "Check if this commit is in allowed branch"
-    runs-on: ubuntu-latest
+    uses: tarosky/workflows/.github/workflows/check-tag-in-branch.yml@main
     if: contains(github.ref, 'refs/tags/')
-    steps:
-      - uses: actions/checkout@main
-        with:
-          fetch-depth: 0
-      - uses: tarosky/workflows/actions/tag-in-branch@main
-        with:
-          allowed_branches: main
+    with:
+      allowed_branches: "main"
 
   status-check:
     name: Status Check
