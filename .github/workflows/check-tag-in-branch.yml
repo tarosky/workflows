@@ -19,12 +19,12 @@ jobs:
 
       - name: Debug Git Information
         run: |
+          echo "🔍 Checkout to revision."
+          git checkout ${{ github.sha }}
           echo "🔍 Git HEAD info:"
           git log -n 1 --oneline
-          echo "🔍 Checking available branches:"
-          git branch -a
-          echo "🔍 Checking commit history:"
-          git log --oneline -10
+          echo "🔍 Checking containing branches:"
+          git branch --contains HEAD
 
       - name: Get branch containing this commit
         run: |
