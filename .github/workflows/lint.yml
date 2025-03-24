@@ -29,6 +29,8 @@ jobs:
 
   phplint:
     uses: tarosky/workflows/.github/workflows/phplint.yml@main
+    with:
+      php_versions: '8.0,8.1,8.2'
 
   php-shor-open-tag:
     uses: tarosky/workflows/.github/workflows/php-short-open-tag.yml@main
