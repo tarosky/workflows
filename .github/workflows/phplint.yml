@@ -8,11 +8,20 @@ on:
         default: "."
         required: false
         type: string
+      php_versions:
+        description: 'Comma-separated list of PHP versions (e.g. "7.4,8.0,8.1")'
+        required: false
+        default: '7.4,8.0,8.1'
   workflow_dispatch:
     inputs:
       path:
         description: 'Path to run php lint'
         default: "."
+        required: false
+        type: string
+      php_versions:
+        description: 'Comma-separated list of PHP versions (e.g. "7.4,8.0,8.1")'
+        default: '7.4,8.0,8.1'
         required: false
         type: string
 
@@ -21,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
         matrix:
-            php: [7.4, 8.0, 8.1]
+          php: ${{ fromJSON(format('["{0}"]', join(split(inputs.php_versions, ','), '","'))) }}
     steps:
       - uses: actions/checkout@main
 
