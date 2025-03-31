@@ -22,10 +22,10 @@
 		"create:block" : "node ./bin/compiler.js block",
 		"dump" : "node ./bin/compiler.js dump",
 		"lint" : "npm run lint:js && npm run lint:css",
-		"lint:css" : "wp-scripts lint-style ./src/**/*.scss",
-		"lint:js": "wp-scripts lint-js ./src",
+		"lint:css" : "wp-scripts lint-style './src/**/*.scss'",
+		"lint:js": "wp-scripts lint-js './src/**/*.js'",
 		"imagemin" : "node ./bin/imagemin.mjs src/image build/image",
-		"format:js": "wp-scripts format-js ./src",
+		"format:js": "wp-scripts format-js './src/**/*.js'",
 		"lib:normalize": "postcss ./node_modules/normalize.css/normalize.css --dir ./build/vendor",
 		"watch" : "npm-watch"
 	},
