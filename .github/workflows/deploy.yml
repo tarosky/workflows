@@ -1,0 +1,50 @@
+name: Deploy to staging environment
+
+on:
+  workflow_call:
+    inputs:
+      deploy-method:
+        description: 'Deployment method'
+        required: true
+        type: string
+
+jobs:
+  deploy-to-staging:
+    if: github.ref == 'refs/heads/staging'
+    name: Deploy / Staging
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: ${{ vars.KUNOICHI_REMOTE_URL }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Deploy with rsync"
+        if: ${{ inputs.deploy-method == 'rsync' }}
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: --log-file=rsync.log --log-file-format="%o (%U %B) %l %b %f" --checksum -rlpDv --delete --exclude-from=./.rsyncignore
+          path: ./
+          remote_path: ${{ vars.KUNOICHI_REMOTE_PATH }}
+          remote_host: ${{ secrets.KUNOICHI_REMOTE_HOST }}
+          remote_user: ${{ secrets.KUNOICHI_DEPLOY_USER }}
+          remote_key: ${{ secrets.KUNOICHI_DEPLOY_KEY }}
+
+      - name: "Deploy with FTPS"
+        if: ${{ inputs.deploy-method == 'ftps' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.XSERVER_FTP_SERVER }}
+          username: ${{ secrets.XSERVER_FTP_USERNAME }}
+          password: ${{ secrets.XSERVER_FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: ${{ vars.XSERVER_REMOTE_PATH }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.vscode/**
+            .wp-env.json
+            .editorconfig
+            readme.md
+            README.md
