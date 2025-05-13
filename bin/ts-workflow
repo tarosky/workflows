@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# ts-workflow - GitHub管理を標準化するためのCLIツール
+# 
+# 使用方法: ts-workflow <サブコマンド> [オプション]
+
+set -e
+
+# スクリプトディレクトリ
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SUBCOMMANDS_DIR="${SCRIPT_DIR}/subcommands"
+LIB_DIR="${SCRIPT_DIR}/lib"
+
+# 共通関数の読み込み
+source "${LIB_DIR}/common.sh"
+
+# ヘルプの表示
+function show_help {
+  echo "使用方法: ts-workflow <サブコマンド> [オプション]"
+  echo ""
+  echo "サブコマンド:"
+  echo "  create-issues    特定のラベルがついたリポジトリすべてに同じ内容のイシューを登録"
+  echo "  sync-labels      特定のラベルがついたリポジトリのラベルを共通化"
+  echo ""
+  echo "特定のサブコマンドのヘルプを表示するには:"
+  echo "  ts-workflow <サブコマンド> --help"
+  echo ""
+  exit 0
+}
+
+# ghコマンドが利用可能か確認
+if ! command -v gh &> /dev/null; then
+  echo "エラー: GitHub CLI (gh) がインストールされていないか、PATHに含まれていません。"
+  echo "https://cli.github.com/ からインストールしてください。"
+  exit 1
+fi
+
+# ghが認証済みか確認
+if ! gh auth status &> /dev/null; then
+  echo "エラー: GitHub CLI (gh) が認証されていません。"
+  echo "'gh auth login' を実行して認証してください。"
+  exit 1
+fi
+
+# 引数がない場合
+if [[ $# -eq 0 ]]; then
+  show_help
+fi
+
+# サブコマンドの解析
+SUBCOMMAND=$1
+shift
+
+case "${SUBCOMMAND}" in
+  create-issues)
+    SUBCOMMAND_SCRIPT="${SUBCOMMANDS_DIR}/create-issues.sh"
+    ;;
+  sync-labels)
+    SUBCOMMAND_SCRIPT="${SUBCOMMANDS_DIR}/sync-labels.sh"
+    ;;
+  help|--help|-h)
+    show_help
+    ;;
+  *)
+    echo "エラー: 不明なサブコマンド '${SUBCOMMAND}'"
+    echo ""
+    show_help
+    ;;
+esac
+
+# サブコマンドスクリプトが存在するか確認
+if [[ ! -f "${SUBCOMMAND_SCRIPT}" ]]; then
+  echo "エラー: サブコマンドスクリプトが見つかりません: ${SUBCOMMAND_SCRIPT}"
+  exit 1
+fi
+
+# サブコマンドスクリプトを残りの引数で実行
+bash "${SUBCOMMAND_SCRIPT}" "$@"
