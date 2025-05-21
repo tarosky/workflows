@@ -3,6 +3,7 @@
 # create-issues.sh - 特定のラベルがついたリポジトリすべてに同じ内容のイシューを登録
 #
 # 使用方法: ts-workflow create-issues --label <ラベル> --title <タイトル> [オプション]
+# 例: ts-workflow create-issues --label wordpress-plugin --title "セキュリティアップデート" --issue-labels "security,urgent" --create-missing-labels
 
 set -e
 
@@ -23,6 +24,7 @@ function show_help {
   echo "  --body <本文>            イシューの本文"
   echo "  --body-file <ファイル>   イシューの本文をファイルから読み込む"
   echo "  --issue-labels <ラベル>  イシューに付けるラベル（カンマ区切り）"
+  echo "  --create-missing-labels   指定したラベルが存在しない場合、自動的に作成する"
   echo "  --assignee <アサイン先>  イシューのアサイン先（ユーザー名またはチーム名、例: tarosky/maintainers）。"
   echo "                          チーム名を指定した場合、そのチームのメンバー全員にアサインされます。"
   echo "  --org <組織名>           特定の組織のリポジトリのみを対象にする"
@@ -41,6 +43,7 @@ ISSUE_LABELS=""
 ASSIGNEE=""
 ORG=""
 DRY_RUN=false
+CREATE_MISSING_LABELS=false
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -74,6 +77,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --dry-run)
       DRY_RUN=true
+      shift
+      ;;
+    --create-missing-labels)
+      CREATE_MISSING_LABELS=true
       shift
       ;;
     --help)
@@ -178,12 +185,48 @@ for repo in "${REPOS[@]}"; do
     echo "  本文: ${BODY:0:50}..."
     if [[ -n "$ISSUE_LABELS" ]]; then
       echo "  ラベル: $ISSUE_LABELS"
+      
+      # 自動作成フラグが有効な場合、ラベルの作成も表示
+      if [[ "$CREATE_MISSING_LABELS" == true ]]; then
+        echo "  存在しないラベルは自動的に作成されます"
+      fi
     fi
     if [[ -n "$ASSIGNEES" ]]; then
       echo "  アサイン先: $ASSIGNEES"
     fi
   else
     echo "  $repo にイシューを作成中..."
+    
+    # ラベルが指定されていて、自動作成フラグが有効な場合、ラベルの存在を確認して作成
+    if [[ -n "$ISSUE_LABELS" && "$CREATE_MISSING_LABELS" == true ]]; then
+      echo "  ラベルの存在を確認中..."
+      
+      # カンマ区切りのラベルを配列に変換
+      IFS=',' read -ra LABEL_ARRAY <<< "$ISSUE_LABELS"
+      
+      # リポジトリの既存ラベルを取得
+      EXISTING_LABELS=$(gh label list --repo "$repo" --json name --jq '.[].name')
+      
+      # 各ラベルを確認
+      for label_name in "${LABEL_ARRAY[@]}"; do
+        # 前後の空白を削除
+        label_name=$(echo "$label_name" | xargs)
+        
+        # ラベルが存在するか確認
+        if ! echo "$EXISTING_LABELS" | grep -q "^$label_name$"; then
+          echo "  ラベル '$label_name' が存在しません。作成します..."
+          if [[ "$DRY_RUN" == true ]]; then
+            echo "  [ドライラン] $repo にラベル '$label_name' を作成します"
+          else
+            # デフォルトの色を使用してラベルを作成
+            gh label create "$label_name" --repo "$repo" --color "CCCCCC" --description "自動作成されたラベル"
+            echo "  ラベル '$label_name' を作成しました"
+          fi
+        else
+          echo "  ラベル '$label_name' は既に存在します"
+        fi
+      done
+    fi
     
     # イシュー作成コマンドの実行
     # 一時ファイルを作成して本文を保存
