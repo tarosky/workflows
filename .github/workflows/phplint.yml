@@ -13,6 +13,11 @@ on:
         required: false
         default: '["7.4","8.0","8.1"]'
         type: string
+      install_command:
+        description: 'Command to install dependencies'
+        default: 'composer install --no-dev'
+        required: false
+        type: string
   workflow_dispatch:
     inputs:
       path:
@@ -23,6 +28,11 @@ on:
       php_versions:
         description: 'JSON compatible list of PHP versions (e.g. ["7.4","8.0","8.1"])'
         default: '["7.4","8.0","8.1"]'
+        required: false
+        type: string
+      install_command:
+        description: 'Command to install dependencies'
+        default: 'composer install --no-dev'
         required: false
         type: string
 
@@ -45,7 +55,7 @@ jobs:
       
       - name: Install composer if exists
         if: ${{ hashFiles('./composer.json') != '' }}
-        run: composer install --no-dev
+        run: ${{ inputs.install_command }} 
 
       - name: Run PHP lint and save as file.
         run: |
