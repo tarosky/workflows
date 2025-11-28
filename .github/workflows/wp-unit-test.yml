@@ -18,11 +18,19 @@ on:
         default: test
         required: false
         type: string
+      working_directory:
+        description: 'Working directory where composer.json is located'
+        default: '.'
+        required: false
+        type: string
 
 jobs:
   wp-unit-test:
     name: "PHP Unit test with WordPress ${{ inputs.wp_version }} in PHP ${{ inputs.php_version }}"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
     services:
       mysql:
         image: mysql:8.0
