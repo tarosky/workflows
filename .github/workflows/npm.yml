@@ -18,10 +18,18 @@ on:
         default: ''
         required: false
         type: string
+      working_directory:
+        description: 'Working directory where package.json is located'
+        default: '.'
+        required: false
+        type: string
 
 jobs:
   npm-lint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
     steps:
       - uses: actions/checkout@master
 

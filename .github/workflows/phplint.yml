@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       path:
-        description: 'Path to run php lint'
+        description: 'Path to run php lint (relative to working_directory)'
         default: "."
         required: false
         type: string
@@ -16,12 +16,17 @@ on:
       install_command:
         description: 'Command to install dependencies'
         default: 'composer install --no-dev'
+        required: false
+        type: string
+      working_directory:
+        description: 'Working directory where composer.json is located'
+        default: '.'
         required: false
         type: string
   workflow_dispatch:
     inputs:
       path:
-        description: 'Path to run php lint'
+        description: 'Path to run php lint (relative to working_directory)'
         default: "."
         required: false
         type: string
@@ -33,12 +38,20 @@ on:
       install_command:
         description: 'Command to install dependencies'
         default: 'composer install --no-dev'
+        required: false
+        type: string
+      working_directory:
+        description: 'Working directory where composer.json is located'
+        default: '.'
         required: false
         type: string
 
 jobs:
   phplint:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
     strategy:
       matrix:
         php: ${{ fromJSON(inputs.php_versions) }}
@@ -52,10 +65,10 @@ jobs:
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Install composer if exists
-        if: ${{ hashFiles('./composer.json') != '' }}
-        run: ${{ inputs.install_command }} 
+        if: ${{ hashFiles(format('{0}/composer.json', inputs.working_directory)) != '' }}
+        run: ${{ inputs.install_command }}
 
       - name: Run PHP lint and save as file.
         run: |
@@ -68,6 +81,6 @@ jobs:
           php -r 'echo filesize( "output.txt" ) . "Byte:\t"; if ( 1 >= filesize( "output.txt" ) ) { echo "No error detected."; unlink( "output.txt" ); }'
 
       - name: Check if lint error exists
-        if: ${{ hashFiles('output.txt') != '' }}
+        if: ${{ hashFiles(format('{0}/output.txt', inputs.working_directory)) != '' }}
         shell: bash
         run: exit 1

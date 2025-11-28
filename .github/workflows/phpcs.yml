@@ -13,10 +13,18 @@ on:
         default: lint
         required: false
         type: string
+      working_directory:
+        description: 'Working directory where composer.json is located'
+        default: '.'
+        required: false
+        type: string
 
 jobs:
   phpcs:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
     steps:
       - uses: actions/checkout@master
 
