@@ -28,10 +28,12 @@ jobs:
           npm test
 
   phplint:
-    uses: tarosky/workflows/.github/workflows/phplint.yml@main
+    uses: ./.github/workflows/phplint.yml
+    with:
+      working_directory: tests/sub
 
   php-shor-open-tag:
-    uses: tarosky/workflows/.github/workflows/php-short-open-tag.yml@main
+    uses: ./.github/workflows/php-short-open-tag.yml
 
   readme:
     name: Generate readme.txt
@@ -39,7 +41,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
-      - uses: tarosky/workflows/actions/wp-readme@main
+      - uses: ./actions/wp-readme
 
       - name: Check file existence.
         id: check_files
@@ -58,7 +60,7 @@ jobs:
     steps:
       - uses: actions/checkout@main
 
-      - uses: tarosky/workflows/actions/versioning@main
+      - uses: ./actions/versioning
         with:
           version: "prefix/tag/99.99.99"
           files: "tests/plugin-main.php,tests/style.css"
@@ -66,7 +68,7 @@ jobs:
 
   tag-in-branch:
     name: "Check if this commit is in allowed branch"
-    uses: tarosky/workflows/.github/workflows/check-tag-in-branch.yml@main
+    uses: ./.github/workflows/check-tag-in-branch.yml
     if: contains(github.ref, 'refs/tags/')
     with:
       allowed_branch: "main"
