@@ -23,6 +23,11 @@ on:
         default: '.'
         required: false
         type: string
+      coverage:
+        description: 'Enable code coverage report (pcov). Output to GitHub Job Summary.'
+        default: false
+        required: false
+        type: boolean
 
 jobs:
   wp-unit-test:
@@ -55,6 +60,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ inputs.php_version }}
+          coverage: ${{ inputs.coverage && 'pcov' || 'none' }}
           tools: composer
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -76,4 +82,29 @@ jobs:
           bash ./install-wp-tests.sh wordpress root root 127.0.0.1:3306 ${{ inputs.wp_version }}
 
       - name: Run test suite
+        if: ${{ !inputs.coverage }}
         run: composer ${{ inputs.composer_command }}
+
+      - name: Run test suite with coverage
+        if: ${{ inputs.coverage }}
+        run: |
+          composer ${{ inputs.composer_command }} -- --coverage-text --coverage-clover=coverage.xml | tee coverage-output.txt
+
+      - name: Output coverage to Job Summary
+        if: ${{ inputs.coverage && always() }}
+        run: |
+          {
+            echo '## Code Coverage Report'
+            echo ''
+            echo '```'
+            grep -A 999 'Code Coverage Report:' coverage-output.txt || echo 'No coverage data'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload coverage artifact
+        if: ${{ inputs.coverage }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+          retention-days: 7
