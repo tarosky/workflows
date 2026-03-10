@@ -93,11 +93,13 @@ jobs:
       - name: Output coverage to Job Summary
         if: ${{ inputs.coverage && always() }}
         run: |
-          echo '## Code Coverage Report' >> $GITHUB_STEP_SUMMARY
-          echo '' >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          grep -A 999 'Code Coverage Report:' coverage-output.txt >> $GITHUB_STEP_SUMMARY || echo 'No coverage data' >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          {
+            echo '## Code Coverage Report'
+            echo ''
+            echo '```'
+            grep -A 999 'Code Coverage Report:' coverage-output.txt || echo 'No coverage data'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload coverage artifact
         if: ${{ inputs.coverage }}
