@@ -1,0 +1,16 @@
+{
+  "name": "tarosky-workflows",
+  "version": "1.0.0",
+  "description": "Claude Code plugin for Tarosky WordPress development workflows - provides slash commands for setting up WPCS, ESLint, Stylelint, PHPUnit, and CI",
+  "author": {
+    "name": "Tarosky INC.",
+    "email": "hi@tarosky.co.jp",
+    "url": "https://tarosky.co.jp"
+  },
+  "homepage": "https://github.com/tarosky/workflows",
+  "repository": "https://github.com/tarosky/workflows",
+  "license": "MIT",
+  "keywords": ["wordpress", "wpcs", "phpcs", "eslint", "stylelint", "phpunit", "ci", "tarosky"],
+  "commands": ["./commands/"],
+  "skills": ["./skills/"]
+}
