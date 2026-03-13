@@ -4,11 +4,11 @@ on:
   workflow_call:
     inputs:
       plugin_name:
-        description: プラグイン名（例: rich-taxonomy）
+        description: "プラグイン名（例: rich-taxonomy）"
         required: true
         type: string
       ci_checks:
-        description: CI で実行済みのチェック（例: "PHPStan Level 5, PHPCS, PHPUnit, asset build"）
+        description: 'CI で実行済みのチェック（例: PHPStan Level 5, PHPCS, PHPUnit, asset build）'
         required: true
         type: string
       pr_number:
