@@ -4,10 +4,10 @@ on:
   workflow_call:
     inputs:
       node_version:
-        description: 'Node version to Run test'
-        default: 14
+        description: 'Node version to run test. If empty, reads .node-version file.'
+        default: ''
         required: false
-        type: number
+        type: string
       command:
         description: 'Command in package.json to run syntax check. Default "lint"'
         default: lint
@@ -34,9 +34,10 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Install Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ inputs.node_version }}
+          node-version: ${{ inputs.node_version || '' }}
+          node-version-file: ${{ inputs.node_version && '' || '.node-version' }}
 
       - name: Install NPM Packages
         run:  npm install
