@@ -1,0 +1,15 @@
+{
+  "name": "tarosky-workflows",
+  "owner": {
+    "name": "Tarosky INC.",
+    "email": "hi@tarosky.co.jp"
+  },
+  "plugins": [
+    {
+      "name": "tarosky-workflows",
+      "source": "./",
+      "description": "Claude Code plugin for Tarosky WordPress development workflows",
+      "version": "1.0.0"
+    }
+  ]
+}
