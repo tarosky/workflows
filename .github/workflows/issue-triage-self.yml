@@ -6,15 +6,15 @@ on:
   workflow_dispatch:
     inputs:
       days:
-        description: "何日以内に作成されたIssueを対象にするか"
+        description: "何日以内に作成されたIssueを対象にするか（デフォルト: 30）"
         required: false
-        type: number
-        default: 30
+        type: string
+        default: '30'
 
 jobs:
   triage:
     uses: tarosky/workflows/.github/workflows/issue-triage.yml@main
     with:
       plugin_name: workflows
-      days: ${{ inputs.days || 30 }}
+      days: ${{ fromJSON(inputs.days || '30') }}
     secrets: inherit
