@@ -89,25 +89,42 @@ jobs:
             - `wontfix`: Out of scope, intentional behavior, or will not be addressed
             - `duplicate`: Essentially the same issue as another open issue
 
-            **b. Clarification comment** — Post a comment in Japanese if ANY of these apply:
-            - Issue body is fewer than 100 characters
-            - Steps to reproduce are missing (for bug reports)
-            - The problem or request is unclear or ambiguous
+            **b. Triage comment** — Post a comment in Japanese on EVERY triaged issue.
 
-            Example comment for bugs:
+            The comment MUST include:
+            1. A one-line classification summary (what label was applied and why)
+            2. If applicable, any questions or requests for clarification
+
+            Request clarification when ANY of these apply:
+            - Steps to reproduce are missing (for bug reports)
+            - The problem or request is unclear, ambiguous, or lacks concrete detail
+              (even if the body is long, it may be vague — judge by substance, not length)
+            - The desired outcome or acceptance criteria is not stated
+
+            Example comment for clear enhancements:
             ```
-            ありがとうございます。以下の情報をご共有いただけますか？
+            🏷️ `enhancement` — Slack Bot Token への移行提案として分類しました。
+            内容は明確で、追加の情報は不要と判断しました。
+            ```
+
+            Example comment for bugs needing clarification:
+            ```
+            🏷️ `bug` — バグ報告として分類しました。
+
+            以下の情報をご共有いただけますか？
             - 再現手順（どの操作を行ったか）
             - WordPress バージョン
             - ${{ inputs.plugin_name }} バージョン
             - エラーメッセージや症状の詳細
             ```
 
-            Example comment for unclear requests:
+            Example comment for vague requests (regardless of body length):
             ```
-            ご要望ありがとうございます。詳しく教えていただけますか？
+            🏷️ `enhancement` — 機能要望として分類しました。
+
+            詳しく教えていただけますか？
             - 具体的にどのような動作や機能を期待していますか？
-            - 現在はどのような状況ですか？
+            - 現在の状況と、期待する結果は何ですか？
             ```
 
             **c. Duplicate detection** — If this issue is essentially the same as another open issue:

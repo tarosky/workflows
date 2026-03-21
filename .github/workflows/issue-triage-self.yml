@@ -4,10 +4,17 @@ on:
   schedule:
     - cron: '0 1 * * 1'  # 毎週月曜 01:00 UTC
   workflow_dispatch:
+    inputs:
+      days:
+        description: "何日以内に作成されたIssueを対象にするか"
+        required: false
+        type: number
+        default: 30
 
 jobs:
   triage:
     uses: tarosky/workflows/.github/workflows/issue-triage.yml@main
     with:
       plugin_name: workflows
+      days: ${{ inputs.days || 30 }}
     secrets: inherit
