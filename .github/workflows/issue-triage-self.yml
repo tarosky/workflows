@@ -1,0 +1,13 @@
+name: Issue Triage
+
+on:
+  schedule:
+    - cron: '0 1 * * 1'  # 毎週月曜 01:00 UTC
+  workflow_dispatch:
+
+jobs:
+  triage:
+    uses: tarosky/workflows/.github/workflows/issue-triage.yml@main
+    with:
+      plugin_name: workflows
+    secrets: inherit
