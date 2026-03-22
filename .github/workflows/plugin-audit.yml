@@ -47,7 +47,7 @@ jobs:
           set -euo pipefail
 
           # プラグイン情報
-          curl -sf "https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=${SLUG}&request[fields][tags]=1&request[fields][sections]=1" \
+          curl -sf "https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request%5Bslug%5D=${SLUG}&request%5Bfields%5D%5Btags%5D=1&request%5Bfields%5D%5Bsections%5D=1" \
             > /tmp/plugin-info.json
 
           # バリデーション: slugが存在するか
@@ -68,7 +68,7 @@ jobs:
           TAGS=$(jq -r '.tags | keys[:3][]' /tmp/plugin-info.json 2>/dev/null || true)
           echo '[]' > /tmp/competitor-all.json
           for tag in $TAGS; do
-            curl -sf "https://api.wordpress.org/plugins/info/1.2/?action=query_plugins&request[tag]=${tag}&request[per_page]=5&request[fields][sections]=0&request[fields][tags]=1" \
+            curl -sf "https://api.wordpress.org/plugins/info/1.2/?action=query_plugins&request%5Btag%5D=${tag}&request%5Bper_page%5D=5&request%5Bfields%5D%5Bsections%5D=0&request%5Bfields%5D%5Btags%5D=1" \
               | jq --arg slug "${SLUG}" '[.plugins[] | select(.slug != $slug)]' \
               >> /tmp/competitor-part-${tag}.json 2>/dev/null || true
             sleep 1
