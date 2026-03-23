@@ -1,10 +1,17 @@
-name: WP Readme 
+name: WP Readme
 description: Change README.md to readme.txt in WordPress style.
+
+inputs:
+  wp_readme_env:
+    description: 'WP_README_ENV 環境変数に渡す値。指定しない場合は環境変数を設定しない。'
+    required: false
+    default: ''
 
 runs:
   using: "composite"
   steps:
     - name: Generate readme.txt
       shell: bash
+      env:
+        WP_README_ENV: ${{ inputs.wp_readme_env }}
       run: curl -L https://raw.githubusercontent.com/fumikito/wp-readme/master/wp-readme.php | php
-
