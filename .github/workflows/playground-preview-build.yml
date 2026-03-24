@@ -1,0 +1,70 @@
+name: Playground Preview - Build (shared)
+
+on:
+  workflow_call:
+    inputs:
+      plugin_slug:
+        description: 'Plugin slug for ZIP filename. If empty, uses repository name.'
+        default: ''
+        required: false
+        type: string
+      php_version:
+        description: 'PHP version for composer install'
+        default: '7.4'
+        required: false
+        type: string
+      node_version:
+        description: 'Node version. If empty, reads .node-version file.'
+        default: ''
+        required: false
+        type: string
+      build_command:
+        description: 'Build command to run'
+        default: 'composer install --no-dev --prefer-dist && npm ci && npm run package'
+        required: false
+        type: string
+      retention_days:
+        description: 'Artifact retention days'
+        default: 7
+        required: false
+        type: number
+
+jobs:
+  build:
+    name: Build Plugin ZIP
+    runs-on: ubuntu-latest
+    env:
+      PLUGIN_SLUG: ${{ inputs.plugin_slug || github.event.repository.name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ inputs.php_version }}
+          tools: composer
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node_version || '' }}
+          node-version-file: ${{ inputs.node_version && '' || '.node-version' }}
+          cache: npm
+
+      - name: Build
+        run: ${{ inputs.build_command }}
+
+      - name: Create plugin ZIP
+        run: |
+          rsync -rc --exclude-from=.distignore ./ ./plugin-build/
+          cd plugin-build && zip -r ../${{ env.PLUGIN_SLUG }}.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: playground-pr${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
+          path: ${{ env.PLUGIN_SLUG }}.zip
+          if-no-files-found: error
+          retention-days: ${{ inputs.retention_days }}
