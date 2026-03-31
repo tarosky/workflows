@@ -24,7 +24,7 @@ jobs:
 
       - name: Check Yaml Syntax
         run: |
-          npm install
+          npm ci --ignore-scripts
           npm test
 
   phplint:
