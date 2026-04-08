@@ -1,0 +1,86 @@
+name: Playground Preview - Publish (shared)
+
+on:
+  workflow_call:
+    inputs:
+      plugin_slug:
+        description: 'Plugin slug for ZIP filename. If empty, uses repository name.'
+        default: ''
+        required: false
+        type: string
+      artifacts_to_keep:
+        description: 'Number of old artifacts to keep per PR'
+        default: '2'
+        required: false
+        type: string
+
+jobs:
+  publish:
+    name: Publish Preview
+    runs-on: ubuntu-latest
+    env:
+      PLUGIN_SLUG: ${{ inputs.plugin_slug || github.event.repository.name }}
+    steps:
+      - name: Extract PR metadata from artifact
+        id: metadata
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: ${{ github.event.workflow_run.id }},
+            });
+            const artifact = artifacts.data.artifacts.find(a =>
+              a.name.startsWith('playground-pr')
+            );
+            if (!artifact) {
+              core.info('No playground artifact found – build was skipped.');
+              core.setOutput('found', 'false');
+              return;
+            }
+            const match = artifact.name.match(/^playground-pr(\d+)-(.+)$/);
+            if (!match) throw new Error(`Cannot parse: ${artifact.name}`);
+            const [, prNumber, commitSha] = match;
+            core.setOutput('found', 'true');
+            core.setOutput('pr-number', prNumber);
+            core.setOutput('commit-sha', commitSha);
+            core.setOutput('artifact-name', artifact.name);
+
+      - name: Expose artifact on public URL
+        if: steps.metadata.outputs.found == 'true'
+        id: expose
+        uses: WordPress/action-wp-playground-pr-preview/.github/actions/expose-artifact-on-public-url@v2
+        with:
+          artifact-name: ${{ steps.metadata.outputs.artifact-name }}
+          artifact-filename: ${{ env.PLUGIN_SLUG }}.zip
+          pr-number: ${{ steps.metadata.outputs.pr-number }}
+          commit-sha: ${{ steps.metadata.outputs.commit-sha }}
+          artifact-source-run-id: ${{ github.event.workflow_run.id }}
+          artifacts-to-keep: ${{ inputs.artifacts_to_keep }}
+
+      - name: Generate blueprint
+        if: steps.metadata.outputs.found == 'true'
+        id: blueprint
+        run: |
+          node - <<'NODE' >> "$GITHUB_OUTPUT"
+          const blueprint = {
+            steps: [{
+              step: 'installPlugin',
+              pluginZipFile: { resource: 'url', url: process.env.ARTIFACT_URL },
+              options: { activate: true },
+            }],
+          };
+          console.log(`blueprint=${JSON.stringify(blueprint)}`);
+          NODE
+        env:
+          ARTIFACT_URL: ${{ steps.expose.outputs.artifact-url }}
+
+      - name: Post preview comment
+        if: steps.metadata.outputs.found == 'true'
+        uses: WordPress/action-wp-playground-pr-preview@v2
+        with:
+          mode: comment
+          blueprint: ${{ steps.blueprint.outputs.blueprint }}
+          pr-number: ${{ steps.metadata.outputs.pr-number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
