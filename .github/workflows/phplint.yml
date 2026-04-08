@@ -56,7 +56,7 @@ jobs:
       matrix:
         php: ${{ fromJSON(inputs.php_versions) }}
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
 
       - name: Setup PHP with composer
         uses: shivammathur/setup-php@v2

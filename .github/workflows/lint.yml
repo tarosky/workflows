@@ -15,12 +15,12 @@ jobs:
     name: Yaml Syntax Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
 
       - name: Install Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '22'
 
       - name: Check Yaml Syntax
         run: |
@@ -39,13 +39,13 @@ jobs:
     name: Generate readme.txt
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
 
       - uses: ./actions/wp-readme
 
       - name: Check file existence.
         id: check_files
-        uses: andstor/file-existence-action@v1
+        uses: andstor/file-existence-action@v3
         with:
           files: "readme.txt"
 
@@ -58,7 +58,7 @@ jobs:
     name: Version really changed?
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
+      - uses: actions/checkout@v4
 
       - uses: ./actions/versioning
         with:
