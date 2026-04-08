@@ -28,12 +28,19 @@ jobs:
   pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: pull-request
-        uses: repo-sync/pull-request@v2
-        with:
-          destination_branch: ${{ inputs.destination_branch }}
-          pr_title: ${{ inputs.pr_title }}
-          pr_body: ${{ inputs.pr_body }}
-          pr_label: ${{ inputs.pr_label }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if PR already exists
+          EXISTING=$(gh pr list --base "${{ inputs.destination_branch }}" --head "${{ github.ref_name }}" --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING" ]; then
+            echo "PR #${EXISTING} already exists, skipping."
+            exit 0
+          fi
+          gh pr create \
+            --base "${{ inputs.destination_branch }}" \
+            --title "${{ inputs.pr_title }}" \
+            --body "${{ inputs.pr_body }}" \
+            --label "${{ inputs.pr_label }}"

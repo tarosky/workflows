@@ -17,8 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Notification to Backlog
-        uses: bicstone/backlog-notify@master
-        env:
-          PROJECT_KEY: ${{ inputs.project }}
-          API_HOST: ${{ inputs.host }}
-          API_KEY: ${{ secrets.BACKLOG_API_KEY }}
+        uses: bicstone/backlog-notify@v6
+        with:
+          project_key: ${{ inputs.project }}
+          api_host: ${{ inputs.host }}
+          api_key: ${{ secrets.BACKLOG_API_KEY }}
