@@ -40,7 +40,7 @@ jobs:
           node-version-file: ${{ inputs.node_version && '' || '.node-version' }}
 
       - name: Install NPM Packages
-        run:  npm install
+        run:  npm ci --ignore-scripts
 
       - name: Run Syntax Check
         run:  npm run ${{ inputs.command }}
