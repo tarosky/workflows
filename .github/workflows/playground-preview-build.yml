@@ -20,7 +20,7 @@ on:
         type: string
       build_command:
         description: 'Build command to run'
-        default: 'composer install --no-dev --prefer-dist && npm ci && npm run package'
+        default: 'composer install --no-dev --prefer-dist && npm ci --ignore-scripts && npm run package'
         required: false
         type: string
       retention_days:
