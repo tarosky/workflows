@@ -29,6 +29,11 @@ on:
         required: false
         type: string
         default: 'claude-sonnet-4-6'
+      is_manual:
+        description: 手動トリガー（@claude auto-review 等）から呼び出された場合は true。merge-only コミットでもレビューを実行する。
+        required: false
+        type: boolean
+        default: false
     secrets:
       ANTHROPIC_API_KEY:
         required: true
@@ -61,8 +66,29 @@ jobs:
             gh label create "$label" --force 2>/dev/null || true
           done
 
+      - name: Check meaningful diff
+        id: diff-check
+        run: |
+          if [ "${{ inputs.is_manual }}" = "true" ]; then
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Manual trigger; running review regardless of diff."
+            exit 0
+          fi
+          parents=$(git rev-list --parents -n 1 "${{ inputs.head_sha }}" | awk '{print NF-1}')
+          if [ "$parents" -ge 2 ]; then
+            cc_output=$(git diff-tree --cc "${{ inputs.head_sha }}")
+            if [ -z "$cc_output" ]; then
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+              echo "::notice::Clean merge commit (no manual edits); skipping review."
+              exit 0
+            fi
+            echo "::notice::Merge commit with manual edits; running review."
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
       - name: Fetch previous AI review comments
         id: previous-reviews
+        if: steps.diff-check.outputs.skip != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -80,6 +106,7 @@ jobs:
           fi
 
       - name: Run Claude Code Review
+        if: steps.diff-check.outputs.skip != 'true'
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
