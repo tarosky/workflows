@@ -17,7 +17,7 @@ name: Sync Issues to Project
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '0 1 * * *'  # 毎日 01:00 UTC（= 10:00 JST）
   workflow_dispatch:
 
 # 同時実行を抑止し、cron と手動実行が重なっても二重巡回しないようにする。
