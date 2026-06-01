@@ -1,0 +1,58 @@
+# 各 tarosky/taro-* リポから workflow_call で呼び出される。
+# 鍵・シークレットは一切不要。GitHub の OIDC トークンを取得して watchtower へ POST するのみ。
+
+name: Notify watchtower
+
+on:
+  workflow_call:
+    inputs:
+      endpoint:
+        description: watchtower の通知エンドポイント URL
+        type: string
+        default: https://watchtower.maintic.com/notify
+      audience:
+        description: OIDC token の audience（watchtower 側 WATCHTOWER_OIDC_AUDIENCE と一致させる）
+        type: string
+        default: watchtower
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write   # OIDC トークン発行に必須
+      contents: read
+    steps:
+      - name: Notify watchtower
+        env:
+          ENDPOINT: ${{ inputs.endpoint }}
+          AUDIENCE: ${{ inputs.audience }}
+          VERSION: ${{ github.event.release.tag_name }}
+        run: |
+          set -euo pipefail
+
+          # 1. GitHub OIDC トークンを取得（audience を指定）
+          TOKEN=$(curl -sS \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${AUDIENCE}" \
+            | jq -r .value)
+          if [ -z "$TOKEN" ] || [ "$TOKEN" = "null" ]; then
+            echo "::error::OIDC トークン取得に失敗"
+            exit 1
+          fi
+
+          # 2. watchtower へ通知。プラグイン名はトークンの repository クレームから
+          #    watchtower 側で導出されるため、body には version(tag) だけ送る。
+          PAYLOAD=$(jq -nc --arg v "$VERSION" '{version:$v}')
+          HTTP_CODE=$(curl -sS -o /tmp/resp.json -w '%{http_code}' \
+            -X POST "$ENDPOINT" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "$PAYLOAD")
+
+          echo "HTTP $HTTP_CODE"
+          jq . /tmp/resp.json 2>/dev/null || cat /tmp/resp.json
+
+          if [ "$HTTP_CODE" -ge 400 ]; then
+            echo "::error::watchtower returned $HTTP_CODE"
+            exit 1
+          fi
