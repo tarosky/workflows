@@ -1,0 +1,114 @@
+# tarosky/workflows 自身で動く cron ワークフロー（workflow_call ではない）。
+# 指定 Topic を持つ公開済みプラグインリポジトリの Open Issue を横断的に集め、
+# まだどの Project (V2) にも登録されていない Issue だけを Organization Project に追加する。
+#
+# GitHub 組み込みの Auto-add は「1 ワークフロー = 1 リポジトリ」の制約があるため、
+# org 全体を巡回する独自 cron として実装している。
+#
+# 事前準備（リポジトリ Secrets / Variables）:
+#   - Secret  PROJECT_SYNC_PAT : Fine-grained PAT
+#       Resource owner: tarosky / Repository access: All repositories
+#       Repository permissions: Metadata=Read, Issues=Read
+#       Organization permissions: Projects=Read and write
+#   - Variable PROJECT_ID       : 追加先 Organization Project (V2) の Node ID
+#       例) gh project list --owner tarosky --format json で取得
+
+name: Sync Issues to Project
+
+on:
+  schedule:
+    - cron: '0 1 * * *'  # 毎日 01:00 UTC（= 10:00 JST）
+  workflow_dispatch:
+
+# 同時実行を抑止し、cron と手動実行が重なっても二重巡回しないようにする。
+concurrency:
+  group: sync-issues-to-project
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync issues to organization project
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PROJECT_SYNC_PAT }}
+          script: |
+            const projectId = process.env.PROJECT_ID;
+            if (!projectId) {
+              core.setFailed('PROJECT_ID variable is not set.');
+              return;
+            }
+
+            // 公開済みプラグインを示す Topic。AND ではなく OR で集めたいので
+            // Topic ごとに検索してリポジトリを id でユニーク化する。
+            const topics = ['wordpress-plugin-published', 'wordpress-plugin-ga'];
+
+            // 1. 対象 Topic を持つリポジトリをユニークに集める（100 件超に備えてページング）
+            const repos = new Map();
+            for (const topic of topics) {
+              let cursor = null;
+              while (true) {
+                const { search } = await github.graphql(`
+                  query($q: String!, $cursor: String) {
+                    search(query: $q, type: REPOSITORY, first: 100, after: $cursor) {
+                      pageInfo { hasNextPage endCursor }
+                      nodes { ... on Repository { id nameWithOwner } }
+                    }
+                  }
+                `, { q: `org:tarosky topic:${topic}`, cursor });
+                for (const r of search.nodes) repos.set(r.id, r);
+                if (!search.pageInfo.hasNextPage) break;
+                cursor = search.pageInfo.endCursor;
+              }
+            }
+            console.log(`Target repositories: ${repos.size}`);
+
+            // 2. 各リポジトリの Open Issue をページングしながら取得・登録
+            let added = 0, skipped = 0;
+            for (const repo of repos.values()) {
+              const [owner, name] = repo.nameWithOwner.split('/');
+              let cursor = null;
+
+              while (true) {
+                const { repository } = await github.graphql(`
+                  query($owner: String!, $name: String!, $cursor: String) {
+                    repository(owner: $owner, name: $name) {
+                      issues(states: OPEN, first: 100, after: $cursor) {
+                        pageInfo { hasNextPage endCursor }
+                        nodes {
+                          id
+                          number
+                          projectItems(first: 1) { totalCount }
+                        }
+                      }
+                    }
+                  }
+                `, { owner, name, cursor });
+
+                for (const issue of repository.issues.nodes) {
+                  // 何らかの Project (V2) に登録済みならスキップ。
+                  // → 初回は全 Open Issue を一括登録、以降は新規 Issue だけが対象になる。
+                  // → 手動で Project から外せば次回再登録される（取りこぼし防止）。
+                  if (issue.projectItems.totalCount > 0) {
+                    skipped++;
+                    continue;
+                  }
+
+                  // addProjectV2ItemById は冪等なので競合状態でも重複登録されない。
+                  await github.graphql(`
+                    mutation($projectId: ID!, $contentId: ID!) {
+                      addProjectV2ItemById(input: { projectId: $projectId, contentId: $contentId }) { item { id } }
+                    }
+                  `, { projectId, contentId: issue.id });
+                  console.log(`Added: ${repo.nameWithOwner}#${issue.number}`);
+                  added++;
+                }
+
+                if (!repository.issues.pageInfo.hasNextPage) break;
+                cursor = repository.issues.pageInfo.endCursor;
+              }
+            }
+            console.log(`Done. added=${added}, skipped=${skipped}`);
+        env:
+          PROJECT_ID: ${{ vars.PROJECT_ID }}
