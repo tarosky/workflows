@@ -36,7 +36,7 @@ jobs:
     env:
       PLUGIN_SLUG: ${{ inputs.plugin_slug || github.event.repository.name }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -47,7 +47,7 @@ jobs:
           tools: composer
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ inputs.node_version || '' }}
           node-version-file: ${{ inputs.node_version && '' || '.node-version' }}
@@ -62,7 +62,7 @@ jobs:
           cd plugin-build && zip -r ../${{ env.PLUGIN_SLUG }}.zip .
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: playground-pr${{ github.event.pull_request.number }}-${{ github.event.pull_request.head.sha }}
           path: ${{ env.PLUGIN_SLUG }}.zip

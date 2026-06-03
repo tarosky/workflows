@@ -49,7 +49,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # ubuntu-latest requires subversion.
       # see: https://github.com/10up/action-wordpress-plugin-deploy/releases/tag/2.3.0
@@ -103,7 +103,7 @@ jobs:
 
       - name: Upload coverage artifact
         if: ${{ inputs.coverage }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-report
           path: coverage.xml

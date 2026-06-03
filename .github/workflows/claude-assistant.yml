@@ -32,7 +32,7 @@ jobs:
       github.event.comment.author_association == 'COLLABORATOR'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Run Claude Assistant
         uses: anthropics/claude-code-action@v1
