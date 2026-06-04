@@ -14,6 +14,12 @@ on:
         description: OIDC token の audience（watchtower 側 WATCHTOWER_OIDC_AUDIENCE と一致させる）
         type: string
         default: watchtower
+      slug:
+        description: |
+          プラグイン slug（シート H列）。リポ名と異なる / monorepo の場合に指定。
+          未指定ならリポ名（repository クレーム由来）が使われる。
+        type: string
+        default: ''
 
 jobs:
   notify:
@@ -27,6 +33,7 @@ jobs:
           ENDPOINT: ${{ inputs.endpoint }}
           AUDIENCE: ${{ inputs.audience }}
           VERSION: ${{ github.event.release.tag_name }}
+          SLUG: ${{ inputs.slug }}
         run: |
           set -euo pipefail
 
@@ -42,7 +49,12 @@ jobs:
 
           # 2. watchtower へ通知。プラグイン名はトークンの repository クレームから
           #    watchtower 側で導出されるため、body には version(tag) だけ送る。
-          PAYLOAD=$(jq -nc --arg v "$VERSION" '{version:$v}')
+          #    slug を指定した場合（リポ名 ≠ プラグイン slug / monorepo）は body に含める。
+          if [ -n "$SLUG" ]; then
+            PAYLOAD=$(jq -nc --arg v "$VERSION" --arg s "$SLUG" '{version:$v, slug:$s}')
+          else
+            PAYLOAD=$(jq -nc --arg v "$VERSION" '{version:$v}')
+          fi
           HTTP_CODE=$(curl -sS -o /tmp/resp.json -w '%{http_code}' \
             -X POST "$ENDPOINT" \
             -H "Authorization: Bearer $TOKEN" \
