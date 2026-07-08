@@ -86,24 +86,39 @@ jobs:
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
-      - name: Fetch previous AI review comments
+      - name: Fetch PR conversation and commits
         id: previous-reviews
         if: steps.diff-check.outputs.skip != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          comments=$(gh api "repos/${{ github.repository }}/issues/${{ inputs.pr_number }}/comments" \
-            --jq '[.[] | select(.user.login == "claude[bot]") | .body] | join("\n---\n")' 2>/dev/null || echo "")
-          if [ -n "$comments" ]; then
+          # Fetch the full conversation once, then derive both the transcript and the
+          # incremental flag from it. We include BOTH the bot's past comments and the
+          # reviewee's replies so the review can honor the reviewee's decisions (✗/却下)
+          # instead of re-raising points that were already declined with a reason.
+          all=$(gh api "repos/${{ github.repository }}/issues/${{ inputs.pr_number }}/comments" 2>/dev/null || echo "[]")
+          conversation=$(echo "$all" | jq -r '[.[] | "### @\(.user.login) (\(.created_at)):\n\(.body)"] | join("\n\n")' 2>/dev/null || echo "")
+          claude_count=$(echo "$all" | jq -r '[.[] | select(.user.login == "claude[bot]")] | length' 2>/dev/null || echo "0")
+
+          # Commit messages carry maintainer intent (e.g. "pre-release, breaking changes OK").
+          commits=$(gh pr view "${{ inputs.pr_number }}" --repo "${{ github.repository }}" \
+            --json commits --jq '[.commits[] | "- \(.messageHeadline)\n\(.messageBody)"] | join("\n")' 2>/dev/null || echo "")
+
+          if [ "${claude_count:-0}" -gt 0 ]; then
             echo "has_previous=true" >> "$GITHUB_OUTPUT"
-            {
-              echo "comments<<PREVIOUS_REVIEWS_EOF"
-              echo "$comments"
-              echo "PREVIOUS_REVIEWS_EOF"
-            } >> "$GITHUB_OUTPUT"
           else
             echo "has_previous=false" >> "$GITHUB_OUTPUT"
           fi
+          {
+            echo "conversation<<CONVERSATION_EOF"
+            echo "$conversation"
+            echo "CONVERSATION_EOF"
+          } >> "$GITHUB_OUTPUT"
+          {
+            echo "commits<<COMMITS_EOF"
+            echo "$commits"
+            echo "COMMITS_EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Run Claude Code Review
         if: steps.diff-check.outputs.skip != 'true'
@@ -125,19 +140,40 @@ jobs:
             ## Review Mode
             ${{ steps.previous-reviews.outputs.has_previous == 'true' && format('
             This is an INCREMENTAL REVIEW (追いコミット対応).
-            Previous AI review comments are shown below. Follow these rules:
-            - Do NOT repeat issues that have already been pointed out AND fixed
-            - If a previously flagged issue is now resolved, briefly note it as "✅ 解消済み"
-            - Focus your review on NEW changes since the last review
-            - Re-flag any previously pointed out issues that remain unfixed
+            The full PR conversation is shown below — it contains BOTH your past review
+            comments AND the reviewee''s replies. Follow these rules:
+
+            - **Respect the reviewee''s decisions (最重要).** If the reviewee replied to a
+              past point declining it with a reason (e.g. 「意図的」「公開前なので不要」, a ✗,
+              or any reasoned pushback), treat it as RESOLVED-BY-DECISION. Do NOT raise it
+              again. Repeatedly re-surfacing a point the reviewee already judged is noise and
+              erodes trust in the review.
+            - Do NOT repeat issues that have already been pointed out AND fixed. Note resolved
+              ones briefly as "✅ 解消済み".
+            - Re-flag a previously raised issue ONLY if it is still unaddressed AND the
+              reviewee has not pushed back on it.
+            - Focus your review on NEW changes since the last review.
+            - Factor in the commit messages below for maintainer intent (e.g. a pre-release
+              plugin where breaking changes are acceptable) — do not raise concerns the intent
+              has already ruled out.
             - Use the title "AI トリアージ（差分レビュー）: PR #{0}" instead of the standard title
 
-            <previous_reviews>
+            <pr_conversation>
             {1}
-            </previous_reviews>
-            ', inputs.pr_number, steps.previous-reviews.outputs.comments) || '
+            </pr_conversation>
+
+            <commit_messages>
+            {2}
+            </commit_messages>
+            ', inputs.pr_number, steps.previous-reviews.outputs.conversation, steps.previous-reviews.outputs.commits) || format('
             This is the INITIAL REVIEW for this PR. Perform a full review.
-            ' }}
+            Factor in the commit messages below for maintainer intent (e.g. a pre-release
+            plugin where breaking changes are acceptable).
+
+            <commit_messages>
+            {0}
+            </commit_messages>
+            ', steps.previous-reviews.outputs.commits) }}
 
             ## Review Focus
 
