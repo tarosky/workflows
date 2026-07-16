@@ -13,6 +13,20 @@ on:
         default: '2'
         required: false
         type: string
+      release_tag:
+        description: 'GitHub release tag used to host preview ZIPs'
+        default: 'ci-artifacts'
+        required: false
+        type: string
+      keep_release_draft:
+        description: >
+          Keep the hosting release as a draft. Draft releases are NOT publicly
+          downloadable, so WordPress Playground cannot fetch the ZIP. Leave false
+          (default) to publish the release so the preview URL works. Set true only
+          if the ZIP is served through another public path.
+        default: false
+        required: false
+        type: boolean
 
 jobs:
   publish:
@@ -58,6 +72,19 @@ jobs:
           commit-sha: ${{ steps.metadata.outputs.commit-sha }}
           artifact-source-run-id: ${{ github.event.workflow_run.id }}
           artifacts-to-keep: ${{ inputs.artifacts_to_keep }}
+          release-tag: ${{ inputs.release_tag }}
+
+      # The upstream expose action creates the hosting release as a draft, and
+      # draft release assets return 404 to anonymous downloads — so Playground
+      # cannot fetch the ZIP. Publish it (idempotent) unless the caller opts out.
+      - name: Publish hosting release
+        if: steps.metadata.outputs.found == 'true' && !inputs.keep_release_draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release edit "${{ inputs.release_tag }}" \
+            --repo "${{ github.repository }}" \
+            --draft=false
 
       - name: Generate blueprint
         if: steps.metadata.outputs.found == 'true'
