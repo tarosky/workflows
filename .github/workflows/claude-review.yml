@@ -34,6 +34,14 @@ on:
         required: false
         type: boolean
         default: false
+      allowed_bots:
+        description: >
+          claude-code-action の bot ガードで許可する bot ユーザー名（カンマ区切り、'*' で全 bot 許可）。
+          Claude Tag（Slack から PR 作成）など bot 起点の PR でも自動レビューを走らせるための設定。
+          デフォルトで claude を許可する。呼び出し側で fork は除外済みのため surface は限定的。
+        required: false
+        type: string
+        default: 'claude'
     secrets:
       ANTHROPIC_API_KEY:
         required: true
@@ -125,6 +133,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_bots: ${{ inputs.allowed_bots }}
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ inputs.pr_number }}
