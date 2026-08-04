@@ -30,6 +30,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Install Subversion
+        run: |
+          if ! command -v svn > /dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y subversion
+          fi
+
       - name: Sync .wordpress-org assets only (never touches readme/trunk)
         env:
           SVN_USERNAME: ${{ secrets.WP_ORG_USERNAME_TAROSKY }}
