@@ -63,9 +63,16 @@ jobs:
             --no-auth-cache --non-interactive
 
           echo "➤ Syncing ${ASSETS_DIR}/ → assets/"
-          rsync -rc --delete --delete-excluded "${ASSETS_DIR}/" svn-assets/
+          # Exclude .svn so rsync --delete never wipes the working-copy metadata.
+          rsync -rc --delete --exclude='.svn' "${ASSETS_DIR}/" svn-assets/
 
           cd svn-assets
+
+          # Stage additions and deletions before setting properties.
+          svn add . --force > /dev/null
+          svn status | { grep '^!' || true; } | sed 's/^! *//' | while IFS= read -r f; do
+            [ -n "${f}" ] && svn rm "${f}@" > /dev/null
+          done
 
           # Serve screenshots/banners inline instead of forcing a download.
           if compgen -G "*.png" > /dev/null; then
@@ -74,12 +81,6 @@ jobs:
           if compgen -G "*.jpg" > /dev/null; then
             svn propset svn:mime-type image/jpeg ./*.jpg || true
           fi
-
-          # Stage additions and deletions.
-          svn add . --force > /dev/null
-          svn status | { grep '^!' || true; } | sed 's/^! *//' | while IFS= read -r f; do
-            [ -n "${f}" ] && svn rm "${f}@" > /dev/null
-          done
 
           if [ -z "$(svn status)" ]; then
             echo "🛑 Assets already up to date; nothing to commit."
