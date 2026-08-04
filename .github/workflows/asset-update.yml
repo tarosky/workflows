@@ -1,0 +1,89 @@
+name: Update WordPress.org assets
+
+# Reusable workflow that pushes only the .wordpress-org/ assets (icon / banner /
+# screenshots) to the plugin's SVN `assets/` directory. It never touches trunk or
+# readme.txt, so it can be dispatched at any time without leaking unreleased
+# README content to the public plugin page.
+
+on:
+  workflow_call:
+    inputs:
+      slug:
+        description: 'WordPress.org plugin slug. Defaults to the caller repository name.'
+        required: false
+        type: string
+        default: ''
+      assets_dir:
+        description: 'Directory that holds the WordPress.org assets.'
+        required: false
+        type: string
+        default: '.wordpress-org'
+
+permissions:
+  contents: read
+
+jobs:
+  assets:
+    name: Sync assets to WordPress.org
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Sync .wordpress-org assets only (never touches readme/trunk)
+        env:
+          SVN_USERNAME: ${{ secrets.WP_ORG_USERNAME_TAROSKY }}
+          SVN_PASSWORD: ${{ secrets.WP_ORG_PASSWORD_TAROSKY }}
+          SLUG: ${{ inputs.slug || github.event.repository.name }}
+          ASSETS_DIR: ${{ inputs.assets_dir }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SVN_USERNAME}" ] || [ -z "${SVN_PASSWORD}" ]; then
+            echo "::error::WP_ORG_USERNAME_TAROSKY / WP_ORG_PASSWORD_TAROSKY are empty. Pass them with 'secrets: inherit'."
+            exit 1
+          fi
+
+          if [ ! -d "${ASSETS_DIR}" ]; then
+            echo "ℹ︎ No ${ASSETS_DIR} directory in this repository; nothing to sync."
+            exit 0
+          fi
+
+          SVN_URL="https://plugins.svn.wordpress.org/${SLUG}/assets/"
+          echo "➤ Checking out ${SVN_URL}"
+          svn checkout "${SVN_URL}" svn-assets \
+            --username "${SVN_USERNAME}" --password "${SVN_PASSWORD}" \
+            --no-auth-cache --non-interactive
+
+          echo "➤ Syncing ${ASSETS_DIR}/ → assets/"
+          rsync -rc --delete --delete-excluded "${ASSETS_DIR}/" svn-assets/
+
+          cd svn-assets
+
+          # Serve screenshots/banners inline instead of forcing a download.
+          if compgen -G "*.png" > /dev/null; then
+            svn propset svn:mime-type image/png ./*.png || true
+          fi
+          if compgen -G "*.jpg" > /dev/null; then
+            svn propset svn:mime-type image/jpeg ./*.jpg || true
+          fi
+
+          # Stage additions and deletions.
+          svn add . --force > /dev/null
+          svn status | { grep '^!' || true; } | sed 's/^! *//' | while IFS= read -r f; do
+            [ -n "${f}" ] && svn rm "${f}@" > /dev/null
+          done
+
+          if [ -z "$(svn status)" ]; then
+            echo "🛑 Assets already up to date; nothing to commit."
+            exit 0
+          fi
+
+          echo "➤ Changes to commit:"
+          svn status
+
+          svn commit -m "Update WordPress.org assets from GitHub (${SLUG})" \
+            --username "${SVN_USERNAME}" --password "${SVN_PASSWORD}" \
+            --no-auth-cache --non-interactive
+
+          echo "✓ Assets updated."
