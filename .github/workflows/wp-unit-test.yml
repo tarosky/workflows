@@ -28,6 +28,16 @@ on:
         default: false
         required: false
         type: boolean
+      node_version:
+        description: 'Node version to build assets. If empty, reads .node-version file. Only used when "package" is set.'
+        default: ''
+        required: false
+        type: string
+      package:
+        description: 'Command in package.json to build assets before running tests. Default "" and assets are not built if empty.'
+        default: ''
+        required: false
+        type: string
 
 jobs:
   wp-unit-test:
@@ -50,6 +60,24 @@ jobs:
           MYSQL_ROOT_PASSWORD: root
     steps:
       - uses: actions/checkout@v6
+
+      # Built assets (e.g. blocks under a gitignored directory) do not exist in a
+      # fresh checkout, so anything that registers or renders them is untestable
+      # unless the project builds first. Skipped entirely when "package" is unset.
+      - name: Install Node
+        if:   ${{ inputs.package != '' }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ inputs.node_version || '' }}
+          node-version-file: ${{ inputs.node_version && '' || format('{0}/.node-version', inputs.working_directory) }}
+
+      - name: Install NPM Packages
+        if:   ${{ inputs.package != '' }}
+        run:  npm ci --ignore-scripts
+
+      - name: Build Assets
+        if:   ${{ inputs.package != '' }}
+        run:  "npm run ${{ inputs.package }}"
 
       # ubuntu-latest requires subversion.
       # see: https://github.com/10up/action-wordpress-plugin-deploy/releases/tag/2.3.0
