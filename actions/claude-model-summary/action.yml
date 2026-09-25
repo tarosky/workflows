@@ -1,0 +1,35 @@
+name: Claude Model Summary
+description: claude-code-action の実行ログから、実際に解決されたモデル ID とコストを Job Summary に出力する。
+inputs:
+  execution_file:
+    description: 'claude-code-action の outputs.execution_file'
+    required: true
+  requested_model:
+    description: '--model に渡した値（エイリアスまたはフル ID）'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Report resolved model
+      shell: bash
+      env:
+        EXECUTION_FILE: ${{ inputs.execution_file }}
+        REQUESTED_MODEL: ${{ inputs.requested_model }}
+      run: |
+        if [ -z "$EXECUTION_FILE" ] || [ ! -f "$EXECUTION_FILE" ]; then
+          echo "::warning::execution_file が見つからないため、解決されたモデルを確認できません"
+          exit 0
+        fi
+        # init メッセージの model がメインのモデル。modelUsage にはサブエージェント等も含まれる。
+        resolved=$(jq -r '[.[] | select(.type == "system" and .subtype == "init") | .model][0] // "unknown"' "$EXECUTION_FILE")
+        used=$(jq -r '[.[] | select(.type == "result") | .modelUsage // {} | keys[]] | unique | join(", ")' "$EXECUTION_FILE")
+        cost=$(jq -r '[.[] | select(.type == "result") | .total_cost_usd // 0] | add // 0' "$EXECUTION_FILE")
+        echo "::notice title=Claude model::requested=${REQUESTED_MODEL} resolved=${resolved} cost=\$${cost}"
+        {
+          echo "### Claude model"
+          echo ""
+          echo "| 指定 | 解決 | 使用モデル | コスト (USD) |"
+          echo "|---|---|---|---|"
+          echo "| \`${REQUESTED_MODEL}\` | \`${resolved}\` | ${used:-—} | ${cost} |"
+        } >> "$GITHUB_STEP_SUMMARY"
