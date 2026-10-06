@@ -1,0 +1,55 @@
+name: Kunoichi Deploy
+description: Upload a plugin/theme zip to Kunoichi Market (or its staging) with a deploy key.
+inputs:
+  deploy-key:
+    description: 'Deploy key (mkbs_...). Issued per product. Pass it from a secret.'
+    required: true
+  file:
+    description: 'Path to the zip file to upload. e.g. my-plugin.zip'
+    required: true
+  version:
+    description: 'Version to register in x.y.z format. A leading "v" is accepted. Defaults to the tag name.'
+    required: false
+    default: ${{ github.ref_name }}
+  endpoint:
+    description: 'Base URL of the market. Override this to deploy to staging.'
+    required: false
+    default: 'https://kunoichiwp.com'
+  slug:
+    description: 'Plugin or theme slug used for the file name. Defaults to the product slug.'
+    required: false
+    default: ''
+  force:
+    description: 'Replace the file if the same version is already registered.'
+    required: false
+    default: 'false'
+  basic-auth-user:
+    description: 'Basic auth user name, if the market is behind basic auth (e.g. staging).'
+    required: false
+    default: ''
+  basic-auth-password:
+    description: 'Basic auth password. Required when basic-auth-user is set.'
+    required: false
+    default: ''
+outputs:
+  file:
+    description: 'Registered file name. e.g. my-plugin-1.2.3.zip'
+    value: ${{ steps.deploy.outputs.file }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Upload to Kunoichi Market
+      id: deploy
+      shell: bash
+      # Pass inputs via env, never interpolate them into the script.
+      env:
+        KUNOICHI_DEPLOY_KEY: ${{ inputs.deploy-key }}
+        KUNOICHI_FILE: ${{ inputs.file }}
+        KUNOICHI_VERSION: ${{ inputs.version }}
+        KUNOICHI_ENDPOINT: ${{ inputs.endpoint }}
+        KUNOICHI_SLUG: ${{ inputs.slug }}
+        KUNOICHI_FORCE: ${{ inputs.force }}
+        KUNOICHI_BASIC_AUTH_USER: ${{ inputs.basic-auth-user }}
+        KUNOICHI_BASIC_AUTH_PASSWORD: ${{ inputs.basic-auth-password }}
+      run: bash "${{ github.action_path }}/deploy.sh"
