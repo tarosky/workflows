@@ -4,7 +4,7 @@
  *
  * Usage:
  *   php check.php --path=../my-plugin [--from=6.6] [--to=7.1|latest] [--format=markdown|json]
- *                 [--catalog=URL|catalog.json] [--repo=owner/name] [--ref=sha]
+ *                 [--catalog=URL|catalog.json] [--repo=owner/name] [--ref=sha] [--json-out=result.json]
  *
  * --from 省略時は readme の Tested up to、それも無ければ --to の直前のリリース.
  * --to 省略時はカタログの最新リリース.
@@ -17,7 +17,7 @@ require __DIR__ . '/lib/code-index.php';
 require __DIR__ . '/lib/matcher.php';
 require __DIR__ . '/lib/report.php';
 
-$opts = getopt( '', [ 'path:', 'from:', 'to:', 'format:', 'catalog:', 'repo:', 'ref:', 'exclude:' ] );
+$opts = getopt( '', [ 'path:', 'from:', 'to:', 'format:', 'catalog:', 'repo:', 'ref:', 'exclude:', 'json-out:' ] );
 foreach ( [ 'path' ] as $key ) {
 	if ( empty( $opts[ $key ] ) ) {
 		fwrite( STDERR, "--{$key} is required.\n" );
@@ -41,6 +41,9 @@ $index   = code_index_build( $opts['path'], $exclude );
 $result  = matcher_run( $catalog, $index, $range['from'], $range['to'] ) + [ 'from_source' => $range['from_source'] ];
 fprintf( STDERR, "Checked %s -> %s (from: %s): %d matched, %d checklist, %d reference\n", $range['from'], $range['to'], $range['from_source'], count( $result['matched'] ), count( $result['checklist'] ), count( $result['weak'] ) );
 
+if ( ! empty( $opts['json-out'] ) ) {
+	file_put_contents( $opts['json-out'], json_encode( $result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) );
+}
 if ( 'json' === ( $opts['format'] ?? 'markdown' ) ) {
 	echo json_encode( $result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ), "\n";
 } else {

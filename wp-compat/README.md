@@ -88,6 +88,12 @@ php scripts/check.php --path=../my-plugin --format=json                 # Tested
 | 目視チェック | 重大度 high・確度 manual | 一致箇所を候補として表示 |
 | 参考 | `js_package` だけが一致、または manual 項目のヒント一致 | 折りたたみ |
 
+Issue の扱い（`scripts/lib/issues.php`）:
+
+- 1リポジトリ×1リリースにつき1件。open な Issue があれば本文を更新し、`- [x]` の項目は引き継ぐ
+- **閉じた Issue は「確認済み」とみなす**。前回に無かった変更（重大度 中以上でコードに該当したもの）が出たときだけ再オープンしてコメントする
+- 新しいリリースの Issue ができたら、古いリリースの open な Issue は「#N に引き継ぎ」としてクローズする（新しい Issue は範囲が広く、古い Issue の内容を含む）
+
 `--from` を省略すると readme（readme.txt / README.md）の `Tested up to` を起点にする。無ければ更新先の直前のリリース。Issue はリリースごとに1件なので、起点が実行ごとに変わらないようにするため。
 
 `fixed_in` がある項目は、修正済みバージョン以降への更新なら除外する（`--to=7.1` は 7.1 系の最新とみなす）。

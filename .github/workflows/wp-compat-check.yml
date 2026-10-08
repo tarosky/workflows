@@ -3,6 +3,7 @@ name: WP Compat Check
 # WordPress本体の互換性カタログ（https://tarosky.github.io/workflows/）と
 # 呼び出し元リポジトリのコードを照合し、影響があれば Issue を作成・更新する。
 # 1リポジトリ×1リリースにつき1 Issue。再実行時は本文を更新し、チェック済みの項目は引き継ぐ。
+# 閉じた Issue は新しい該当が出たときだけ再オープンし、古いリリースの Issue は新しい Issue に引き継いでクローズする。
 
 on:
   workflow_call:
@@ -81,7 +82,6 @@ jobs:
         run: composer install --no-dev --no-interaction --no-progress
 
       - name: Run check
-        id: check
         env:
           TO: ${{ inputs.to }}
           FROM: ${{ inputs.from }}
@@ -96,6 +96,7 @@ jobs:
             --exclude="${EXCLUDE}" \
             --catalog="${CATALOG_URL}" \
             --repo="${GITHUB_REPOSITORY}" --ref="${GITHUB_SHA}" \
+            --json-out=result.json \
             > report.md 2> check.log
           code=$?
           set -e
@@ -103,19 +104,16 @@ jobs:
           if [ "${code}" -eq 1 ]; then
             exit 1
           fi
-          echo "significant=$([ "${code}" -eq 2 ] && echo 1 || echo 0)" >> "$GITHUB_OUTPUT"
-          # 照合したリリース（マーカーから取得）.
-          release=$(head -1 report.md | sed -E 's/<!-- wp-compat:([0-9.]+) -->/\1/')
-          echo "release=${release}" >> "$GITHUB_OUTPUT"
           cat report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Create or update issue
+        # パイプ（tee）の途中で失敗してもジョブを失敗させる.
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE: ${{ steps.check.outputs.release }}
-          SIGNIFICANT: ${{ steps.check.outputs.significant }}
           LABEL: ${{ inputs.label }}
           DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
         run: |
-          bash wp-compat-tool/wp-compat/scripts/upsert-issue.sh \
-            "${GITHUB_REPOSITORY}" "${RELEASE}" report.md "${SIGNIFICANT}" "${LABEL}" ${DRY_RUN}
+          php wp-compat-tool/wp-compat/scripts/upsert-issue.php \
+            --repo="${GITHUB_REPOSITORY}" --result=result.json --body=report.md \
+            --label="${LABEL}" ${DRY_RUN} | tee -a "$GITHUB_STEP_SUMMARY"
