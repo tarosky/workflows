@@ -3,3 +3,4 @@
 /wiki/
 /wp-compat/vendor/
 /wp-compat/_site/
+/wp-compat/.phpunit.result.cache

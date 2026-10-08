@@ -112,6 +112,11 @@
           "description": "シンボルで表せない場合の照合用正規表現（PCRE）",
           "type": "string"
         },
+        "fixed_in": {
+          "description": "x.y.0 のリグレッションが修正されたマイナーバージョン（例: 7.1.1）。これ以降に更新するなら影響しない",
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
         "since": {
           "description": "非推奨・削除が宣言されたバージョン",
           "type": "string"
