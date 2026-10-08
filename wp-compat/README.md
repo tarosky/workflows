@@ -43,6 +43,30 @@ php scripts/validate.php
 php scripts/build-site.php      # → _site/
 ```
 
+## 自動更新
+
+`.github/workflows/wp-compat-catalog.yml` が毎日 06:00 JST に動く。
+
+1. `detect-updates.php` が作業を判定する
+   - 進行中リリースの段階（`version.php` の `$wp_version` が alpha → beta → RC）とコミット。wordpress-develop にはベータ・RC のタグが無いため
+   - 正式版のタグ（`x.y.0`）が打たれたら final で再抽出し、次のリリースの trunk カタログを作る
+   - 対象リリースの Dev Notes・Field Guide・リリース告知のうち、`curated.yml` の `sources` に無いもの
+2. 機械抽出を再生成する（変更内容と段階が同じなら書き換えない）
+3. 未取り込みの投稿があれば Claude が `skill/SKILL.md` に従って `curated.yml` を更新する
+4. テスト・スキーマ検証・**シンボル実在チェック**（`verify-symbols.php`）が通れば PR を自動マージ。通らなければ PR を残し、Slack でレビューを依頼する
+5. マージ後、`wp-compat-pages.yml` が Pages を更新し、公開中のカタログとの差分を Slack に通知する
+
+必要な設定（tarosky/workflows）:
+
+| 種類 | 名前 | 内容 |
+|---|---|---|
+| Variable | `WP_COMPAT_APP_CLIENT_ID` | GitHub App の Client ID |
+| Secret | `WP_COMPAT_APP_PRIVATE_KEY` | GitHub App の秘密鍵 |
+| Secret | `ANTHROPIC_API_KEY` | Claude（org のシークレットでも可） |
+| Secret | `SLACK_WEBHOOK_URL` | Slack Incoming Webhook（任意。無ければ通知しない） |
+
+GitHub App の権限: Contents / Pull requests は Read and write。tarosky/workflows にだけインストールする。`GITHUB_TOKEN` で作った PR では必須チェック（Status Check）も Pages のデプロイも起動しないため、App のトークンを使う。
+
 ## 照合（自社リポジトリ側）
 
 各リポジトリには薄い呼び出し側だけを置く。カタログは実行時に Pages から取得するので、ワークフローのタグを固定してもカタログは最新になる。

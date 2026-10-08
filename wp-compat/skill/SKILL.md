@@ -103,3 +103,5 @@ changes:
 - 情報源の本文は英語。`summary` と `title` は日本語で書く
 - 投稿本文を長く引用しない（要約する）
 - trunk/beta の段階では Dev Notes が揃っていない。その時点で読めた情報源を `sources` に必ず残す
+- **読んだ投稿はすべて `sources` に入れる**（変更を書かなかった投稿も）。日次の自動更新（wp-compat-catalog.yml）は `sources` に無い投稿を「未取り込み」として扱う
+- 自動更新では `php scripts/verify-symbols.php` が通らないと自動マージされない。PHP シンボルは必ずソースツリーで確認する

@@ -83,6 +83,28 @@ function catalog_duplicates( string $release ): array {
 }
 
 /**
+ * 生成日時・比較コミット以外に違いがあるか.
+ */
+function catalog_materially_changed( array $old, array $new ): bool {
+	$strip = function ( array $catalog ): array {
+		unset( $catalog['generated_at'], $catalog['compared']['to_commit'] );
+		foreach ( $catalog['changes'] as &$change ) {
+			// trunk の evidence は行番号・コミットが日々ずれるので比較しない.
+			unset( $change['evidence'], $change['source_urls'] );
+		}
+		return $catalog;
+	};
+	return $strip( $old ) != $strip( $new );
+}
+
+/**
+ * リリースの段階（trunk/beta/rc/final）。機械抽出の値を正とする.
+ */
+function catalog_release_status( array $catalogs ): string {
+	return $catalogs['extracted']['status'] ?? $catalogs['curated']['status'] ?? 'final';
+}
+
+/**
  * catalog/ 配下のリリース一覧（バージョン順）.
  */
 function catalog_releases(): array {

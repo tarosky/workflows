@@ -61,6 +61,11 @@ if ( $errors ) {
 }
 
 $out = $opts['out'] ?? catalog_dir( $opts['release'] ) . '/extracted.yml';
+// trunk は毎日コミットが進むので、変更内容と段階が同じなら書き換えない（日次の空PRを防ぐ）.
+if ( is_file( $out ) && ! catalog_materially_changed( catalog_read( $out ), $catalog ) ) {
+	printf( "%s: no material change (%s)\n", $opts['release'], $out );
+	exit( 0 );
+}
 catalog_write( $out, $catalog );
 
 $by_type = array_count_values( array_column( $changes, 'type' ) );
