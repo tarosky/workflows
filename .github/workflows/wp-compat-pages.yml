@@ -17,6 +17,11 @@ on:
       - 'wp-compat/**'
       - '.github/workflows/wp-compat-pages.yml'
   workflow_dispatch:
+    inputs:
+      slack_test:
+        description: Slack 通知の設定確認だけを行う（テストメッセージを送信。ビルド・デプロイはしない）
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -26,8 +31,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  slack-test:
+    name: Slack test message
+    if: github.event_name == 'workflow_dispatch' && inputs.slack_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout: wp-compat/scripts
+
+      - name: Send test message
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -z "${SLACK_WEBHOOK_URL}" ]; then
+            echo "::error::SLACK_WEBHOOK_URL が未設定です"
+            exit 1
+          fi
+          php wp-compat/scripts/notify-slack.php --test
+
   build:
     name: Validate and build
+    if: ${{ !inputs.slack_test }}
     runs-on: ubuntu-latest
     defaults:
       run:
