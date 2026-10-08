@@ -133,3 +133,16 @@ function code_index_line( array $index, string $loc ): string {
 	[ $path, $line ] = explode( ':', $loc ) + [ '', 0 ];
 	return trim( $index['lines'][ $path ][ (int) $line - 1 ] ?? '' );
 }
+
+/**
+ * readme.txt / README.md の "Tested up to" を返す.
+ */
+function code_tested_up_to( string $root ): ?string {
+	foreach ( [ 'readme.txt', 'README.txt', 'README.md', 'readme.md' ] as $name ) {
+		$file = rtrim( $root, '/' ) . '/' . $name;
+		if ( is_file( $file ) && preg_match( '/^[\s*#>-]*Tested up to:\s*([0-9]+\.[0-9]+(?:\.[0-9]+)?)/mi', file_get_contents( $file ), $m ) ) {
+			return $m[1];
+		}
+	}
+	return null;
+}

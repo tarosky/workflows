@@ -21,7 +21,20 @@ function report_markdown( array $result, string $repo = '', string $ref = 'HEAD'
 	$out  = [];
 
 	$out[] = report_marker( $result['to'] );
-	$out[] = sprintf( 'WordPress **%s → %s** のアップデートで影響しうる箇所を、[互換性カタログ](%s?from=%s&to=%s)と照合しました（%d ファイル）。', $result['from'], $result['to'], WP_COMPAT_PAGES_URL, report_next_release( $result['from'] ), major( $result['to'] ), $result['files'] );
+	$sources = [
+		'tested_up_to'     => 'readme の Tested up to',
+		'previous_release' => '直前のリリース',
+	];
+	$out[]   = sprintf(
+		'WordPress **%s → %s** のアップデートで影響しうる箇所を、[互換性カタログ](%s?from=%s&to=%s)と照合しました（%d ファイル%s）。',
+		$result['from'],
+		$result['to'],
+		WP_COMPAT_PAGES_URL,
+		report_next_release( $result['from'] ),
+		major( $result['to'] ),
+		$result['files'],
+		isset( $sources[ $result['from_source'] ?? '' ] ) ? '、起点は' . $sources[ $result['from_source'] ] : ''
+	);
 	$out[] = '';
 	$major = array_values( array_filter( $result['matched'], fn( $item ) => 'low' !== $item['severity'] ) );
 	$minor = array_values( array_filter( $result['matched'], fn( $item ) => 'low' === $item['severity'] ) );

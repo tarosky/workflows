@@ -59,7 +59,7 @@ on:
         description: 更新先（例 7.2、latest）
         default: latest
       from:
-        description: 現在のバージョン（空なら直前のリリース）
+        description: 現在のバージョン（空なら readme の Tested up to）
         default: ''
 
 jobs:
@@ -77,7 +77,7 @@ jobs:
 
 ```bash
 php scripts/check.php --path=../my-plugin --from=6.6 --to=7.1          # Markdown
-php scripts/check.php --path=../my-plugin --to=latest --format=json    # 直前→最新
+php scripts/check.php --path=../my-plugin --format=json                 # Tested up to → 最新
 ```
 
 判定の分類:
@@ -87,6 +87,8 @@ php scripts/check.php --path=../my-plugin --to=latest --format=json    # 直前�
 | 該当 | 確度が high/medium の項目で、シンボルか `match_hint` が一致 | 重大度 高・中は本文、低は折りたたみ |
 | 目視チェック | 重大度 high・確度 manual | 一致箇所を候補として表示 |
 | 参考 | `js_package` だけが一致、または manual 項目のヒント一致 | 折りたたみ |
+
+`--from` を省略すると readme（readme.txt / README.md）の `Tested up to` を起点にする。無ければ更新先の直前のリリース。Issue はリリースごとに1件なので、起点が実行ごとに変わらないようにするため。
 
 `fixed_in` がある項目は、修正済みバージョン以降への更新なら除外する（`--to=7.1` は 7.1 系の最新とみなす）。
 

@@ -125,4 +125,26 @@ class MatcherTest extends TestCase {
 			'earlier major'    => [ '7.1.1', '7.0', false ],
 		];
 	}
+
+	public function test_tested_up_to_from_readme(): void {
+		$this->assertSame( '6.9', code_tested_up_to( __DIR__ . '/fixtures/plugin' ) );
+		$this->assertNull( code_tested_up_to( __DIR__ . '/fixtures/core-from' ) );
+	}
+
+	#[DataProvider( 'range_cases' )]
+	public function test_resolve_range( string $from, string $to, ?string $tested, array $expected ): void {
+		$catalog = [ 'releases' => array_map( fn( $r ) => [ 'release' => $r, 'status' => 'final', 'changes' => [] ], [ '7.2', '6.9', '7.0', '7.1' ] ) ];
+		$range   = matcher_resolve_range( $catalog, $from, $to, $tested );
+		$this->assertSame( $expected, [ $range['from'], $range['to'], $range['from_source'] ] );
+	}
+
+	public static function range_cases(): array {
+		return [
+			'explicit from wins'         => [ '6.6', 'latest', '6.9', [ '6.6', '7.2', 'input' ] ],
+			'tested up to'               => [ '', 'latest', '6.9.1', [ '6.9', '7.2', 'tested_up_to' ] ],
+			'no readme'                  => [ '', 'latest', null, [ '7.1', '7.2', 'previous_release' ] ],
+			'tested is already target'   => [ '', '7.2', '7.2', [ '7.1', '7.2', 'previous_release' ] ],
+			'explicit to with tested'    => [ '', '7.1', '6.9', [ '6.9', '7.1', 'tested_up_to' ] ],
+		];
+	}
 }
