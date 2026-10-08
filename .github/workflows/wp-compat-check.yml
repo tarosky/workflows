@@ -13,7 +13,7 @@ on:
         type: string
         default: 'latest'
       from:
-        description: 現在の WordPress バージョン（例 6.6）。空なら更新先の直前のリリース
+        description: 現在の WordPress バージョン（例 6.6）。空なら readme の Tested up to、それも無ければ更新先の直前のリリース
         required: false
         type: string
         default: ''

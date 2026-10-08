@@ -39,6 +39,33 @@ function is_fixed( string $fixed_in, string $to ): bool {
 	return version_compare( $to, $fixed_in, '>=' );
 }
 
+/**
+ * 照合範囲を決める.
+ *
+ * from の優先順位: 明示指定 > readme の Tested up to > to の直前のリリース.
+ * to: latest（または空）ならカタログの最新リリース.
+ *
+ * @return array{from: string, to: string, from_source: 'input'|'tested_up_to'|'previous_release'}
+ */
+function matcher_resolve_range( array $catalog, string $from, string $to, ?string $tested_up_to ): array {
+	$releases = array_column( $catalog['releases'], 'release' );
+	usort( $releases, 'version_compare' );
+	if ( 'latest' === $to || '' === $to ) {
+		$to = end( $releases );
+	}
+	if ( '' !== $from ) {
+		return [ 'from' => $from, 'to' => $to, 'from_source' => 'input' ];
+	}
+	if ( $tested_up_to && version_compare( major( $tested_up_to ), major( $to ), '<' ) ) {
+		return [ 'from' => major( $tested_up_to ), 'to' => $to, 'from_source' => 'tested_up_to' ];
+	}
+	$previous = array_values( array_filter( $releases, fn( $r ) => version_compare( $r, major( $to ), '<' ) ) );
+	if ( ! $previous ) {
+		throw new RuntimeException( "Cannot determine --from for {$to}." );
+	}
+	return [ 'from' => end( $previous ), 'to' => $to, 'from_source' => 'previous_release' ];
+}
+
 function major( string $version ): string {
 	return implode( '.', array_slice( explode( '.', $version ), 0, 2 ) );
 }
