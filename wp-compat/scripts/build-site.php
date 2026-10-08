@@ -24,14 +24,12 @@ foreach ( array_reverse( catalog_releases() ) as $release ) {
 	$catalogs = catalog_load_release( $release );
 	$changes  = [];
 	$sources  = [];
-	$status   = 'final';
 	foreach ( $catalogs as $origin => $catalog ) {
 		$errors = catalog_validate( $catalog );
 		if ( $errors ) {
 			fwrite( STDERR, "Invalid catalog {$release}/{$origin}.yml:\n  " . implode( "\n  ", $errors ) . "\n" );
 			exit( 1 );
 		}
-		$status = $catalog['status'];
 		foreach ( $catalog['changes'] as $change ) {
 			$changes[] = $change + [ 'origin' => $origin ];
 		}
@@ -40,7 +38,7 @@ foreach ( array_reverse( catalog_releases() ) as $release ) {
 	usort( $changes, 'compare_changes' );
 	$releases[] = [
 		'release'  => $release,
-		'status'   => $status,
+		'status'   => catalog_release_status( $catalogs ),
 		'compared' => $catalogs['extracted']['compared'] ?? null,
 		'sources'  => $sources,
 		'changes'  => $changes,

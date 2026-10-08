@@ -157,7 +157,7 @@ changes:
     severity: high
     confidence: medium
     symbols:
-      - { kind: method, name: 'AI_Client::prompt', replacement: wp_ai_client_prompt }
+      - { kind: class, name: 'WordPress\AiClient\AiClient', replacement: wp_ai_client_prompt }
     match_hint: 'wordpress/(php|wp)-ai-client|WordPress\\AiClient\\'
     source_urls:
       - 'https://make.wordpress.org/core/2026/03/24/introducing-the-ai-client-in-wordpress-7-0/'

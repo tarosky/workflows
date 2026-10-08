@@ -53,6 +53,21 @@ jobs:
       - name: Build site
         run: php scripts/build-site.php --out=_site
 
+      - name: Snapshot published catalog
+        if: github.event_name != 'pull_request'
+        run: |
+          # デプロイ前に公開中のカタログを保存し、デプロイ後に差分を Slack に通知する.
+          mkdir -p notify
+          curl -sf https://tarosky.github.io/workflows/catalog.json -o notify/old.json || echo '{}' > notify/old.json
+          cp _site/catalog.json notify/new.json
+
+      - name: Upload catalogs for notification
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v7
+        with:
+          name: wp-compat-catalogs
+          path: wp-compat/notify
+
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v5
@@ -89,3 +104,23 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v5
+
+  notify:
+    name: Notify Slack
+    needs: deploy
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          sparse-checkout: wp-compat/scripts
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: wp-compat-catalogs
+          path: catalogs
+
+      - name: Notify
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: php wp-compat/scripts/notify-slack.php --old=catalogs/old.json --new=catalogs/new.json

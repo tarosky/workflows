@@ -57,6 +57,7 @@ function scan_wordpress_src( string $src ): array {
 		'hooks'            => [],
 		'deprecated_hooks' => [],
 		'deprecated_files' => [],
+		'dynamic_hooks'    => [],
 	];
 	$iterator = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $src, FilesystemIterator::SKIP_DOTS ) );
 	foreach ( $iterator as $file ) {
@@ -236,7 +237,12 @@ function scan_php_file( string $code, string $path, array &$table ): void {
 				$fn = strtolower( $text );
 				if ( isset( WP_COMPAT_HOOK_FUNCTIONS[ $fn ] ) ) {
 					$hook = literal_argument( $tokens, $i + 1, 0 );
-					if ( null !== $hook ) {
+					if ( null === $hook ) {
+						$pattern = dynamic_hook_pattern( $tokens, $i + 2 );
+						if ( $pattern ) {
+							$table['dynamic_hooks'][ $pattern ] ??= [ 'file' => $path, 'line' => $line ];
+						}
+					} else {
 						$table['hooks'][ $hook ] ??= [
 							'file'    => $path,
 							'line'    => $line,
@@ -336,6 +342,28 @@ function literal_argument( array $tokens, int $open, int $n ): ?string {
 		return null;
 	}
 	return stripcslashes( substr( $parts[0][1], 1, -1 ) );
+}
+
+/**
+ * "get_{$adjacent}_post_where" のような補間文字列のフック名を正規表現にする。補間でなければ null.
+ */
+function dynamic_hook_pattern( array $tokens, int $start ): ?string {
+	if ( '"' !== ( $tokens[ $start ] ?? null ) ) {
+		return null;
+	}
+	$regex = '';
+	for ( $i = $start + 1; $i < count( $tokens ) && '"' !== $tokens[ $i ]; $i++ ) {
+		$t = $tokens[ $i ];
+		if ( is_array( $t ) && T_ENCAPSED_AND_WHITESPACE === $t[0] ) {
+			$regex .= preg_quote( $t[1], '/' );
+		} elseif ( ! str_ends_with( $regex, '.+' ) ) {
+			// 変数・{$...} の部分はワイルドカード.
+			$regex .= '.+';
+		}
+	}
+	// 固定部分が短いパターン（"{$a}_{$b}" など）は何にでも一致するので使わない.
+	$literal = preg_replace( '/\\\\(.)|\.\+/', '$1', $regex );
+	return strlen( $literal ) < 6 ? null : '/^' . $regex . '$/';
 }
 
 /**

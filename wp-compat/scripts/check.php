@@ -67,13 +67,9 @@ function load_catalog( ?string $source ): array {
 	}
 	$releases = [];
 	foreach ( catalog_releases() as $release ) {
-		$changes = [];
-		$status  = 'final';
-		foreach ( catalog_load_release( $release ) as $catalog ) {
-			$status  = $catalog['status'];
-			$changes = array_merge( $changes, $catalog['changes'] );
-		}
-		$releases[] = [ 'release' => $release, 'status' => $status, 'changes' => $changes ];
+		$catalogs = catalog_load_release( $release );
+		$changes  = array_merge( ...array_map( fn( $c ) => $c['changes'], array_values( $catalogs ) ) );
+		$releases[] = [ 'release' => $release, 'status' => catalog_release_status( $catalogs ), 'changes' => $changes ];
 	}
 	return [ 'releases' => $releases ];
 }
