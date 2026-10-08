@@ -1,0 +1,73 @@
+name: WP Compat Catalog Pages
+
+# wp-compat/catalog の検証と GitHub Pages への公開。
+# PR では検証とビルドのみ、main への push で公開する。
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'wp-compat/**'
+      - '.github/workflows/wp-compat-pages.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'wp-compat/**'
+      - '.github/workflows/wp-compat-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wp-compat-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Validate and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: wp-compat
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Validate catalogs
+        run: php scripts/validate.php
+
+      - name: Build site
+        run: php scripts/build-site.php --out=_site
+
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: wp-compat/_site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5

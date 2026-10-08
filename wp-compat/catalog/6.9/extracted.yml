@@ -1,0 +1,332 @@
+release: '6.9'
+status: final
+origin: extracted
+compared:
+  from: 6.8.0
+  to: 6.9.0
+  to_commit: 3a87241015aff96c7a38c1304949908b9588b218
+generated_at: '2026-10-08T06:18:49+00:00'
+sources:
+  -
+    type: git
+    url: 'https://github.com/WordPress/wordpress-develop/compare/6.8.0...3a87241015aff96c7a38c1304949908b9588b218'
+changes:
+  -
+    id: 'removed:method:WP_PHPMailer::SetLanguage'
+    type: removed
+    title: 'public メソッド `WP_PHPMailer::SetLanguage` が削除された'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: method
+        name: 'WP_PHPMailer::SetLanguage'
+    evidence:
+      file: src/wp-includes/class-wp-phpmailer.php
+      line: 37
+      ref: 6.8.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.8.0/src/wp-includes/class-wp-phpmailer.php#L37'
+  -
+    id: 'argument_deprecated:function:_wp_can_use_pcre_u'
+    type: argument_deprecated
+    title: '`_wp_can_use_pcre_u` の引数が非推奨になった（6.9.0）'
+    status: shipped
+    severity: low
+    confidence: medium
+    since: 6.9.0
+    symbols:
+      -
+        kind: function
+        name: _wp_can_use_pcre_u
+    evidence:
+      file: src/wp-includes/compat.php
+      line: 41
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/compat.php#L41'
+  -
+    id: 'deprecated:function:seems_utf8'
+    type: deprecated
+    title: '`seems_utf8` が非推奨になった（6.9.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.9.0
+    symbols:
+      -
+        kind: function
+        name: seems_utf8
+    evidence:
+      file: src/wp-includes/formatting.php
+      line: 884
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/formatting.php#L884'
+  -
+    id: 'deprecated:function:wp_print_auto_sizes_contain_css_fix'
+    type: deprecated
+    title: '`wp_print_auto_sizes_contain_css_fix` が非推奨になった（6.9.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.9.0
+    symbols:
+      -
+        kind: function
+        name: wp_print_auto_sizes_contain_css_fix
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6479
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/deprecated.php#L6479'
+  -
+    id: 'deprecated:class:Gzdecode'
+    type: deprecated
+    title: '`Gzdecode` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: Gzdecode
+    evidence:
+      file: src/wp-includes/SimplePie/src/Gzdecode.php
+      line: 17
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/Gzdecode.php#L17'
+  -
+    id: 'deprecated:method:Misc::element_implode'
+    type: deprecated
+    title: '`Misc::element_implode` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'Misc::element_implode'
+    evidence:
+      file: src/wp-includes/SimplePie/src/Misc.php
+      line: 112
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/Misc.php#L112'
+  -
+    id: 'deprecated:method:Misc::parse_str'
+    type: deprecated
+    title: '`Misc::parse_str` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'Misc::parse_str'
+    evidence:
+      file: src/wp-includes/SimplePie/src/Misc.php
+      line: 1978
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/Misc.php#L1978'
+  -
+    id: 'deprecated:method:Misc::percent_encoding_normalization'
+    type: deprecated
+    title: '`Misc::percent_encoding_normalization` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'Misc::percent_encoding_normalization'
+    evidence:
+      file: src/wp-includes/SimplePie/src/Misc.php
+      line: 260
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/Misc.php#L260'
+  -
+    id: 'deprecated:method:Misc::strip_comments'
+    type: deprecated
+    title: '`Misc::strip_comments` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'Misc::strip_comments'
+    evidence:
+      file: src/wp-includes/SimplePie/src/Misc.php
+      line: 1725
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/Misc.php#L1725'
+  -
+    id: 'deprecated:method:Misc::uncomment_rfc822'
+    type: deprecated
+    title: '`Misc::uncomment_rfc822` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'Misc::uncomment_rfc822'
+    evidence:
+      file: src/wp-includes/SimplePie/src/Misc.php
+      line: 1772
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/Misc.php#L1772'
+  -
+    id: 'deprecated:method:Sanitize::pass_file_data'
+    type: deprecated
+    title: '`Sanitize::pass_file_data` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'Sanitize::pass_file_data'
+    evidence:
+      file: src/wp-includes/SimplePie/src/Sanitize.php
+      line: 202
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/Sanitize.php#L202'
+  -
+    id: 'deprecated:method:SimplePie::set_file'
+    type: deprecated
+    title: '`SimplePie::set_file` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_file'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 787
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/SimplePie/src/SimplePie.php#L787'
+  -
+    id: 'deprecated:method:WP_Debug_Data::get_sizes'
+    type: deprecated
+    title: '`WP_Debug_Data::get_sizes` が非推奨になった（5.6.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 5.6.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Debug_Data::get_sizes'
+    evidence:
+      file: src/wp-admin/includes/class-wp-debug-data.php
+      line: 1887
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-admin/includes/class-wp-debug-data.php#L1887'
+  -
+    id: 'argument_deprecated:method:WP_Dependencies::add_data'
+    type: argument_deprecated
+    title: '`WP_Dependencies::add_data` の引数が非推奨になった（6.9.0）'
+    status: shipped
+    severity: low
+    confidence: medium
+    since: 6.9.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Dependencies::add_data'
+    evidence:
+      file: src/wp-includes/class-wp-dependencies.php
+      line: 288
+      ref: 3a87241015aff96c7a38c1304949908b9588b218
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/3a87241015aff96c7a38c1304949908b9588b218/src/wp-includes/class-wp-dependencies.php#L288'
+  -
+    id: 'removed:js_handle:swfobject'
+    type: removed
+    title: 'スクリプト ハンドル `swfobject` が登録されなくなった'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: js_handle
+        name: swfobject
+    evidence:
+      file: src/wp-includes/script-loader.php
+      line: 978
+      ref: 6.8.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.8.0/src/wp-includes/script-loader.php#L978'
+  -
+    id: 'removed:js_handle:swfupload'
+    type: removed
+    title: 'スクリプト ハンドル `swfupload` が登録されなくなった'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: js_handle
+        name: swfupload
+    evidence:
+      file: src/wp-includes/script-loader.php
+      line: 1028
+      ref: 6.8.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.8.0/src/wp-includes/script-loader.php#L1028'
+  -
+    id: 'removed:js_handle:swfupload-all'
+    type: removed
+    title: 'スクリプト ハンドル `swfupload-all` が登録されなくなった'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: js_handle
+        name: swfupload-all
+    evidence:
+      file: src/wp-includes/script-loader.php
+      line: 1029
+      ref: 6.8.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.8.0/src/wp-includes/script-loader.php#L1029'
+  -
+    id: 'removed:js_handle:swfupload-handlers'
+    type: removed
+    title: 'スクリプト ハンドル `swfupload-handlers` が登録されなくなった'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: js_handle
+        name: swfupload-handlers
+    evidence:
+      file: src/wp-includes/script-loader.php
+      line: 1030
+      ref: 6.8.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.8.0/src/wp-includes/script-loader.php#L1030'

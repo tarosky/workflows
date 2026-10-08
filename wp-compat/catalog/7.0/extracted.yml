@@ -1,0 +1,134 @@
+release: '7.0'
+status: final
+origin: extracted
+compared:
+  from: 6.9.0
+  to: 7.0.0
+  to_commit: 26b68024931348d267b70e2a29910e1320d0094f
+generated_at: '2026-10-08T06:18:51+00:00'
+sources:
+  -
+    type: git
+    url: 'https://github.com/WordPress/wordpress-develop/compare/6.9.0...26b68024931348d267b70e2a29910e1320d0094f'
+changes:
+  -
+    id: 'removed:function:block_core_navigation_link_render_submenu_icon'
+    type: removed
+    title: '関数 `block_core_navigation_link_render_submenu_icon` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_link_render_submenu_icon
+    evidence:
+      file: src/wp-includes/blocks/navigation-link.php
+      line: 124
+      ref: 6.9.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.9.0/src/wp-includes/blocks/navigation-link.php#L124'
+  -
+    id: 'removed:function:block_core_navigation_submenu_render_submenu_icon'
+    type: removed
+    title: '関数 `block_core_navigation_submenu_render_submenu_icon` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_submenu_render_submenu_icon
+    evidence:
+      file: src/wp-includes/blocks/navigation-submenu.php
+      line: 52
+      ref: 6.9.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.9.0/src/wp-includes/blocks/navigation-submenu.php#L52'
+  -
+    id: 'removed:method:WP_Font_Face::__construct'
+    type: removed
+    title: 'public メソッド `WP_Font_Face::__construct` が削除された'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: method
+        name: 'WP_Font_Face::__construct'
+    evidence:
+      file: src/wp-includes/fonts/class-wp-font-face.php
+      line: 80
+      ref: 6.9.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.9.0/src/wp-includes/fonts/class-wp-font-face.php#L80'
+  -
+    id: 'deprecated:function:addslashes_gpc'
+    type: deprecated
+    title: '`addslashes_gpc` が非推奨になった（7.0.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.0.0
+    symbols:
+      -
+        kind: function
+        name: addslashes_gpc
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6503
+      ref: 26b68024931348d267b70e2a29910e1320d0094f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/26b68024931348d267b70e2a29910e1320d0094f/src/wp-includes/deprecated.php#L6503'
+  -
+    id: 'deprecated:function:block_core_navigation_block_contains_core_navigation'
+    type: deprecated
+    title: '`block_core_navigation_block_contains_core_navigation` が非推奨になった（7.0.0）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: 7.0.0
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_block_contains_core_navigation
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1431
+      ref: 26b68024931348d267b70e2a29910e1320d0094f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/26b68024931348d267b70e2a29910e1320d0094f/src/wp-includes/blocks/navigation.php#L1431'
+  -
+    id: 'deprecated:function:wp_sanitize_script_attributes'
+    type: deprecated
+    title: '`wp_sanitize_script_attributes` が非推奨になった（7.0.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.0.0
+    symbols:
+      -
+        kind: function
+        name: wp_sanitize_script_attributes
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6521
+      ref: 26b68024931348d267b70e2a29910e1320d0094f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/26b68024931348d267b70e2a29910e1320d0094f/src/wp-includes/deprecated.php#L6521'
+  -
+    id: 'php_requirement:php:7.4'
+    type: php_requirement
+    title: 'PHP の最低要件が 7.2.24 から 7.4 に変わった'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: php
+        name: '7.4'
+    evidence:
+      file: src/wp-includes/version.php
+      ref: 26b68024931348d267b70e2a29910e1320d0094f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/26b68024931348d267b70e2a29910e1320d0094f/src/wp-includes/version.php'

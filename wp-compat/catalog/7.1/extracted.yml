@@ -1,0 +1,187 @@
+release: '7.1'
+status: final
+origin: extracted
+compared:
+  from: 7.0.0
+  to: 7.1.0
+  to_commit: daaca56d3d6a9a42a0c87f6eda766c33a77c1d05
+generated_at: '2026-10-08T06:18:53+00:00'
+sources:
+  -
+    type: git
+    url: 'https://github.com/WordPress/wordpress-develop/compare/7.0.0...daaca56d3d6a9a42a0c87f6eda766c33a77c1d05'
+changes:
+  -
+    id: 'removed:function:block_core_home_link_build_css_font_sizes'
+    type: removed
+    title: '関数 `block_core_home_link_build_css_font_sizes` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_home_link_build_css_font_sizes
+    evidence:
+      file: src/wp-includes/blocks/home-link.php
+      line: 71
+      ref: 7.0.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/7.0.0/src/wp-includes/blocks/home-link.php#L71'
+  -
+    id: 'removed:function:block_core_navigation_render_submenu_icon'
+    type: removed
+    title: '関数 `block_core_navigation_render_submenu_icon` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_render_submenu_icon
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1364
+      ref: 7.0.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/7.0.0/src/wp-includes/blocks/navigation.php#L1364'
+  -
+    id: 'removed:function:block_core_navigation_submenu_build_css_font_sizes'
+    type: removed
+    title: '関数 `block_core_navigation_submenu_build_css_font_sizes` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_submenu_build_css_font_sizes
+    evidence:
+      file: src/wp-includes/blocks/navigation-submenu.php
+      line: 67
+      ref: 7.0.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/7.0.0/src/wp-includes/blocks/navigation-submenu.php#L67'
+  -
+    id: 'removed:function:block_core_page_list_build_css_font_sizes'
+    type: removed
+    title: '関数 `block_core_page_list_build_css_font_sizes` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_page_list_build_css_font_sizes
+    evidence:
+      file: src/wp-includes/blocks/page-list.php
+      line: 136
+      ref: 7.0.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/7.0.0/src/wp-includes/blocks/page-list.php#L136'
+  -
+    id: 'removed:class:WP_Block_Cloner'
+    type: removed
+    title: 'クラス `WP_Block_Cloner` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: class
+        name: WP_Block_Cloner
+    evidence:
+      file: src/wp-includes/blocks/block.php
+      line: 93
+      ref: 7.0.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/7.0.0/src/wp-includes/blocks/block.php#L93'
+  -
+    id: 'removed:method:WP_Importer::__construct'
+    type: removed
+    title: 'public メソッド `WP_Importer::__construct` が削除された'
+    status: shipped
+    severity: high
+    confidence: high
+    symbols:
+      -
+        kind: method
+        name: 'WP_Importer::__construct'
+    evidence:
+      file: src/wp-admin/includes/class-wp-importer.php
+      line: 15
+      ref: 7.0.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/7.0.0/src/wp-admin/includes/class-wp-importer.php#L15'
+  -
+    id: 'deprecated:function:_wp_has_noncharacters_fallback'
+    type: deprecated
+    title: '`_wp_has_noncharacters_fallback` が非推奨になった（7.1.0）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: 7.1.0
+    symbols:
+      -
+        kind: function
+        name: _wp_has_noncharacters_fallback
+    evidence:
+      file: src/wp-includes/compat-utf8.php
+      line: 415
+      ref: daaca56d3d6a9a42a0c87f6eda766c33a77c1d05
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/daaca56d3d6a9a42a0c87f6eda766c33a77c1d05/src/wp-includes/compat-utf8.php#L415'
+  -
+    id: 'deprecated:function:block_core_navigation_link_build_css_font_sizes'
+    type: deprecated
+    title: '`block_core_navigation_link_build_css_font_sizes` が非推奨になった（7.0.0）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: 7.0.0
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_link_build_css_font_sizes
+    evidence:
+      file: src/wp-includes/blocks/navigation-link.php
+      line: 96
+      ref: daaca56d3d6a9a42a0c87f6eda766c33a77c1d05
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/daaca56d3d6a9a42a0c87f6eda766c33a77c1d05/src/wp-includes/blocks/navigation-link.php#L96'
+  -
+    id: 'deprecated:function:delete_users_add_js'
+    type: deprecated
+    title: '`delete_users_add_js` が非推奨になった（7.1.0）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: 7.1.0
+    symbols:
+      -
+        kind: function
+        name: delete_users_add_js
+    evidence:
+      file: src/wp-admin/includes/deprecated.php
+      line: 1600
+      ref: daaca56d3d6a9a42a0c87f6eda766c33a77c1d05
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/daaca56d3d6a9a42a0c87f6eda766c33a77c1d05/src/wp-admin/includes/deprecated.php#L1600'
+  -
+    id: 'deprecated:method:WP_HTML_Open_Elements::has_element_in_select_scope'
+    type: deprecated
+    title: '`WP_HTML_Open_Elements::has_element_in_select_scope` が非推奨になった（7.1.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.1.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_HTML_Open_Elements::has_element_in_select_scope'
+    evidence:
+      file: src/wp-includes/html-api/class-wp-html-open-elements.php
+      line: 483
+      ref: daaca56d3d6a9a42a0c87f6eda766c33a77c1d05
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/daaca56d3d6a9a42a0c87f6eda766c33a77c1d05/src/wp-includes/html-api/class-wp-html-open-elements.php#L483'
