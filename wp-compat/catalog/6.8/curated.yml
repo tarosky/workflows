@@ -1,0 +1,909 @@
+release: '6.8'
+status: final
+origin: curated
+compared:
+  from: 6.7.0
+  to: 6.8.0
+generated_at: '2026-10-08T00:00:00+00:00'
+sources:
+  -
+    type: field-guide
+    url: 'https://make.wordpress.org/core/2025/03/28/wordpress-6-8-field-guide/'
+    title: 'WordPress 6.8 Field Guide'
+    date: '2025-03-28'
+  -
+    type: roadmap
+    url: 'https://make.wordpress.org/core/2025/02/06/roadmap-to-6-8/'
+    title: 'Roadmap to 6.8'
+    date: '2025-02-06'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/04/17/wp_query-changes-in-wordpress-6-8/'
+    title: 'WP_Query changes in WordPress 6.8'
+    date: '2025-04-17'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/27/new-rest-api-filter-for-exposing-menus-publicly-in-wordpress-6-8/'
+    title: 'New REST API Filter for Exposing Menus Publicly in WordPress 6.8'
+    date: '2025-03-27'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/25/accessibility-improvements-in-wordpress-6-8/'
+    title: 'Accessibility Improvements in WordPress 6.8'
+    date: '2025-03-25'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+    title: 'Miscellaneous developer changes in WordPress 6.8'
+    date: '2025-03-25'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+    title: 'Miscellaneous Block Editor Changes in WordPress 6.8'
+    date: '2025-03-25'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+    title: 'Updates to user-interface components in WordPress 6.8'
+    date: '2025-03-25'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/24/interactivity-api-best-practices-in-6-8/'
+    title: 'Interactivity API best practices in 6.8'
+    date: '2025-03-24'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/24/new-filter-should_load_block_assets_on_demand-in-6-8/'
+    title: 'New filter should_load_block_assets_on_demand in 6.8'
+    date: '2025-03-24'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/20/changes-to-the-screen-reader-text-class-in-wordpress-6-8/'
+    title: 'Changes to the .screen-reader-text class in WordPress 6.8'
+    date: '2025-03-20'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/13/more-efficient-block-type-registration-in-6-8/'
+    title: 'More efficient block type registration in 6.8'
+    date: '2025-03-13'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/12/data-a-helpful-performance-warning-for-developers-in-the-useselect-hook/'
+    title: "Data: A helpful performance warning for developers in the 'useSelect' hook"
+    date: '2025-03-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/12/roster-of-design-tools-per-block-wordpress-6-8-edition/'
+    title: 'Roster of design tools per block (WordPress 6.8 edition)'
+    date: '2025-03-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/12/i18n-improvements-6-8/'
+    title: 'Internationalization improvements in 6.8'
+    date: '2025-03-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/03/06/speculative-loading-in-6-8/'
+    title: 'Speculative Loading in 6.8'
+    date: '2025-03-06'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/02/17/wordpress-6-8-will-use-bcrypt-for-password-hashing/'
+    title: 'WordPress 6.8 will use bcrypt for password hashing'
+    date: '2025-02-17'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2025/04/16/wordpress-6-8-performance-improvements/'
+    title: 'WordPress 6.8 performance improvements'
+    date: '2025-04-16'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2025/04/14/wordpress-6-8-release-candidate-4/'
+    title: 'WordPress 6.8 Release Candidate 4'
+    date: '2025-04-14'
+changes:
+  -
+    id: 'behavior:bcrypt-password-hashing'
+    type: behavior
+    title: 'ユーザーパスワードのハッシュが phpass から bcrypt（$wp$2y$）に変わった'
+    summary: |
+      wp_hash_password() / wp_check_password() が password_hash()/password_verify() ベースの bcrypt（SHA-384 プレハッシュ）になり、新しいハッシュは `$wp$2y$` プレフィックスで保存される。既存の `$P$` ハッシュは有効なままで、次回ログイン時に再ハッシュされる。
+      `$P$` プレフィックスを前提にハッシュを直接検査・比較するコードや、wp_hash_password / wp_check_password を上書きしているプラグインは見直すこと。検証は必ず wp_check_password() を経由する。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_hash_password
+      -
+        kind: function
+        name: wp_check_password
+      -
+        kind: function
+        name: wp_password_needs_rehash
+      -
+        kind: hook
+        name: password_needs_rehash
+      -
+        kind: hook
+        name: wp_hash_password_algorithm
+    match_hint: '\$P\$|user_pass|function\s+wp_(hash|check)_password\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/02/17/wordpress-6-8-will-use-bcrypt-for-password-hashing/'
+      - 'https://make.wordpress.org/core/2025/03/28/wordpress-6-8-field-guide/'
+  -
+    id: 'behavior:fast-hash-security-keys'
+    type: behavior
+    title: 'アプリケーションパスワード・リセットキー等のハッシュが BLAKE2b（$generic$）に変わった'
+    summary: |
+      アプリケーションパスワード、パスワードリセットキー（user_activation_key）、個人データ要求キー、リカバリーモードキーが phpass から Sodium の BLAKE2b（`$generic$` プレフィックス）に移行した。既存ハッシュは期限内なら有効だが自動再ハッシュはされない。
+      これらのハッシュを直接検証しているコードは新設の wp_verify_fast_hash() を使うよう改めること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_fast_hash
+      -
+        kind: function
+        name: wp_verify_fast_hash
+      -
+        kind: option
+        name: recovery_keys
+    match_hint: user_activation_key|_application_passwords|\$P\$
+    related:
+      - 'behavior:bcrypt-password-hashing'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/02/17/wordpress-6-8-will-use-bcrypt-for-password-hashing/'
+  -
+    id: 'php_requirement:hash-extension-required'
+    type: php_requirement
+    title: 'PHP の hash 拡張が必須要件になった'
+    summary: |
+      hash 拡張が $required_php_extensions に加わり、インストール・アップグレード時にチェックされるようになった。通常の PHP ビルドには含まれるため影響はまれだが、hash を無効化した特殊な環境ではアップグレードが止まる。
+    status: shipped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/28/wordpress-6-8-field-guide/'
+  -
+    id: 'behavior:wp-query-normalized-query-vars'
+    type: behavior
+    title: 'WP_Query のクエリ変数が並べ替え・型変換されて保持されるようになった'
+    summary: |
+      キャッシュヒット率向上のため、WP_Query は配列引数（post_type 配列や author__not_in など）をソート・重複除去・型変換してから保持する。WP_Query::get() や $query_vars の値が渡した配列と一致しなくなる（例: ['post','page'] → ['page','post']、['2','1'] → [1,2]）。
+      posts_where などのフィルター内で配列を === で比較しているコードは array_diff() 等の順序非依存の比較に改めること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: method
+        name: 'WP_Query::get'
+      -
+        kind: class
+        name: WP_Query
+    match_hint: '===\s*\$\w+->(get\s*\(|query_vars\[)|->(get\s*\([^)]*\)|query_vars\[[^\]]*\])\s*==='
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/04/17/wp_query-changes-in-wordpress-6-8/'
+      - 'https://make.wordpress.org/core/2025/04/16/wordpress-6-8-performance-improvements/'
+  -
+    id: 'behavior:count-user-posts-cached'
+    type: behavior
+    title: 'count_user_posts() の結果がオブジェクトキャッシュされるようになった'
+    summary: |
+      count_user_posts() の SQL 結果がキャッシュされるようになった（posts の last_changed で無効化）。投稿を直接 SQL で書き換えるなど、通常の API を経由しない更新をした直後に件数を取得するコードは古い値を得る可能性がある。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: count_user_posts
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/04/16/wordpress-6-8-performance-improvements/'
+  -
+    id: 'behavior:speculative-loading'
+    type: behavior
+    title: 'フロントエンドで Speculative Loading（リンク先の prefetch）がデフォルト有効になった'
+    summary: |
+      パーマリンク有効かつ未ログイン時、フロントのリンクがクリック開始時点で prefetch（conservative）される。クエリパラメータ付き URL は除外されるが、独自リライトで GET による状態変更（カート追加等）を行う「アクション URL」を持つプラグインは wp_speculation_rules_href_exclude_paths で除外すること。
+      prerender を有効にするサイトでは分析タグ等のクライアント処理が先行実行されうる。no-prefetch / no-prerender クラスでブロック単位の除外も可能。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: wp_speculation_rules_href_exclude_paths
+      -
+        kind: hook
+        name: wp_speculation_rules_configuration
+      -
+        kind: hook
+        name: wp_load_speculation_rules
+      -
+        kind: class
+        name: WP_Speculation_Rules
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/06/speculative-loading-in-6-8/'
+      - 'https://make.wordpress.org/core/2025/03/28/wordpress-6-8-field-guide/'
+  -
+    id: 'behavior:block-assets-on-demand-filter-split'
+    type: behavior
+    title: 'ブロックアセットのオンデマンド読み込みが should_load_separate_core_block_assets から分離された'
+    summary: |
+      これまで should_load_separate_core_block_assets は「コアブロックCSSの個別読み込み」と「ページ内のブロックのアセットだけを読み込む」の2役を担っていたが、後者は新フィルター should_load_block_assets_on_demand（wp_should_load_block_assets_on_demand()）に分離された。後方互換で旧フィルターは両方に効き続ける。
+      旧フィルターでオンデマンド読み込みを制御しているプラグイン・テーマは新フィルターへの移行を検討すること。ブロックテーマは両方ともデフォルト有効。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: should_load_separate_core_block_assets
+      -
+        kind: function
+        name: wp_should_load_separate_core_block_assets
+      -
+        kind: hook
+        name: should_load_block_assets_on_demand
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/24/new-filter-should_load_block_assets_on_demand-in-6-8/'
+  -
+    id: 'behavior:jit-translation-loading-all-plugins'
+    type: behavior
+    title: 'WordPress.org 外のプラグイン・テーマにも翻訳のジャストインタイム読み込みが拡張された'
+    summary: |
+      Text Domain / Domain Path ヘッダーを持つプラグイン・テーマは、WordPress.org 非掲載でも load_plugin_textdomain() / load_theme_textdomain() なしで翻訳が自動読み込みされるようになった。
+      独自の読み込み順や翻訳ファイルの差し替えに依存しているコードは、意図しない翻訳が先に読み込まれないか確認すること。6.8 未満をサポートする間は従来の呼び出しを残す。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: load_plugin_textdomain
+      -
+        kind: function
+        name: load_theme_textdomain
+    related:
+      - 'behavior:jit-textdomain-loading-notice'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/12/i18n-improvements-6-8/'
+  -
+    id: 'behavior:wp-phpmailer-class'
+    type: behavior
+    title: 'wp_mail() が PHPMailer のサブクラス WP_PHPMailer を使うようになった'
+    summary: |
+      PHPMailer のエラーメッセージを翻訳するため、PHPMailer を継承した WP_PHPMailer が導入され、phpmailer_init に渡されるインスタンスもこのクラスになった。
+      グローバル $phpmailer を独自インスタンスに差し替えたり、クラス名を厳密比較しているコードは確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: class
+        name: WP_PHPMailer
+      -
+        kind: hook
+        name: phpmailer_init
+    match_hint: '\$phpmailer\s*=\s*new|get_class\s*\(\s*\$phpmailer'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/12/i18n-improvements-6-8/'
+  -
+    id: 'behavior:visual-editor-profile-option-hidden'
+    type: behavior
+    title: プロフィールの「ビジュアルエディターを使用しない」設定が原則非表示になった
+    summary: |
+      ユーザープロフィールの rich_editing 切り替えは、現在無効化されているユーザーにのみ表示されるようになった。ユーザーメタ rich_editing 自体は引き続き有効で、update_user_option() 等で設定できる。
+      プロフィール画面のこのチェックボックスに依存する管理画面カスタマイズや手順書は見直すこと。
+    status: shipped
+    severity: low
+    confidence: manual
+    match_hint: rich_editing
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+      - 'https://make.wordpress.org/core/2025/03/25/accessibility-improvements-in-wordpress-6-8/'
+  -
+    id: 'behavior:image-editor-generate-filename-empty-suffix'
+    type: behavior
+    title: 'WP_Image_Editor::generate_filename() が空文字のサフィックスをそのまま使うようになった'
+    summary: |
+      以前は $suffix が falsy（空文字含む）ならサイズのサフィックス（-600x800 等）を付けていたが、6.8 から空文字は「サフィックスなし」として扱われる。null / false の場合のみ従来どおり寸法サフィックスが付く。
+      空文字になりうる変数を渡しているコードは null を渡すよう修正すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: method
+        name: 'WP_Image_Editor::generate_filename'
+    match_hint: '->generate_filename\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'behavior:classic-menu-custom-link-validation'
+    type: behavior
+    title: 'クラシックメニュー管理画面のカスタムリンクに URL 検証が入った'
+    summary: |
+      メニュー画面でカスタムリンクを追加する際、カスタマイザーと同じ部分的な URL 検証が行われるようになった。一般的な URL パターンでない href（独自プレースホルダー等）を入れる運用は受け付けられなくなる可能性がある。
+    status: shipped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'css:media-shortcode-boolean-attributes'
+    type: css
+    title: 'wp_video_shortcode() / wp_audio_shortcode() のブール属性が値なしで出力されるようになった'
+    summary: |
+      loop・autoplay・muted などが `loop="1"` ではなく `loop` と出力されるようになった。出力 HTML を正規表現で解析したり、`[loop="1"]` のような属性セレクタで CSS/JS を当てているコードは修正すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_video_shortcode
+      -
+        kind: function
+        name: wp_audio_shortcode
+    match_hint: '(loop|autoplay|muted)="1"|\[(loop|autoplay|muted)=["'']?1'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'behavior:register-post-type-embeddable'
+    type: behavior
+    title: '投稿タイプの埋め込み可否が embeddable 引数（デフォルトは public）で決まるようになった'
+    summary: |
+      register_post_type() に embeddable 引数が追加され、未指定時は public の値を継承する。oEmbed の可否は新関数 is_post_embeddable() で判定されるため、public でない投稿タイプは埋め込みできなくなる。
+      非公開投稿タイプの埋め込みに依存している場合は embeddable => true を明示するか、is_post_embeddable フィルターを使うこと。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: register_post_type
+      -
+        kind: function
+        name: is_post_embeddable
+      -
+        kind: hook
+        name: is_post_embeddable
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'css:body-class-theme-and-singular'
+    type: css
+    title: 'body クラスに wp-theme-* / wp-child-theme-* / wp-singular が追加された'
+    summary: |
+      フロントと管理画面の body に有効テーマ名の wp-theme-<name>（子テーマ時は wp-child-theme-<name> も）が付き、単一投稿表示では wp-singular が付くようになった。
+      同名クラスを独自に付与・スタイリングしているテーマやプラグインは衝突がないか確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: body_class
+      -
+        kind: hook
+        name: admin_body_class
+    match_hint: wp-theme-|wp-child-theme-|wp-singular
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'behavior:style-book-classic-themes'
+    type: behavior
+    title: クラシックテーマでもスタイルブックが使えるようになり、パターンのメニュー位置が変わった
+    summary: |
+      editor-styles をサポートするか theme.json を持つクラシックテーマで、外観メニューにスタイルブックが追加された。これに伴いクラシックテーマのパターン一覧は「外観 > パターン」から「外観 > デザイン > パターン」に移動した。
+      管理メニューを remove_submenu_page() 等で操作しているプラグインや、メニュー位置を前提とした手順書は確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: function
+        name: add_theme_support
+    match_hint: 'add_theme_support\s*\(\s*[''"]editor-styles'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+      - 'https://make.wordpress.org/core/2025/02/06/roadmap-to-6-8/'
+  -
+    id: 'behavior:block-hooks-post-content-and-synced-patterns'
+    type: behavior
+    title: 'Block Hooks が投稿本文と同期パターン（core/block）にも適用されるようになった'
+    summary: |
+      これまでテンプレート・テンプレートパーツ・パターン・ナビゲーションに限られていた Block Hooks の自動挿入が、投稿・固定ページの本文と同期パターンにも及ぶようになった。
+      hooked_block_types フィルター等で広い条件のフックブロックを登録しているプラグインは、意図せず投稿本文にブロックが挿入されないか $context を確認すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: hooked_block_types
+      -
+        kind: block
+        name: core/block
+    match_hint: '[''"]blockHooks[''"]|hooked_block_types'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'behavior:render-block-context-inner-blocks'
+    type: behavior
+    title: 'render_block_context フィルターで追加したコンテキストが内側のブロックにも一貫して渡るようになった'
+    summary: |
+      以前はトップレベルブロックに対して render_block_context で与えたコンテキストだけが子孫に伝播し、内側のブロックに与えた場合は伝播しなかった。6.8 からはどの階層でも子孫ブロックに伝播する。
+      旧挙動を前提に条件分岐していたコードは、ネストしたブロックで値が上書きされないか確認すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: render_block_context
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'behavior:imagick-hdr-bit-depth'
+    type: behavior
+    title: 'Imagick でのリサイズ画像が元画像のビット深度を保つようになった（HDR 対応）'
+    summary: |
+      以前は高ビット深度画像のリサイズ結果を 8bit に落としていたが、6.8 からは元のビット深度（例 12bit）のまま出力される。ファイルサイズや下流処理に影響する場合は image_max_bit_depth フィルターで 8 に制限できる。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: image_max_bit_depth
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'behavior:prevent-unsupported-mime-type-uploads'
+    type: behavior
+    title: サーバーが処理できない画像形式のアップロードがデフォルトで拒否されるようになった
+    summary: |
+      サーバーの画像エディターが対応しない画像形式（例 HEIC など）をアップロードすると、エディターとメディアライブラリでエラーになるようになった。wp_prevent_unsupported_mime_type_uploads で false を返せば従来どおりアップロード可能（ただしサブサイズは生成されない）。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: wp_prevent_unsupported_mime_type_uploads
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-developer-changes-in-wordpress-6-8/'
+  -
+    id: 'behavior:get-calendar-args-signature'
+    type: behavior
+    title: 'get_calendar() の引数が配列 $args に変わった'
+    summary: |
+      get_calendar() は $args 配列（initial / display / post_type）を受け取るようになった。旧形式の ( $initial, $display ) も後方互換で受け付けるが、bool 型の場合のみ解釈されるため 0/1 などの非 bool 値を渡しているコードは意図どおり動かない可能性がある。新フィルター get_calendar_args も追加された。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: get_calendar
+      -
+        kind: hook
+        name: get_calendar_args
+    match_hint: 'get_calendar\s*\(\s*[^)\s]'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/28/wordpress-6-8-field-guide/'
+  -
+    id: 'behavior:admin-add-new-labels-simplified'
+    type: behavior
+    title: '管理画面の「新規追加」系ラベルが「Add {Item}」に簡略化された'
+    summary: |
+      コア投稿タイプの add_new_item などのラベルが「Add New Post」から「Add Post」のように変更された（翻訳文字列も変わる）。ラベル文字列で画面要素を探す E2E テストや、gettext フィルターで既存文字列を置換しているコードは更新すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: gettext
+    match_hint: 'Add New (Post|Page|Media|User|Item)'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/28/wordpress-6-8-field-guide/'
+      - 'https://make.wordpress.org/core/2025/03/25/accessibility-improvements-in-wordpress-6-8/'
+  -
+    id: 'css:screen-reader-text-clip-removed'
+    type: css
+    title: '.screen-reader-text から clip と -webkit-clip-path が削除された'
+    summary: |
+      管理画面・バンドルテーマ・ブロックライブラリの .screen-reader-text は clip-path: inset(50%) のみで隠すようになった。通常は影響しないが、.screen-reader-text を再表示するリセット CSS で clip だけを解除している場合は clip-path: none も指定すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: css_selector
+        name: .screen-reader-text
+    match_hint: 'screen-reader-text[^{]*\{[^}]*clip\s*:'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/20/changes-to-the-screen-reader-text-class-in-wordpress-6-8/'
+      - 'https://make.wordpress.org/core/2025/03/25/accessibility-improvements-in-wordpress-6-8/'
+  -
+    id: 'css:admin-a11y-markup-changes'
+    type: css
+    title: '管理画面の title 属性削除・クラシックエディターの「テキスト」タブ改名など DOM/文言が変わった'
+    summary: |
+      管理画面の多数の title 属性、the_shortlink() の title、カレンダーウィジェット列見出しの title が削除された。投稿者未設定の一覧では空リンクの代わりに「—」が表示され、クラシックエディターの「Text」タブは「Code」に改名された。
+      title 属性やタブ文言をセレクタ・E2E テストの手がかりにしているコードは更新すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: function
+        name: the_shortlink
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/accessibility-improvements-in-wordpress-6-8/'
+  -
+    id: 'behavior:password-protected-post-error-message'
+    type: behavior
+    title: パスワード保護投稿で誤ったパスワード入力時にエラーメッセージが出るようになった
+    summary: |
+      誤ったパスワードを入力した際、パスワードフォームにエラーメッセージが表示されるようになり、the_password_form フィルターに第3引数 $invalid_password が渡されるようになった。フォームを独自に差し替えているテーマは表示を確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: the_password_form
+      -
+        kind: function
+        name: get_the_password_form
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/accessibility-improvements-in-wordpress-6-8/'
+  -
+    id: 'css:navigation-current-menu-ancestor-on-li'
+    type: css
+    title: 'Navigation ブロックの current-menu-ancestor クラスが <a> から <li> に移った'
+    summary: |
+      Navigation ブロックで current-menu-ancestor クラスが current-menu-item と同様に <li> 要素に付くようになった。`a.current-menu-ancestor` などリンク要素を前提にしたスタイル・スクリプトは修正すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: css_selector
+        name: .current-menu-ancestor
+      -
+        kind: block
+        name: core/navigation
+    match_hint: 'a\.current-menu-ancestor|current-menu-ancestor\s*>\s*a'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+  -
+    id: 'css:navigation-submenu-item-label-span'
+    type: css
+    title: 'サブメニューを持つナビゲーション項目にも wp-block-navigation-item__label の span が付くようになった'
+    summary: |
+      Navigation ブロックでサブメニュー付き項目のテキストも `<span class="wp-block-navigation-item__label">` で包まれるようになった。子要素構造を前提にしたセレクタや JS（firstChild がテキストノード等）は確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: css_selector
+        name: .wp-block-navigation-item__label
+      -
+        kind: block
+        name: core/navigation-submenu
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+  -
+    id: 'editor_js:is-preview-mode-stabilized'
+    type: editor_js
+    title: 'ブロックエディター設定 __unstableIsPreviewMode が非推奨になり isPreviewMode に安定化された'
+    summary: |
+      select( 'core/block-editor' ).getSettings().__unstableIsPreviewMode を参照すると非推奨警告が出る。isPreviewMode に置き換えること。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/block-editor'
+    match_hint: __unstableIsPreviewMode
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+  -
+    id: 'feature:enforced-iframe-editor'
+    type: editor_js
+    title: 'ブロックテーマで投稿エディターを常に iframe 化する変更は 6.8 リリース前に差し戻された'
+    summary: |
+      ブロックテーマでは常に iframe でコンテンツを描画する変更が 6.8 に入ると告知されたが、RC 期間中（2025-04-01）に差し戻された。6.8 では従来どおりの条件で iframe 化される。将来再導入される可能性があるため、editor の iframe 内で動かない CSS/JS は引き続き対応を進めること。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+  -
+    id: 'editor_js:block-parent-must-be-array'
+    type: editor_js
+    title: 'ブロック登録の parent が配列でないと警告が出るようになった'
+    summary: |
+      ブロック登録 API が parent 設定を配列に正規化し、文字列などを渡すとエディターが警告を表示する。block.json や registerBlockType で parent を文字列指定している場合は配列にすること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/blocks'
+    match_hint: '["'']?parent["'']?\s*:\s*["'']'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+  -
+    id: 'editor_js:link-control-stabilized'
+    type: editor_js
+    title: '__experimentalLinkControl が LinkControl に安定化され、旧名は非推奨になった'
+    summary: |
+      @wordpress/block-editor の __experimentalLinkControl は引き続き動くが非推奨警告が出る。__experimentalLinkControlSearchInput / SearchResults / SearchItem も非推奨。LinkControl に移行すること。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/block-editor'
+    match_hint: __experimentalLinkControl
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+      - 'https://make.wordpress.org/core/2025/04/14/wordpress-6-8-release-candidate-4/'
+  -
+    id: 'editor_js:iframe-component-scale-prop'
+    type: editor_js
+    title: '__unstableIframe の scale="default" の挙動が変わった'
+    summary: |
+      @wordpress/block-editor の __unstableIframe コンポーネントで scale プロップの扱いが変わった。自動スケールを期待して scale="default" を指定している場合は scale="auto-scaled" に変更すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/block-editor'
+    match_hint: 'scale\s*=\s*\{?\s*["'']default["'']'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/miscellaneous-block-editor-changes-in-wordpress-6-8/'
+  -
+    id: 'editor_js:useselect-unstable-return-warning'
+    type: editor_js
+    title: 'useSelect が毎回異なる値を返すと SCRIPT_DEBUG 時に警告が出るようになった'
+    summary: |
+      mapSelect 内で map() 等により毎回新しいオブジェクトを返すと、SCRIPT_DEBUG 有効時にコンソール警告が出る。動作は変わらないが不要な再レンダリングの原因なので、必要な値だけを select し、加工は useSelect の外で行うこと。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/data'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/12/data-a-helpful-performance-warning-for-developers-in-the-useselect-hook/'
+  -
+    id: 'editor_js:interactivity-with-sync-event'
+    type: editor_js
+    title: 'Interactivity API で同期イベントアクセスに withSyncEvent() が必要になった（非推奨警告）'
+    summary: |
+      イベントに結び付いたストアアクションで event.preventDefault() / stopPropagation() / stopImmediatePropagation() / currentTarget を使う場合、withSyncEvent() で包まないと非推奨警告が出る。将来のリリースでアクションがデフォルト非同期化されると、包んでいないコードは preventDefault が効かなくなるなど壊れる。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/interactivity'
+    match_hint: 'event\.(preventDefault|stopPropagation|stopImmediatePropagation)\s*\(|event\.currentTarget'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/24/interactivity-api-best-practices-in-6-8/'
+      - 'https://make.wordpress.org/core/2025/04/16/wordpress-6-8-performance-improvements/'
+  -
+    id: 'editor_js:interactivity-store-function-in-value-directive'
+    type: editor_js
+    title: 'Interactivity API で属性値の決定にストア関数を ! 付きで使うと非推奨警告が出るようになった'
+    summary: |
+      data-wp-bind 等の値を決めるディレクティブで actions / callbacks を `!` 演算子と組み合わせると非推奨警告が出る。将来は値決定ディレクティブでのストア関数利用自体が不可になる予定のため、state（derived state）や context に移行すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/interactivity'
+    match_hint: 'data-wp-[a-z-]+(--[a-z-]+)?=["'']!\s*(actions|callbacks)\.'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/24/interactivity-api-best-practices-in-6-8/'
+  -
+    id: 'editor_js:components-radiogroup-deprecated'
+    type: editor_js
+    title: '@wordpress/components の RadioGroup が非推奨になった'
+    summary: |
+      RadioGroup を使うと非推奨警告が出る。RadioControl または ToggleGroupControl に移行すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    match_hint: \bRadioGroup\b
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'editor_js:components-navigation-deprecated'
+    type: editor_js
+    title: '@wordpress/components の Navigation コンポーネントが非推奨になり 7.1 で削除予定'
+    summary: |
+      Navigation コンポーネントとそのサブコンポーネントは非推奨となり、WordPress 7.1 でのハード削除が予告された。Navigator コンポーネントに移行すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    match_hint: '__experimentalNavigation(Group|Item|Menu|BackButton)?\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'editor_js:components-searchcontrol-onclose-deprecated'
+    type: editor_js
+    title: 'SearchControl の onClose プロップが非推奨になった'
+    summary: |
+      クリアボタンを「閉じる」ボタンとして使う onClose プロップは非推奨。必要なら別途閉じるボタンを UI に追加すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'editor_js:components-buttongroup-deprecated'
+    type: editor_js
+    title: 'ButtonGroup コンポーネントがソフト非推奨になった'
+    summary: |
+      アクセシビリティ上の問題から ButtonGroup は非推奨になった。ToggleGroupControl への移行を推奨。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    match_hint: \bButtonGroup\b
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'editor_js:components-36px-default-size-deprecated'
+    type: editor_js
+    title: '入力系コンポーネントの 36px デフォルトサイズが非推奨になった（__next40pxDefaultSize 未指定で警告）'
+    summary: |
+      BorderBoxControl, BorderControl, BoxControl, ComboboxControl, CustomSelectControl, DimensionControl, FontSizePicker, FormTokenField, InputControl, NumberControl, RangeControl, SelectControl, TextControl, ToggleGroupControl, UnitControl などで __next40pxDefaultSize を指定していないと非推奨警告が出る。
+      各コンポーネントに __next40pxDefaultSize を付けて 40px 高さに移行し、レイアウトを確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    match_hint: '<(BorderBoxControl|BorderControl|BoxControl|ComboboxControl|CustomSelectControl|DimensionControl|FontSizePicker|FormFileUpload|FormTokenField|InputControl|NumberControl|RangeControl|SelectControl|TextControl|ToggleGroupControl|TreeSelect|UnitControl)\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'editor_js:components-modal-close-button-size'
+    type: editor_js
+    title: 'Modal の閉じるボタンが compact サイズ（32px）に拡大された'
+    summary: |
+      Modal の閉じるボタンが small（24px）から compact（32px）になった。headerActions にボタンを追加している場合は size="compact" を指定して揃えること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    match_hint: headerActions
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'editor_js:components-border-box-controls-stabilized'
+    type: editor_js
+    title: '__experimentalBorderBoxControl / BorderControl / BoxControl が安定化され旧名は非推奨になった'
+    summary: |
+      BorderBoxControl・BorderControl・BoxControl が正式名でインポートできるようになり、__experimental 付きのエクスポートは非推奨になった。正式名に置き換えること。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    match_hint: __experimental(BorderBoxControl|BorderControl|BoxControl)\b
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'editor_js:components-navigator-stabilized'
+    type: editor_js
+    title: '__experimentalNavigator* が Navigator に安定化され旧 API は非推奨になった'
+    summary: |
+      __experimentalNavigatorProvider → Navigator、Screen / Button / BackButton → Navigator.Screen 等、__experimentalUseNavigator → useNavigator に置き換えること。__experimentalNavigatorToParentButton と goToParent は非推奨となり、BackButton / goBack と同じ挙動になった。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    match_hint: '__experimental(Navigator\w*|UseNavigator)\b|goToParent'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/25/updates-to-user-interface-components-in-wordpress-6-8/'
+  -
+    id: 'feature:interactivity-full-page-client-side-navigation'
+    type: feature
+    title: 'Interactivity API のフルページ・クライアントサイドナビゲーションは 6.8 に入らなかった'
+    summary: |
+      ロードマップでは 6.8 の主眼とされたが、同節は「Not on track for WordPress 6.8」とされ、Dev Notes・Field Guide にも記載がない。6.8 で使えると誤認しないこと。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/02/06/roadmap-to-6-8/'
+  -
+    id: 'feature:query-instant-search'
+    type: feature
+    title: 'Query / Search ブロックのインスタント検索は 6.8 に入らなかった'
+    summary: |
+      ロードマップで Interactivity API の目標として挙げられた Query・Search ブロックのインスタント検索は、Interactivity API 節が「Not on track」とされ 6.8 では出荷されていない。
+    status: dropped
+    severity: low
+    confidence: manual
+    related:
+      - 'feature:interactivity-full-page-client-side-navigation'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/02/06/roadmap-to-6-8/'
+  -
+    id: 'feature:gallery-lightbox'
+    type: feature
+    title: 'Gallery ブロックのライトボックスは 6.8 に入らなかった'
+    summary: |
+      ロードマップで完了目標とされた Gallery ブロックのライトボックスは、Interactivity API 節が「Not on track」とされ、6.8.0 の core/gallery にも実装されていない。
+    status: dropped
+    severity: low
+    confidence: manual
+    related:
+      - 'feature:interactivity-full-page-client-side-navigation'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/02/06/roadmap-to-6-8/'
+  -
+    id: 'feature:interactivity-async-actions-by-default'
+    type: feature
+    title: 'Interactivity API のアクションのデフォルト非同期化は 6.8 では準備段階のみ'
+    summary: |
+      6.8 は withSyncEvent() と非推奨警告の導入のみで、ハンドラー間でメインスレッドに譲る非同期化そのものは「次のリリース」に予告された。6.8 時点では挙動は変わっていない。
+    status: planned
+    severity: low
+    confidence: manual
+    related:
+      - 'editor_js:interactivity-with-sync-event'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/03/24/interactivity-api-best-practices-in-6-8/'
+      - 'https://make.wordpress.org/core/2025/04/16/wordpress-6-8-performance-improvements/'

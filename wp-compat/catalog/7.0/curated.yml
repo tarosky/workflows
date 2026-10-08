@@ -1,0 +1,515 @@
+release: '7.0'
+status: final
+origin: curated
+compared:
+  from: 6.9.0
+  to: 7.0.0
+generated_at: '2026-10-08T00:00:00+00:00'
+sources:
+  - { type: field-guide, url: 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/', title: 'WordPress 7.0 Field Guide', date: '2026-05-14' }
+  - { type: roadmap, url: 'https://make.wordpress.org/core/2025/12/11/planning-for-7-0/', title: 'Planning for 7.0', date: '2025-12-11' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/01/09/dropping-support-for-php-7-2-and-7-3/', title: 'Dropping support for PHP 7.2 and 7.3', date: '2026-01-09' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/02/23/changes-to-the-interactivity-api-in-wordpress-7-0/', title: 'Changes to the Interactivity API in WordPress 7.0', date: '2026-02-23' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/02/24/iframed-editor-changes-in-wordpress-7-0/', title: 'Iframed Editor Changes in WordPress 7.0', date: '2026-02-24' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/03/php-only-block-registration/', title: 'PHP-only block registration', date: '2026-03-03' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/04/dataviews-dataform-et-al-in-wordpress-7-0/', title: 'DataViews, DataForm, et al. in WordPress 7.0', date: '2026-03-04' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/04/customisable-navigation-overlays-in-wordpress-7-0/', title: 'Customizable Navigation Overlays in WordPress 7.0', date: '2026-03-04' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/04/breadcrumb-block-filters/', title: 'Breadcrumb block filters', date: '2026-03-04' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/09/pseudo-element-support-for-blocks-and-their-variations-in-theme-json/', title: 'Pseudo-element support for blocks and their variations in theme.json', date: '2026-03-09' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/10/real-time-collaboration-in-the-block-editor/', title: 'Real-Time Collaboration in the Block Editor', date: '2026-03-10' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/15/new-block-support-text-indent-textindent/', title: 'New Block Support: Text Indent (textIndent)', date: '2026-03-15' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/15/custom-css-for-individual-block-instances-in-wordpress-7-0/', title: 'Custom CSS for Individual Block Instances in WordPress 7.0', date: '2026-03-15' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/15/dimensions-support-enhancements-in-wordpress-7-0/', title: 'Dimensions Support Enhancements in WordPress 7.0', date: '2026-03-15' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/15/block-visibility-in-wordpress-7-0/', title: 'Block Visibility in WordPress 7.0', date: '2026-03-15' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/15/pattern-editing-in-wordpress-7-0/', title: 'Pattern Editing in WordPress 7.0', date: '2026-03-15' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/16/pattern-overrides-in-wp-7-0-support-for-custom-blocks/', title: 'Pattern Overrides in WP 7.0: Support for Custom Blocks', date: '2026-03-16' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/18/introducing-the-connectors-api-in-wordpress-7-0/', title: 'Introducing the Connectors API in WordPress 7.0', date: '2026-03-18' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/24/introducing-the-ai-client-in-wordpress-7-0/', title: 'Introducing the AI Client in WordPress 7.0', date: '2026-03-24' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/03/24/client-side-abilities-api-in-wordpress-7-0/', title: 'Client-Side Abilities API in WordPress 7.0', date: '2026-03-24' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/04/01/building-a-custom-sync-provider-for-real-time-collaboration/', title: 'Building a custom sync provider for real-time collaboration', date: '2026-04-01' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/04/22/roster-of-design-tools-per-block-wordpress-7-0/', title: 'Roster of design tools per block (WordPress 7.0 edition)', date: '2026-04-22' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/05/14/removing-title-attributes-in-author-link-functions/', title: 'Removing title attributes in author link functions', date: '2026-05-14' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2026/05/23/accessibility-improvements-in-wordpress-7-0/', title: 'Accessibility Improvements in WordPress 7.0', date: '2026-05-23' }
+  - { type: other, url: 'https://make.wordpress.org/core/2026/02/03/proposal-for-merging-wp-ai-client-into-wordpress-7-0/', title: 'Proposal for merging WP AI Client into WordPress 7.0', date: '2026-02-03' }
+  - { type: release, url: 'https://make.wordpress.org/core/2026/03/20/wordpress-7-0-beta-6/', title: 'WordPress 7.0 Beta 6', date: '2026-03-20' }
+  - { type: other, url: 'https://make.wordpress.org/core/2026/03/31/extending-the-7-0-cycle/', title: 'Extending the 7.0 Cycle', date: '2026-03-31' }
+  - { type: other, url: 'https://make.wordpress.org/core/2026/04/02/the-path-forward-for-wordpress-7-0/', title: 'The Path Forward for WordPress 7.0', date: '2026-04-02' }
+  - { type: other, url: 'https://make.wordpress.org/core/2026/05/08/rtc-removed-from-7-0/', title: 'Real-time collaboration will not ship in WordPress 7.0', date: '2026-05-08' }
+  - { type: other, url: 'https://make.wordpress.org/core/2026/05/13/dev-chat-agenda-may-13-2026/', title: 'Dev Chat Agenda – May 13, 2026', date: '2026-05-13' }
+  - { type: release, url: 'https://make.wordpress.org/core/2026/05/19/wordpress-7-0-release-candidate-5/', title: 'WordPress 7.0 Release Candidate 5', date: '2026-05-19' }
+  - { type: other, url: 'https://make.wordpress.org/core/2026/05/27/react-19-upgrade-in-wordpress/', title: 'React 19 upgrade in WordPress', date: '2026-05-27' }
+  - { type: other, url: 'https://make.wordpress.org/core/2026/05/28/wordcamp-asia-2026-core-committers-meeting/', title: 'WordCamp Asia 2026 Core Committers Meeting', date: '2026-05-28' }
+  - { type: git, url: 'https://github.com/WordPress/wordpress-develop/compare/6.9.0...7.0.0', title: 'wordpress-develop 6.9.0...7.0.0（シンボル確認用）' }
+changes:
+  # ------------------------------------------------------------------
+  # 出荷されなかった機能（dropped）
+  # ------------------------------------------------------------------
+  - id: 'feature:real-time-collaboration'
+    type: feature
+    title: リアルタイム共同編集（RTC）は 7.0 で出荷されなかった
+    summary: |
+      Yjs ベースのリアルタイム共同編集は Dev Note・Beta 告知（WP_ALLOW_COLLABORATION 定数、HTTP ポーリング）まで出たが、2026-05-08 に 7.0 から削除が決定され RC3 以降のビルドには含まれない。
+      `sync.providers` JS フィルタや WP_ALLOW_COLLABORATION 定数を前提にしたコード、および「メタボックスがあると共同編集が無効になる」前提の対応は 7.0 では不要（7.0.0 のソースにも該当定数は存在しない）。
+      メタボックスを `show_in_rest` 付き post meta へ移行する作業自体は将来の再導入に備えて有効。
+    status: dropped
+    severity: low
+    confidence: manual
+    match_hint: 'sync\.providers|WP_ALLOW_COLLABORATION'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/08/rtc-removed-from-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/13/dev-chat-agenda-may-13-2026/'
+      - 'https://make.wordpress.org/core/2026/03/10/real-time-collaboration-in-the-block-editor/'
+      - 'https://make.wordpress.org/core/2026/04/01/building-a-custom-sync-provider-for-real-time-collaboration/'
+      - 'https://make.wordpress.org/core/2026/03/31/extending-the-7-0-cycle/'
+
+  - id: 'feature:client-side-media-processing'
+    type: feature
+    title: クライアントサイドのメディア処理は Beta 6 で差し戻され 7.0 に入らなかった
+    summary: |
+      ブラウザ側で画像最適化を行う Client-side Media Processing は Beta 1〜5 に含まれていたが、画像最適化とパッケージサイズの問題から Beta 6 で revert され、7.1 以降に持ち越された。
+      7.0 のアップロードは従来どおりサーバー側（GD/Imagick）で処理されるため、画像サイズ生成フックに依存するプラグインへの影響はない。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/20/wordpress-7-0-beta-6/'
+      - 'https://make.wordpress.org/core/2026/05/28/wordcamp-asia-2026-core-committers-meeting/'
+      - 'https://make.wordpress.org/core/2025/12/11/planning-for-7-0/'
+
+  - id: 'feature:template-management'
+    type: feature
+    title: テンプレート管理（Template Organization/Management）の刷新は差し戻され 7.0 に入らなかった
+    summary: |
+      計画段階で挙がっていたテンプレート管理の改善（テーマ切り替えをまたいだテンプレートパーツの保持など）は、7.0 サイクル中に revert され 7.1 以降へ持ち越された。
+      テンプレートパーツは引き続きアクティブテーマに紐づく（ナビゲーションオーバーレイも同様の既知の制約あり）。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/28/wordcamp-asia-2026-core-committers-meeting/'
+      - 'https://make.wordpress.org/core/2025/12/11/planning-for-7-0/'
+
+  - id: 'feature:react-19'
+    type: feature
+    title: React 19 へのアップグレードは 7.0 に入らなかった（React 18.3.1 のまま）
+    summary: |
+      7.0 の計画に React 19 への移行が挙がっていたが、7.0.0 の `react` / `react-dom` ハンドルは 18.3.1 のまま。
+      React 19 はその後 Gutenberg 側でも一度 revert され、実験的機能扱いとなっている。7.0 対応のために React 19 前提の書き換えは不要。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/12/11/planning-for-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/27/react-19-upgrade-in-wordpress/'
+
+  - id: 'feature:enforced-iframe-editor'
+    type: feature
+    title: 投稿エディタの iframe 強制は 7.0 では見送られた
+    summary: |
+      計画では投稿エディタを無条件に iframe 化する予定だったが、7.0 では強制されない（Gutenberg プラグイン 22.6 以降ではクラシックテーマでも強制）。
+      ただし iframe 化の判定条件は 7.0 で変わっているので `editor_js:post-editor-iframe-inserted-blocks` を参照。apiVersion 3 への移行は引き続き推奨。
+    status: dropped
+    severity: low
+    confidence: manual
+    related: ['editor_js:post-editor-iframe-inserted-blocks']
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/02/24/iframed-editor-changes-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2025/12/11/planning-for-7-0/'
+
+  - id: 'feature:playlist-block'
+    type: feature
+    title: Playlist ブロックは 7.0 に入らなかった
+    summary: |
+      計画にあった Playlist ブロックは Field Guide から言及が削除され（5/17 の編集）、7.0.0 では `core/playlist` ブロックは登録されていない。
+      7.0 で Playlist ブロックが使える前提の案内・パターンは作らないこと。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+      - 'https://make.wordpress.org/core/2025/12/11/planning-for-7-0/'
+
+  - id: 'feature:ai-client-rest-js-api'
+    type: feature
+    title: AI Client の REST エンドポイントと JavaScript API はコアに入らなかった
+    summary: |
+      マージ提案では REST エンドポイント＋JS API も対象だったが、7.0 のコアに入ったのは PHP API（`wp_ai_client_prompt()`）のみ。
+      ブラウザから AI を呼ぶ場合は `wordpress/wp-ai-client` パッケージを使うか、機能ごとに専用の REST エンドポイントを自作する必要がある（後者が推奨）。
+    status: dropped
+    severity: low
+    confidence: manual
+    related: ['behavior:php-ai-client-bundled-in-core']
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/02/03/proposal-for-merging-wp-ai-client-into-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/03/24/introducing-the-ai-client-in-wordpress-7-0/'
+
+  # ------------------------------------------------------------------
+  # PHP 側の挙動変更
+  # ------------------------------------------------------------------
+  - id: 'behavior:php-ai-client-bundled-in-core'
+    type: behavior
+    title: PHP AI Client がコアに同梱され、プラグインの同梱版とクラスが衝突する
+    summary: |
+      7.0 は `wordpress/php-ai-client`（名前空間 `WordPress\AiClient`）とその依存をコアでロードするため、同じライブラリを Composer で同梱しているプラグインはクラス重複定義で衝突する。
+      7.0 以上を必須にして依存を外し `AI_Client::prompt()` を `wp_ai_client_prompt()` に置き換えるか、7.0 未満のときだけ autoloader を読み込む条件分岐を入れること。
+      `wordpress/wp-ai-client` パッケージは 7.0 を検知して自動で PHP 部分を無効化するが、最新版への更新が必要。
+    status: shipped
+    severity: high
+    confidence: medium
+    symbols:
+      - { kind: method, name: 'AI_Client::prompt', replacement: wp_ai_client_prompt }
+    match_hint: 'wordpress/(php|wp)-ai-client|WordPress\\AiClient\\'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/24/introducing-the-ai-client-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'behavior:connectors-api-key-sources'
+    type: behavior
+    title: Connectors API が API キーを環境変数・定数・オプションから自動で読む
+    summary: |
+      Settings > Connectors 画面と Connectors API が追加され、AI プロバイダーの API キーを環境変数 → PHP 定数（`{PROVIDER_ID}_API_KEY`、例 `ANTHROPIC_API_KEY`）→ DB オプション（`connectors_ai_{id}_api_key`）の順に参照する。DB 保存のキーは暗号化されない。
+      独自用途で同名の定数・環境変数を定義しているプラグインは、そのキーがコアの AI Client からも使われる点に注意。Akismet も組み込みコネクタとして `wordpress_api_key` / `WPCOM_API_KEY` が画面に表示される。
+      コネクタのメタデータ変更は `wp_connectors_init` アクション内でのみ可能（unregister → register）。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: constant, name: ANTHROPIC_API_KEY }
+      - { kind: option, name: connectors_ai_anthropic_api_key }
+      - { kind: hook, name: wp_connectors_init }
+    match_hint: '\b(ANTHROPIC|OPENAI|GOOGLE)_API_KEY\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/18/introducing-the-connectors-api-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'behavior:block-hooks-moved-to-rest-controller'
+    type: behavior
+    title: Block Hooks の REST 処理が個別フィルタから REST コントローラへ移動した
+    summary: |
+      6.9 までは `rest_prepare_{post,page,wp_block,wp_navigation}` / `rest_pre_insert_*` に `insert_hooked_blocks_into_rest_response()` と `update_ignored_hooked_blocks_postmeta()` がフィルタとして登録されていたが、7.0 では `WP_REST_Posts_Controller` から直接呼ばれる。
+      これらを `remove_filter()` して Block Hooks を止めていたコードは効かなくなる。対象投稿タイプの制御には新フィルタ `rest_block_hooks_post_types` を使う（コンテンツ系 CPT もここで追加できる）。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      - { kind: function, name: insert_hooked_blocks_into_rest_response }
+      - { kind: function, name: update_ignored_hooked_blocks_postmeta }
+      - { kind: hook, name: rest_block_hooks_post_types }
+    match_hint: 'remove_filter\s*\(\s*[''"]rest_(prepare|pre_insert)_[a-z_]+[''"]\s*,\s*[''"](insert_hooked_blocks_into_rest_response|update_ignored_hooked_blocks_postmeta)'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'behavior:default-role-dropdown-excludes-privileged-roles'
+    type: behavior
+    title: 新規ユーザーのデフォルト権限グループから管理者・編集者が選べなくなった
+    summary: |
+      設定 > 一般の「新規ユーザーのデフォルト権限グループ」から administrator と editor が除外され、既にどちらかが設定されている場合は Site Health が警告する。
+      除外ロールは `default_role_dropdown_excluded_roles` フィルタで変更可能。会員サイト等で `default_role` を高権限に設定する運用・プラグインは確認が必要。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: option, name: default_role }
+      - { kind: hook, name: default_role_dropdown_excluded_roles }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'behavior:multisite-user-spam-no-longer-propagates-to-sites'
+    type: behavior
+    title: マルチサイトでユーザーをスパム指定してもサイトが自動でスパム扱いにならなくなった
+    summary: |
+      ネットワーク管理のユーザー一覧でユーザーをスパム指定（解除）した際、そのユーザーの所属サイトを `update_blog_status( ..., 'spam', ... )` で連動させる処理がデフォルトで無効になった。
+      従来の挙動が必要なら `propagate_network_user_spam_to_blogs` フィルタで true を返す。またネットワーク管理者はスパム指定できなくなった（403）。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      - { kind: hook, name: propagate_network_user_spam_to_blogs }
+      - { kind: function, name: update_blog_status }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'behavior:html5-script-style-theme-support-ignored'
+    type: behavior
+    title: html5 テーマサポートの script / style 指定が非推奨・無視され、常に HTML5 形式で出力される
+    summary: |
+      `add_theme_support( 'html5', array( 'script', 'style' ) )` の script/style 引数は 7.0 で非推奨かつ未使用になり、テーマのサポート有無にかかわらず `<script>` / `<style>` に `type` 属性や CDATA ラッパーが付かなくなった。
+      出力 HTML の `type="text/javascript"` 等に依存するパーサ・テスト・正規表現置換は見直すこと。
+    status: shipped
+    severity: low
+    confidence: medium
+    match_hint: 'type=[''"]text/(javascript|css)[''"]|current_theme_supports\s*\(\s*[''"]html5[''"]\s*,\s*[''"](script|style)'
+    related: ['deprecated:function:wp_sanitize_script_attributes']
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'behavior:author-link-title-attributes-removed'
+    type: behavior
+    title: 投稿者リンク系関数から title 属性が削除された
+    summary: |
+      `get_the_author_posts_link()` / `the_author_posts_link()` と `wp_list_authors()` の出力から「Posts by ○○」の title 属性がデフォルトで削除された。`get_the_author_link()` / `the_author_link()` は新引数 `$use_title_attr` で削除可能（デフォルトは従来どおり付与）。
+      `the_author_posts_link` フィルタには第2・第3引数（表示名と旧 title テキスト）が追加された。title 属性をセレクタや JS で参照しているテーマ・テストは修正が必要。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: function, name: get_the_author_posts_link }
+      - { kind: function, name: the_author_posts_link }
+      - { kind: function, name: wp_list_authors }
+      - { kind: function, name: get_the_author_link }
+      - { kind: function, name: the_author_link }
+      - { kind: hook, name: the_author_posts_link }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/removing-title-attributes-in-author-link-functions/'
+      - 'https://make.wordpress.org/core/2026/05/23/accessibility-improvements-in-wordpress-7-0/'
+
+  - id: 'behavior:image-alt-text-imported-from-iptc'
+    type: behavior
+    title: アップロード時に画像の IPTC メタデータから代替テキストが自動設定される
+    summary: |
+      新関数 `wp_get_image_alttext()` により `wp_read_image_metadata()` の結果に `alt` が加わり、アップロード時に IPTC の Alt Text が `_wp_attachment_image_alt` に保存されるようになった。
+      代替テキストを自動生成・上書きするプラグイン（AI alt 生成など）は、既に値が入っているケースを考慮すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: function, name: wp_read_image_metadata }
+      - { kind: function, name: wp_get_image_alttext }
+      - { kind: hook, name: wp_read_image_metadata }
+    match_hint: '_wp_attachment_image_alt'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/23/accessibility-improvements-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'behavior:plugins-list-custom-status-tabs'
+    type: behavior
+    title: plugins_list に追加した独自ステータスがプラグイン一覧のタブとして表示される
+    summary: |
+      `plugins_list` フィルタで追加したカスタムステータスが、プラグイン一覧画面の絞り込みタブとして表示されるようになった。ラベルは新フィルタ `plugins_list_status_text` で変更でき、未指定ならステータスのスラッグがそのまま表示される。
+      `plugins_list` に独自キーを足しているプラグインは、意図しないタブが出ないか確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: hook, name: plugins_list }
+      - { kind: hook, name: plugins_list_status_text }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  # ------------------------------------------------------------------
+  # ブロックエディタ・JS
+  # ------------------------------------------------------------------
+  - id: 'editor_js:post-editor-iframe-inserted-blocks'
+    type: editor_js
+    title: 投稿エディタの iframe 判定が「登録済みブロック」から「挿入済みブロック」の apiVersion に変わった
+    summary: |
+      6.9 までは登録済みの全ブロックが apiVersion 3 以上のときだけ投稿エディタが iframe 化されたが、7.0 では投稿に実際に挿入されているブロックだけを判定する。
+      apiVersion 2 以下のブロックを登録していても、その投稿で使っていなければエディタは iframe 化されるため、エディタ用 JS/CSS が `document` / `window` を直接参照するプラグインは iframe 内で動かなくなる可能性がある。ブロックを apiVersion 3 に上げ、iframe 前提でテストすること。
+    status: shipped
+    severity: medium
+    confidence: manual
+    match_hint: '[''"]?apiVersion[''"]?\s*[:=]>?\s*[12]\b'
+    related: ['feature:enforced-iframe-editor']
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/02/24/iframed-editor-changes-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'editor_js:pattern-content-only-default'
+    type: editor_js
+    title: 非同期パターンとテンプレートパーツが既定で contentOnly 編集モードになった
+    summary: |
+      挿入された非同期（unsynced）パターンとテンプレートパーツは既定で `contentOnly` モードになり、内側ブロックの構造やスタイルは「パターンを編集」しない限り触れない。
+      カスタムブロックは、編集可能にしたい属性に `"role": "content"`（またはサポート `contentRole: true`）がないと List View から隠れ選択不能になる。パターン内のブロックに依存するツールバー・サイドバーも表示されない可能性がある。
+      無効化は `block_editor_settings_all` で `disableContentOnlyForUnsyncedPatterns` を true にする。テーマのパターン（特に Buttons/List/Social Icons/Navigation を含むもの）を確認すること。
+    status: shipped
+    severity: medium
+    confidence: manual
+    match_hint: 'register_block_pattern\s*\(|"role"\s*:\s*"content"'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/15/pattern-editing-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'editor_js:block-visibility-metadata-object'
+    type: editor_js
+    title: blockVisibility メタデータが boolean だけでなくオブジェクト（viewport 指定）を取るようになった
+    summary: |
+      ブロックの `metadata.blockVisibility` は 6.9 の `false` に加え、7.0 では `{ "viewport": { "mobile": false, ... } }` 形式を取る。ビューポート単位の非表示は DOM には出力され CSS で隠される。
+      サーバー側でブロックマークアップを生成・変換・解析するコードが blockVisibility をスカラー前提で扱っている場合、両方の型に対応させること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    match_hint: 'blockVisibility'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/15/block-visibility-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'editor_js:block-instance-custom-css-support'
+    type: editor_js
+    title: 全ブロックで customCSS サポートが既定有効になり、レンダリング時にクラスが注入される
+    summary: |
+      新しい `customCSS` ブロックサポートが全ブロックで既定有効になり、`style.css` 属性に CSS を保存し、フロントでは最外要素に `has-custom-css` と `wp-custom-css-{hash}` クラスが付与される（`edit_css` 権限のユーザーのみ編集可）。
+      サーバーレンダリングのブロックは最初の HTML 要素に `WP_HTML_Tag_Processor` でクラスが注入されるため、最外要素が標準 HTML 要素でないブロックや生 HTML を出すブロックは `"supports": { "customCSS": false }` でオプトアウトすること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: css_selector, name: .has-custom-css }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/15/custom-css-for-individual-block-instances-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'editor_js:interactivity-router-state-navigation-deprecated'
+    type: editor_js
+    title: core/router ストアの state.navigation が非推奨になった
+    summary: |
+      `core/router` ストアの `state.navigation.hasStarted` / `hasFinished` は内部実装扱いとなり、7.0 からアクセスすると SCRIPT_DEBUG 時にコンソール警告が出る。将来のバージョンでは参照できなくなる。
+      ナビゲーション状態の公式な取得手段は 7.1 で追加予定。クライアントナビゲーションの検知には `watch()` と `state.url` の組み合わせを使う。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      - { kind: js_package, name: '@wordpress/interactivity-router' }
+    match_hint: 'state\.navigation\.(hasStarted|hasFinished)'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/02/23/changes-to-the-interactivity-api-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'editor_js:interactivity-router-state-url-server-populated'
+    type: editor_js
+    title: core/router の state.url がサーバー側で初期化されるようになった
+    summary: |
+      これまでは `@wordpress/interactivity-router` の読み込み完了まで `state.url` が undefined で、その後 `window.location.href` がセットされていたが、7.0 ではディレクティブ処理時にサーバーで値が入り、最初のクライアントナビゲーションまで変化しない。
+      初期の undefined → URL の変化を「ナビゲーション」として扱っていた、あるいはそれを除外するガードを書いていたストアは挙動を確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    match_hint: 'store\s*\(\s*[''"]core/router[''"]'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/02/23/changes-to-the-interactivity-api-in-wordpress-7-0/'
+
+  - id: 'editor_js:dataviews-groupby-field-replaced'
+    type: editor_js
+    title: DataViews の view 設定 groupByField が groupBy オブジェクトに置き換えられた
+    summary: |
+      `@wordpress/dataviews` の view 設定で `groupByField: 'status'` は `groupBy: { field, direction, showLabel }` に置き換えられた。
+      DataViews を npm から同梱しているプラグインは、7.0 世代のパッケージへ更新する際に view 設定を書き換えること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: js_package, name: '@wordpress/dataviews' }
+    match_hint: 'groupByField'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/04/dataviews-dataform-et-al-in-wordpress-7-0/'
+
+  - id: 'editor_js:components-margin-free-default'
+    type: editor_js
+    title: '@wordpress/components の下マージンが全廃され、マージンなしが既定になった'
+    summary: |
+      すべてのコンポーネントから下マージンが削除され、これまで `__nextHasNoMarginBottom` でオプトインしていたマージンなしスタイルが既定になった。
+      コンポーネントの既定マージンに頼ってレイアウトしていた設定画面・サイドバーは間隔が詰まるため、`VStack` などで明示的に余白を付けること。`__nextHasNoMarginBottom` 指定は不要になる。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: js_package, name: '@wordpress/components' }
+    match_hint: '__nextHasNoMarginBottom'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'editor_js:codemirror-5-65-update'
+    type: editor_js
+    title: CodeMirror が 5.65 系に更新され、esprima / jshint ハンドルが非推奨になった
+    summary: |
+      `wp-codemirror` が 5.29.1-alpha から 5.65.20 に、HTMLHint が 0.9.14 から 1.8.0 に更新され、JS の構文チェックは Esprima から Espree（ES6 対応）に置き換えられた。`esprima` と `jshint` スクリプトハンドルは非推奨。
+      `wp_enqueue_code_editor()` の設定や CodeMirror のアドオン・内部 API に依存するコードは動作確認すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      - { kind: js_handle, name: wp-codemirror }
+      - { kind: js_handle, name: esprima }
+      - { kind: js_handle, name: jshint }
+      - { kind: js_handle, name: htmlhint }
+      - { kind: function, name: wp_enqueue_code_editor }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+
+  - id: 'editor_js:package-script-handles-removed'
+    type: editor_js
+    title: スクリプトハンドル wp-admin-ui / wp-views / wp-latex-to-mathml が登録されなくなった
+    summary: |
+      6.9 でパッケージから自動登録されていた classic スクリプトの `wp-admin-ui`・`wp-views`・`wp-latex-to-mathml` が 7.0 の script-loader-packages から消えた（latex-to-mathml はスクリプトモジュール `@wordpress/latex-to-mathml` に移行）。
+      これらを依存に指定したスクリプトは依存解決に失敗して読み込まれない。Dev Note には記載がなく、ソース比較で確認した変更。
+    status: shipped
+    severity: medium
+    confidence: high
+    symbols:
+      - { kind: js_handle, name: wp-admin-ui }
+      - { kind: js_handle, name: wp-views }
+      - { kind: js_handle, name: wp-latex-to-mathml, replacement: '@wordpress/latex-to-mathml' }
+    evidence:
+      file: src/wp-includes/assets/script-loader-packages.php
+      ref: 7.0.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/compare/6.9.0...7.0.0'
+
+  - id: 'editor_js:core-abilities-loaded-in-admin'
+    type: editor_js
+    title: クライアント側 Abilities API（@wordpress/core-abilities）が管理画面で読み込まれる
+    summary: |
+      Dev Note によれば 7.0 は全管理画面で `@wordpress/core-abilities` を読み込み、REST（`/wp-abilities/v1/`）経由でサーバー登録済みのアビリティをクライアントの `core/abilities` ストアへ自動登録する。
+      管理画面の REST リクエストが増える点と、`wp_register_ability()` で登録したアビリティがクライアントからも実行可能になる点（permission_callback の確認）に留意。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: js_package, name: '@wordpress/core-abilities' }
+      - { kind: function, name: wp_register_ability }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/03/24/client-side-abilities-api-in-wordpress-7-0/'
+
+  - id: 'editor_js:verse-block-renamed-poetry'
+    type: editor_js
+    title: Verse ブロックの表示名が Poetry に変わった（ブロック名は core/verse のまま）
+    summary: |
+      `core/verse` ブロックのタイトルが「Poetry」に変更された。ブロック名やマークアップは変わらないため保存済みコンテンツへの影響はない。
+      エディタ上のタイトル文字列で Verse ブロックを探す E2E テストやドキュメント・ヘルプは更新が必要。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: block, name: core/verse }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/04/22/roster-of-design-tools-per-block-wordpress-7-0/'
+
+  # ------------------------------------------------------------------
+  # CSS / 管理画面
+  # ------------------------------------------------------------------
+  - id: 'css:admin-modern-color-scheme-default'
+    type: css
+    title: 管理画面の既定配色が Modern になり、管理画面全体のスタイルが刷新された
+    summary: |
+      新規ユーザーの既定 `admin_color` が `fresh` から `modern` になり、管理ヘッダー・カスタマイザー・マルチサイトのサインアップ等の配色・コントラスト・タイポグラフィが変更された。さらに管理メニューにクロスドキュメント View Transitions が付いた。
+      旧配色の色コードや管理画面の既存スタイルにハードコードで合わせた独自管理画面は見た目を確認し、可能なら CSS 変数／配色スキームに追従させること。
+    status: shipped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'
+      - 'https://make.wordpress.org/core/2026/05/23/accessibility-improvements-in-wordpress-7-0/'
+
+  - id: 'css:screen-reader-text-word-break'
+    type: css
+    title: .screen-reader-text に word-break が指定された
+    summary: |
+      スクリーンリーダーが隠しテキストを1文字ずつ読み上げる問題への対策として、管理画面の `.screen-reader-text` に `word-break: normal !important` が追加された。
+      同クラスを上書きしているプラグインの CSS は影響を確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: css_selector, name: .screen-reader-text }
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/05/23/accessibility-improvements-in-wordpress-7-0/'
+      - 'https://make.wordpress.org/core/2026/05/14/wordpress-7-0-field-guide/'

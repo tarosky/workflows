@@ -1,0 +1,188 @@
+release: '6.8'
+status: final
+origin: extracted
+compared:
+  from: 6.7.0
+  to: 6.8.0
+  to_commit: a33a49e2e7f7e47656bc835996c692593edeba00
+generated_at: '2026-10-08T06:18:46+00:00'
+sources:
+  -
+    type: git
+    url: 'https://github.com/WordPress/wordpress-develop/compare/6.7.0...a33a49e2e7f7e47656bc835996c692593edeba00'
+changes:
+  -
+    id: 'removed:function:_hash_hmac'
+    type: removed
+    title: '関数 `_hash_hmac` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: _hash_hmac
+    evidence:
+      file: src/wp-includes/compat.php
+      line: 309
+      ref: 6.7.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.7.0/src/wp-includes/compat.php#L309'
+  -
+    id: 'removed:function:block_core_navigation_insert_hooked_blocks'
+    type: removed
+    title: '関数 `block_core_navigation_insert_hooked_blocks` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_insert_hooked_blocks
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1500
+      ref: 6.7.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.7.0/src/wp-includes/blocks/navigation.php#L1500'
+  -
+    id: 'removed:function:block_core_navigation_insert_hooked_blocks_into_rest_response'
+    type: removed
+    title: '関数 `block_core_navigation_insert_hooked_blocks_into_rest_response` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_insert_hooked_blocks_into_rest_response
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1633
+      ref: 6.7.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.7.0/src/wp-includes/blocks/navigation.php#L1633'
+  -
+    id: 'removed:function:block_core_navigation_mock_parsed_block'
+    type: removed
+    title: '関数 `block_core_navigation_mock_parsed_block` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_mock_parsed_block
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1460
+      ref: 6.7.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.7.0/src/wp-includes/blocks/navigation.php#L1460'
+  -
+    id: 'removed:function:block_core_navigation_remove_serialized_parent_block'
+    type: removed
+    title: '関数 `block_core_navigation_remove_serialized_parent_block` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_remove_serialized_parent_block
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1443
+      ref: 6.7.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.7.0/src/wp-includes/blocks/navigation.php#L1443'
+  -
+    id: 'removed:function:block_core_navigation_set_ignored_hooked_blocks_metadata'
+    type: removed
+    title: '関数 `block_core_navigation_set_ignored_hooked_blocks_metadata` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_set_ignored_hooked_blocks_metadata
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1533
+      ref: 6.7.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.7.0/src/wp-includes/blocks/navigation.php#L1533'
+  -
+    id: 'removed:function:block_core_navigation_update_ignore_hooked_blocks_meta'
+    type: removed
+    title: '関数 `block_core_navigation_update_ignore_hooked_blocks_meta` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: function
+        name: block_core_navigation_update_ignore_hooked_blocks_meta
+    evidence:
+      file: src/wp-includes/blocks/navigation.php
+      line: 1556
+      ref: 6.7.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.7.0/src/wp-includes/blocks/navigation.php#L1556'
+  -
+    id: 'deprecated:function:wp_add_editor_classic_theme_styles'
+    type: deprecated
+    title: '`wp_add_editor_classic_theme_styles` が非推奨になった（6.8.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.8.0
+    symbols:
+      -
+        kind: function
+        name: wp_add_editor_classic_theme_styles
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6438
+      ref: a33a49e2e7f7e47656bc835996c692593edeba00
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/a33a49e2e7f7e47656bc835996c692593edeba00/src/wp-includes/deprecated.php#L6438'
+  -
+    id: 'hook_deprecated:hook:setted_site_transient'
+    type: hook_deprecated
+    title: 'action `setted_site_transient` が非推奨になった'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.8.0
+    symbols:
+      -
+        kind: hook
+        name: setted_site_transient
+        replacement: set_site_transient
+    evidence:
+      file: src/wp-includes/option.php
+      line: 2709
+      ref: a33a49e2e7f7e47656bc835996c692593edeba00
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/a33a49e2e7f7e47656bc835996c692593edeba00/src/wp-includes/option.php#L2709'
+  -
+    id: 'hook_deprecated:hook:setted_transient'
+    type: hook_deprecated
+    title: 'action `setted_transient` が非推奨になった'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.8.0
+    symbols:
+      -
+        kind: hook
+        name: setted_transient
+        replacement: set_transient
+    evidence:
+      file: src/wp-includes/option.php
+      line: 1618
+      ref: a33a49e2e7f7e47656bc835996c692593edeba00
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/a33a49e2e7f7e47656bc835996c692593edeba00/src/wp-includes/option.php#L1618'

@@ -1,0 +1,914 @@
+release: '6.9'
+status: final
+origin: curated
+compared:
+  from: 6.8.0
+  to: 6.9.0
+generated_at: '2026-10-08T00:00:00+00:00'
+sources:
+  -
+    type: field-guide
+    url: 'https://make.wordpress.org/core/2025/11/25/wordpress-6-9-field-guide/'
+    title: 'WordPress 6.9 Field Guide'
+    date: '2025-11-25'
+  -
+    type: roadmap
+    url: 'https://make.wordpress.org/core/2025/07/28/roadmap-to-6-9/'
+    title: 'Roadmap to 6.9'
+    date: '2025-07-28'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2025/10/21/wordpress-6-9-beta-1/'
+    title: 'WordPress 6.9 Beta 1'
+    date: '2025-10-21'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2025/11/07/wordpress-6-9-beta-4/'
+    title: 'WordPress 6.9 Beta 4'
+    date: '2025-11-07'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2025/12/01/wordpress-6-9-release-candidate-4/'
+    title: 'WordPress 6.9 Release Candidate 4'
+    date: '2025-12-01'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2025/12/12/wordpress-6-9-hotfixes/'
+    title: 'WordPress 6.9 Hotfixes'
+    date: '2025-12-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/12/10/adjacent-post-navigation-changes-in-wordpress-6-9-and-compatibility-issues/'
+    title: 'Adjacent Post Navigation Changes in WordPress 6.9 and Compatibility Issues'
+    date: '2025-12-10'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/12/01/ability-to-hide-blocks/'
+    title: 'Ability to Hide Blocks in WordPress 6.9'
+    date: '2025-12-01'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/25/miscellaneous-editor-changes-in-wordpress-6-9/'
+    title: 'Miscellaneous Editor Changes in WordPress 6.9'
+    date: '2025-11-25'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/21/updates-to-the-html-api-in-6-9/'
+    title: 'Updates to the HTML API in 6.9'
+    date: '2025-11-21'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/21/php-8-5-support-in-wordpress-6-9/'
+    title: 'PHP 8.5 support in WordPress 6.9'
+    date: '2025-11-21'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/19/accessibility-improvements-in-wordpress-6-9/'
+    title: 'Accessibility Improvements in WordPress 6.9'
+    date: '2025-11-19'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/19/admin-menu-search-query-changed/'
+    title: 'Admin menu search query changed'
+    date: '2025-11-19'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/19/legacy-internet-explorer-code-removed/'
+    title: 'Legacy Internet Explorer Code Removed'
+    date: '2025-11-19'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/19/introducing-the-streaming-block-parser-in-wordpress-6-9/'
+    title: 'Introducing the streaming block parser in WordPress 6.9'
+    date: '2025-11-19'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/19/url-escaping-functions-can-support-https-as-the-default-protocol-in-wordpress-6-9/'
+    title: 'URL-escaping functions can support HTTPS as the default protocol in WordPress 6.9'
+    date: '2025-11-19'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/18/more-reliable-email-in-wordpress-6-9/'
+    title: 'More-reliable email in WordPress 6.9'
+    date: '2025-11-18'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/18/modernizing-utf-8-support-in-wordpress-6-9/'
+    title: 'Modernizing UTF-8 support in WordPress 6.9'
+    date: '2025-11-18'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+    title: 'WordPress 6.9 Frontend Performance Field Guide'
+    date: '2025-11-18'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/17/consistent-cache-keys-for-query-groups-in-wordpress-6-9/'
+    title: 'Consistent Cache Keys for Query Groups in WordPress 6.9'
+    date: '2025-11-17'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/17/miscellaneous-developer-focused-changes-in-6-9/'
+    title: 'Miscellaneous Developer-focused Changes in 6.9'
+    date: '2025-11-17'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/15/notes-feature-in-wordpress-6-9/'
+    title: 'Notes feature in WordPress 6.9'
+    date: '2025-11-15'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/12/heading-block-css-specificity-fix-in-wordpress-6-9/'
+    title: 'Heading Block CSS Specificity Fix in WordPress 6.9'
+    date: '2025-11-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/12/changes-to-the-interactivity-api-in-wordpress-6-9/'
+    title: 'Changes to the Interactivity API in WordPress 6.9'
+    date: '2025-11-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/12/interactivity-apis-client-navigation-improvements-in-wordpress-6-9/'
+    title: 'Interactivity API’s client navigation improvements in WordPress 6.9'
+    date: '2025-11-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/12/preparing-the-post-editor-for-full-iframe-integration/'
+    title: 'Preparing the Post Editor for Full iframe Integration'
+    date: '2025-11-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/12/block-bindings-improvements-in-wordpress-6-9/'
+    title: 'Block Bindings improvements in WordPress 6.9'
+    date: '2025-11-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/12/theme-json-border-radius-presets-support-in-wordpress-6-9/'
+    title: 'Theme.json Border Radius Presets Support in WordPress 6.9'
+    date: '2025-11-12'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/11/dataviews-dataform-et-al-in-wordpress-6-9/'
+    title: 'DataViews, DataForm, et al. in WordPress 6.9'
+    date: '2025-11-11'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/11/10/abilities-api-in-wordpress-6-9/'
+    title: 'Abilities API in WordPress 6.9'
+    date: '2025-11-10'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2025/09/04/prettier-emails-supporting-inline-embedded-images/'
+    title: 'Prettier Emails: Supporting Inline Embedded Images'
+    date: '2025-09-04'
+changes:
+  -
+    id: 'behavior:adjacent-post-where-id-tiebreaker'
+    type: behavior
+    title: 'get_adjacent_post() の WHERE 句に ID のタイブレークが追加され、WHERE を書き換えるフィルターが無限ループし得る'
+    summary: |
+      同一 post_date の投稿で前後ナビゲーションが壊れるバグ修正として、get_adjacent_post() の WHERE 句が
+      「日付 > X OR (日付 = X AND p.ID > N)」の形になり、ORDER BY にも p.ID が追加された。
+      get_{$adjacent}_post_where フィルターで投稿日付を str_replace して「隣」の投稿を差し替えている
+      プラグイン・テーマ（Storefront 系など）は ID 比較が残るため同じ投稿を返し続け、無限ループになる。
+      日付に加えて `AND p.ID <|> {ID}` 部分も置換するよう修正すること。
+    status: shipped
+    severity: high
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: 'get_{$adjacent}_post_where'
+      -
+        kind: hook
+        name: get_next_post_where
+      -
+        kind: hook
+        name: get_previous_post_where
+      -
+        kind: function
+        name: get_adjacent_post
+    match_hint: 'get_(next|previous|\{\$adjacent\})_post_where'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/12/10/adjacent-post-navigation-changes-in-wordpress-6-9-and-compatibility-issues/'
+      - 'https://make.wordpress.org/core/2025/12/12/wordpress-6-9-hotfixes/'
+  -
+    id: 'behavior:classic-theme-block-styles-on-demand'
+    type: behavior
+    title: 'クラシックテーマでもブロックスタイルがオンデマンド読み込みになり、wp-block-library 一括CSSが出なくなった'
+    summary: |
+      6.9 ではクラシックテーマも既定で should_load_separate_core_block_assets が有効になり（wp_load_classic_theme_block_styles_on_demand()）、
+      テンプレート出力をバッファしてブロックごとのCSSを <head> へ持ち上げる。巨大な wp-block-library を前提にしていたテーマで
+      スタイル欠落やカスケード順の変化が報告されている（#64354、6.9 ホットフィックス記事）。do_blocks() を通さない独自出力のブロックは
+      CSS が読み込まれないので wp_enqueue_style( 'wp-block-video' ) 等で明示的に読み込むこと。また wp-block-library を登録解除し
+      global-styles を wp_enqueue_scripts で dequeue してブロックCSSを全廃していたコードは効かなくなる（global-styles は wp_footer で読み込まれる）。
+      回避策は init より前に should_load_separate_core_block_assets を false にすること。出力バッファにより TTFB も増える。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: should_load_separate_core_block_assets
+      -
+        kind: function
+        name: wp_load_classic_theme_block_styles_on_demand
+      -
+        kind: css_handle
+        name: wp-block-library
+      -
+        kind: css_handle
+        name: global-styles
+    match_hint: 'wp_(deregister|dequeue)_style\s*\(\s*[''"](wp-block-library|global-styles)[''"]'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+      - 'https://make.wordpress.org/core/2025/12/12/wordpress-6-9-hotfixes/'
+  -
+    id: 'behavior:template-enhancement-output-buffer'
+    type: behavior
+    title: 'テンプレート全体の出力バッファ（template enhancement output buffer）が導入された'
+    summary: |
+      template_include 適用後に wp_before_include_template アクションが発火し、そこで出力バッファが開始される
+      （wp_template_enhancement_output_buffer フィルター等にコールバックがある場合や、クラシックテーマのオンデマンドCSSで使用）。
+      独自に ob_start() でページ全体をバッファしていたキャッシュ・最適化プラグインは二重バッファになるため動作確認すること。
+      このフィルター／wp_finalized_template_enhancement_output_buffer アクション内で ob_start() を呼ぶと Fatal、アクション内での echo は出力されない。
+      バッファは wp_should_output_buffer_template_for_enhancement フィルターで強制的に無効化できる。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: wp_before_include_template
+      -
+        kind: hook
+        name: wp_template_enhancement_output_buffer
+      -
+        kind: hook
+        name: wp_finalized_template_enhancement_output_buffer
+      -
+        kind: hook
+        name: wp_template_enhancement_output_buffer_started
+      -
+        kind: hook
+        name: wp_should_output_buffer_template_for_enhancement
+    related:
+      - 'behavior:classic-theme-block-styles-on-demand'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'behavior:hidden-block-assets-dequeued'
+    type: behavior
+    title: '出力が空になったブロックが enqueue したスクリプト・スタイルは自動で dequeue される'
+    summary: |
+      6.9 ではブロックをレンダリングした結果マークアップが出力されなかった場合（非表示ブロック、アイキャッチ未設定の Featured Image など）、
+      そのブロックがレンダリング中に enqueue したスクリプト・スタイルが dequeue される。入れ子のブロックにも及ぶ。
+      空出力のブロックの資産に他のコードが依存している場合は enqueue_empty_block_content_assets フィルター（第2引数にブロック名）で true を返すこと。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: enqueue_empty_block_content_assets
+    related:
+      - 'editor_js:block-visibility-support'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+      - 'https://make.wordpress.org/core/2025/12/01/ability-to-hide-blocks/'
+  -
+    id: 'behavior:ie-conditional-assets-ignored'
+    type: behavior
+    title: 'IE 条件付きコメント（conditional）で登録したスクリプト・スタイルは出力されなくなった'
+    summary: |
+      wp_script_add_data() / wp_style_add_data() の 'conditional' は廃止され、WP_DEBUG 時に非推奨 Notice が出る。
+      conditional 指定されたアセットは出力されず、他から必要とされていないその依存アセットも出力されない。
+      conditional を指定していたコードは削除するか、条件なしで読み込むよう修正すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_script_add_data
+      -
+        kind: function
+        name: wp_style_add_data
+    match_hint: '_add_data\s*\([^)]*[''"]conditional[''"]'
+    related:
+      - 'argument_deprecated:method:WP_Dependencies::add_data'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/19/legacy-internet-explorer-code-removed/'
+  -
+    id: 'behavior:inline-style-limit-and-oembed-links-order'
+    type: behavior
+    title: 'インライン化されるCSSの上限が20KBから40KBに増え、oEmbed discovery リンクの出力位置が前に移った'
+    summary: |
+      path データ付きスタイルをインライン化する既定上限（styles_inline_size_limit）が 40KB になり、外部CSSファイルだった
+      スタイルが <style> として出力される場面が増える。CSS の外部ファイル化を前提にしたキャッシュ・最適化系プラグインは確認すること。
+      また wp_oembed_add_discovery_links() はスクリプト・スタイルより前（wp_head 優先度4）に出力されるようになった。
+      oEmbed リンクを消すには remove_action ではなく oembed_discovery_links フィルターの使用が推奨される。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: styles_inline_size_limit
+      -
+        kind: function
+        name: wp_oembed_add_discovery_links
+      -
+        kind: hook
+        name: oembed_discovery_links
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'behavior:script-module-fetchpriority-and-footer'
+    type: behavior
+    title: 'インタラクティブブロックのスクリプトモジュールと comment-reply が既定で fetchpriority=low になった'
+    summary: |
+      Interactivity API を使うブロック（コア外のカスタムブロック含む）の viewScriptModule と comment-reply スクリプトは既定で
+      fetchpriority="low" が付与され、依存モジュールや modulepreload にも伝播する。スクリプト／スクリプトモジュールの $args に
+      fetchpriority、スクリプトモジュールに in_footer が追加された。読み込み順・優先度に依存するコードは確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: function
+        name: wp_register_script_module
+      -
+        kind: function
+        name: wp_enqueue_script_module
+      -
+        kind: method
+        name: 'WP_Script_Modules::set_fetchpriority'
+      -
+        kind: js_handle
+        name: comment-reply
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'behavior:wp-cron-spawn-at-shutdown'
+    type: behavior
+    title: 'WP Cron の起動が init から shutdown に移った'
+    summary: |
+      TTFB 改善のため _wp_cron() は shutdown アクションで実行されるようになった。cron の起動タイミングや、
+      リクエスト前半で cron が走ることを前提にしたコードは確認すること。ALTERNATE_WP_CRON 環境で壊れる問題は RC4 で修正済み（#64315）。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: function
+        name: _wp_cron
+      -
+        kind: function
+        name: wp_cron
+      -
+        kind: constant
+        name: ALTERNATE_WP_CRON
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+      - 'https://make.wordpress.org/core/2025/12/01/wordpress-6-9-release-candidate-4/'
+  -
+    id: 'behavior:fetch-feed-site-transients'
+    type: behavior
+    title: 'fetch_feed() のキャッシュがサイトトランジェントに保存されるようになった'
+    summary: |
+      fetch_feed() は (get|set)_transient() ではなく (get|set)_site_transient() でフィードをキャッシュする。マルチサイトでは
+      全サイトでキャッシュが共有される。また 6.7 以降壊れていたフィードキャッシュ（SimplePie 更新起因）が修正された。
+      フィードのトランジェントを直接読み書き・削除しているコードは保存先の変更に注意すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: fetch_feed
+      -
+        kind: class
+        name: WP_Feed_Cache_Transient
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/17/miscellaneous-developer-focused-changes-in-6-9/'
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'behavior:query-cache-salted-keys'
+    type: behavior
+    title: 'クエリキャッシュのキー生成が変わり、last_changed をキーに含めなくなった'
+    summary: |
+      WP_Query・コメント・ターム・ユーザー・サイト・ネットワーク等のクエリキャッシュは、last_changed をキーの一部にせず
+      値と一緒に保存して比較する方式（wp_cache_get_salted() など4関数）に変わった。post-queries / comment-queries 等のグループで
+      wp_query・get_comments・adjacent_post・get_page_by_path などで始まるキーを直接読み書きしていたコードはキーが一致しなくなる。
+      function_exists( 'wp_cache_get_salted' ) で分岐して新関数を使うこと。永続オブジェクトキャッシュのドロップインは変更不要。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_cache_get_salted
+      -
+        kind: function
+        name: wp_cache_set_salted
+      -
+        kind: function
+        name: wp_cache_get_multiple_salted
+      -
+        kind: function
+        name: wp_cache_set_multiple_salted
+    match_hint: 'wp_cache_(get|set|delete|add)\s*\([^;]*[''"](post|comment|term|user|site|network)-queries[''"]'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/17/consistent-cache-keys-for-query-groups-in-wordpress-6-9/'
+  -
+    id: 'behavior:wp-mail-sender-address'
+    type: behavior
+    title: 'wp_mail() が送信者アドレス（Envelope-From）を設定するようになり、一部環境でメールが送れなくなった'
+    summary: |
+      wp_mail() は From ヘッダー（なければ wordpress@ドメイン）を Envelope-From/Sender として設定するようになった。
+      エンコーディングの呼び出し間リセットや multipart の Content-Type 修正も入っている。phpmailer_init で Sender を
+      設定していた回避策は不要になる場合がある一方、一部のメール構成では 6.9 で送信できなくなる不具合が報告されている（#64368、Hotfix プラグインで回避）。
+      独自の SMTP/メール設定を持つプラグインは送信テストを行い、必要なら wp_mail_from フィルターで調整すること。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: function
+        name: wp_mail
+      -
+        kind: hook
+        name: wp_mail_from
+      -
+        kind: hook
+        name: phpmailer_init
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/more-reliable-email-in-wordpress-6-9/'
+      - 'https://make.wordpress.org/core/2025/12/12/wordpress-6-9-hotfixes/'
+  -
+    id: 'behavior:wp-mail-embeds-parameter'
+    type: behavior
+    title: 'wp_mail() に第6引数 $embeds が追加された（pluggable で上書きしている場合は追従が必要）'
+    summary: |
+      wp_mail( $to, $subject, $message, $headers, $attachments, $embeds ) となり、cid: 参照のインライン画像を添付できる。
+      各画像は wp_mail_embed_args フィルターで調整できる。wp_mail() を pluggable で丸ごと置き換えているプラグインは
+      $embeds 引数と wp_mail_embed_args を扱わないと、この機能を使う他プラグインのメールで画像が欠落する。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_mail
+      -
+        kind: hook
+        name: wp_mail_embed_args
+    match_hint: 'function\s+wp_mail\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/09/04/prettier-emails-supporting-inline-embedded-images/'
+  -
+    id: 'behavior:bundled-library-updates-6-9'
+    type: behavior
+    title: '同梱ライブラリ PHPMailer・SimplePie・Sodium Compat が更新された'
+    summary: |
+      PHPMailer 6.9.1→6.11.1、SimplePie 1.8.0→1.9.0、Sodium Compat 1.21.1→1.23.0 に更新され、getID3 に PHP 8.5 対応パッチが入った。
+      これらのクラスを直接利用・継承しているプラグインは動作確認すること。個別の削除・非推奨は extracted を参照。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: class
+        name: WP_PHPMailer
+      -
+        kind: class
+        name: SimplePie
+    related:
+      - 'removed:method:WP_PHPMailer::SetLanguage'
+      - 'deprecated:method:SimplePie::set_file'
+      - 'deprecated:class:Gzdecode'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/17/miscellaneous-developer-focused-changes-in-6-9/'
+  -
+    id: 'behavior:esc-url-https-default-protocol'
+    type: behavior
+    title: 'esc_url() 系は $protocols の先頭が https のとき、スキームのない URL に https:// を補うようになった'
+    summary: |
+      esc_url() / esc_url_raw() / sanitize_url() は、スキームのない URL に対し $protocols の先頭要素が 'https' なら https:// を付与する。
+      従来 array( 'https' ) のみを渡すと空文字になっていたケースが、6.9 では https:// 付き URL を返すようになる。
+      既定（$protocols 未指定）の挙動は変わらない。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: esc_url
+      -
+        kind: function
+        name: esc_url_raw
+      -
+        kind: function
+        name: sanitize_url
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/19/url-escaping-functions-can-support-https-as-the-default-protocol-in-wordpress-6-9/'
+  -
+    id: 'behavior:nav-menu-quick-search-title-only'
+    type: behavior
+    title: メニュー画面のクイック検索が投稿タイトルのみを対象にするようになった
+    summary: |
+      外観＞メニューで投稿・固定ページを検索する _wp_ajax_menu_quick_search() のクエリに search_columns => array( 'post_title' ) が追加され、
+      本文は検索対象外になった。従来の全文検索に戻すには新設の wp_ajax_menu_quick_search_args フィルターで search_columns を unset する。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: _wp_ajax_menu_quick_search
+      -
+        kind: hook
+        name: wp_ajax_menu_quick_search_args
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/19/admin-menu-search-query-changed/'
+  -
+    id: 'behavior:utf8-handling-overhaul'
+    type: behavior
+    title: 'UTF-8 処理が純PHPのフォールバックに統一され、wp_check_invalid_utf8() の strip 挙動が変わった'
+    summary: |
+      mbstring や PCRE の Unicode サポートがない環境でも一貫した UTF-8 処理を行う _wp_scan_utf8() ベースのフォールバックが入り、
+      mb_strlen()/mb_substr() のフォールバック結果が変わる場合がある。wp_check_invalid_utf8( $text, true ) は従来 false を返していたが、
+      不正バイト列を置換文字に置き換えて返すようになった。新規コードは wp_is_valid_utf8() / wp_scrub_utf8() を使い、
+      utf8_encode()/utf8_decode() は一時的なポリフィルなので mb_convert_encoding() に移行すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_check_invalid_utf8
+        replacement: wp_scrub_utf8
+      -
+        kind: function
+        name: utf8_encode
+        replacement: mb_convert_encoding
+      -
+        kind: function
+        name: utf8_decode
+        replacement: mb_convert_encoding
+    related:
+      - 'deprecated:function:seems_utf8'
+      - 'argument_deprecated:function:_wp_can_use_pcre_u'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/modernizing-utf-8-support-in-wordpress-6-9/'
+  -
+    id: 'behavior:html-api-null-input'
+    type: behavior
+    title: 'HTML API に null を渡すと _doing_it_wrong になり、HTML Processor の生成メソッドは null を返す'
+    summary: |
+      WP_HTML_Tag_Processor のコンストラクタは null を空文字にキャストし _doing_it_wrong() を出す。
+      WP_HTML_Processor::create_fragment() / create_full_parser() に文字列以外を渡すと、インスタンスではなく null が返る。
+      戻り値を検査せずにメソッドを呼ぶと Fatal になるため、入力を文字列に保証するか戻り値をチェックすること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: class
+        name: WP_HTML_Tag_Processor
+      -
+        kind: method
+        name: 'WP_HTML_Processor::create_fragment'
+      -
+        kind: method
+        name: 'WP_HTML_Processor::create_full_parser'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/21/updates-to-the-html-api-in-6-9/'
+  -
+    id: 'behavior:html-api-kses-misc-6-9'
+    type: behavior
+    title: 'wp_kses()・get_url_in_content()・HTML API の細かな出力変化'
+    summary: |
+      unfiltered_html を持たないユーザーの wp_kses() は数値文字参照をアンエスケープしなくなり、一部の HTML5 セマンティックタグが許可された。
+      get_url_in_content() は Tag Processor ベースになり常にデコード済みの href を返す。set_modifiable_text() は SCRIPT 内容に
+      <script / </script を含む更新を拒否し、set_attribute() は構文文字を直接文字参照にエスケープする。
+      クラシックテーマの画像ブロック処理も PCRE から HTML API に置き換わった。出力文字列を厳密比較するテストや後処理は確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: function
+        name: wp_kses
+      -
+        kind: function
+        name: get_url_in_content
+      -
+        kind: method
+        name: 'WP_HTML_Tag_Processor::set_modifiable_text'
+      -
+        kind: method
+        name: 'WP_HTML_Tag_Processor::set_attribute'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/21/updates-to-the-html-api-in-6-9/'
+  -
+    id: 'db:notes-comment-type-note'
+    type: db
+    title: 'ブロックの「ノート」がコメントテーブルに comment_type=note として保存される'
+    summary: |
+      新機能 Notes は wp_comments に comment_type 'note'（未解決=comment_approved 0、解決=1）として保存される。
+      WP_Comment_Query / get_comments() は type に 'note' か 'all' を指定しない限りノートを除外するが、
+      wp_comments を直接 SQL で集計・エクスポート・削除しているプラグインにはノートが混入する。
+      ノートには flood/重複チェックや pre_comment_approved が適用されず、投稿者への通知は notify_post_author で制御される。
+      post/page 以外では post_type_supports の editor => array( 'notes' => true ) で有効化する。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: class
+        name: WP_Comment_Query
+      -
+        kind: function
+        name: get_comments
+      -
+        kind: hook
+        name: notify_post_author
+    match_hint: \$wpdb->comments
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/15/notes-feature-in-wordpress-6-9/'
+  -
+    id: 'editor_js:block-api-version-3-iframe'
+    type: editor_js
+    title: 'apiVersion 1/2 のブロックはコンソール警告が出て、block.json スキーマは apiVersion 3 のみ許可に'
+    summary: |
+      7.0 での投稿エディタ完全 iframe 化に向け、SCRIPT_DEBUG 有効時に apiVersion 2 以下で登録されたブロックはブラウザコンソールに警告が出る。
+      block.json スキーマは apiVersion 3 以外を検証エラーにする。6.9 では apiVersion 2 以下のブロックがあると従来どおり非 iframe で動くが、
+      7.0 以降を見据えて apiVersion 3 へ移行し、iframe 内で動作確認すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    match_hint: '["'']?apiVersion["'']?\s*:\s*[12]\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/12/preparing-the-post-editor-for-full-iframe-integration/'
+      - 'https://make.wordpress.org/core/2025/11/25/wordpress-6-9-field-guide/'
+  -
+    id: 'editor_js:block-visibility-support'
+    type: editor_js
+    title: すべてのブロックに「非表示」サポート（supports.visibility）が既定で有効になった
+    summary: |
+      ブロックを非表示にでき、metadata.blockVisibility=false のブロックはフロントのマークアップから完全に除去される（資産も dequeue）。
+      ほぼ全ブロックで既定有効のため、非表示にされると困るブロック（レイアウト必須の要素など）は block_type_metadata フィルターで
+      supports.visibility を false にすること。parse_blocks() でブロックを解析するコードは非表示属性を考慮すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: block_type_metadata
+    match_hint: blockVisibility
+    related:
+      - 'behavior:hidden-block-assets-dequeued'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/12/01/ability-to-hide-blocks/'
+  -
+    id: 'editor_js:core-data-media-entity-deprecated'
+    type: editor_js
+    title: '@wordpress/core-data の media エンティティが非推奨になり attachment エンティティに統合'
+    summary: |
+      getMedia / getMediaItems セレクター、saveMedia / deleteMedia アクション、および ( 'root', 'media' ) を渡す
+      getEntityRecord(s) / saveEntityRecord 等は非推奨メッセージを出す。( 'postType', 'attachment' ) に置き換えること。
+      なお getEditedEntityRecord で attachment を取得すると caption は文字列ではなく { raw, rendered } オブジェクトで返るため、caption.raw を参照するよう修正が必要。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/core-data'
+    match_hint: '\b(getMedia|getMediaItems|saveMedia|deleteMedia)\s*\(|[''"]root[''"]\s*,\s*[''"]media[''"]'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/25/miscellaneous-editor-changes-in-wordpress-6-9/'
+  -
+    id: 'editor_js:active-block-variation-default-fallback'
+    type: editor_js
+    title: 'getActiveBlockVariation が isActive に一致しない場合 isDefault のバリエーションにフォールバックする'
+    summary: |
+      どのバリエーションの isActive にも一致しないブロックは、isActive を持たない isDefault: true のバリエーションがあればそれがアクティブと判定される
+      （block / transform スコープのみ、inserter には適用されない）。ブロック名・アイコン表示やバリエーション判定に依存するコードは確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/blocks'
+    match_hint: 'getActiveBlockVariation|isDefault\s*:'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/25/miscellaneous-editor-changes-in-wordpress-6-9/'
+  -
+    id: 'editor_js:emoji-settings-script-module'
+    type: editor_js
+    title: '絵文字検出スクリプトがフッターのスクリプトモジュールになり、_wpemojiSettings の定義タイミングが遅れた'
+    summary: |
+      絵文字検出スクリプトは <head> のインラインスクリプトから、フッターのインラインスクリプトモジュールに変わり、設定は
+      script#wp-emoji-settings の JSON として出力される。window._wpemojiSettings は DOMContentLoaded までに設定されるが、
+      それ以前に参照するコードは JSON から読むよう修正すること。remove_action( 'wp_head', 'print_emoji_detection_script', 7 ) による無効化は引き続き有効。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: print_emoji_detection_script
+    match_hint: _wpemojiSettings
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'editor_js:interactivity-data-wp-ignore-deprecated'
+    type: editor_js
+    title: 'Interactivity API の data-wp-ignore ディレクティブが非推奨になった'
+    summary: |
+      data-wp-ignore はコンテキスト継承やクライアントナビゲーションを壊すため 6.9 で非推奨となり、今後のバージョンで削除予定。
+      使用箇所を削除すること。あわせて、同種ディレクティブを複数付与するための一意ID構文（data-wp-on--click---my-id）が導入された。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/interactivity'
+    match_hint: data-wp-ignore
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/12/changes-to-the-interactivity-api-in-wordpress-6-9/'
+  -
+    id: 'editor_js:interactivity-router-navigation-changes'
+    type: editor_js
+    title: 'Interactivity Router のクライアントナビゲーションでCSS/モジュール読み込み・サーバー状態の扱いが変わった'
+    summary: |
+      クライアントナビゲーション時にスタイルシートの差し替えとスクリプトモジュールの読み込みが行われるようになった。ブロック以外で手動登録した
+      スクリプトモジュールは WP_Interactivity_API::add_client_navigation_support_to_script_module() で対応を明示しないと読み込まれない。
+      getServerState() / getServerContext() は遷移ごとに完全に上書きされ、前ページにしかないプロパティは消える。
+      インタラクティブ領域内の data-wp-router-region も更新対象になった。router を使うプラグインは遷移時の挙動を確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/interactivity-router'
+      -
+        kind: method
+        name: 'WP_Interactivity_API::add_client_navigation_support_to_script_module'
+    match_hint: 'getServer(State|Context)\s*\(|data-wp-router-region'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/12/interactivity-apis-client-navigation-improvements-in-wordpress-6-9/'
+  -
+    id: 'editor_js:dataviews-isvalid-rule-based'
+    type: editor_js
+    title: '@wordpress/dataviews の Field API isValid がルール形式になり、isItemValid が削除された'
+    summary: |
+      フィールドの isValid は関数 ( item, context ) => boolean から { required, elements, custom } のルールオブジェクトに変わった
+      （custom は同期・非同期でエラーメッセージ文字列か null を返す）。DataForm の検証は validity プロップによる制御型になり、
+      isItemValid ユーティリティは削除され useFormValidity フックに置き換えられた。npm パッケージを更新するプラグインは移行が必要。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/dataviews'
+    match_hint: 'isItemValid|isValid\s*:\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/11/dataviews-dataform-et-al-in-wordpress-6-9/'
+  -
+    id: 'css:heading-has-background-padding'
+    type: css
+    title: '背景付き見出しのパディングが .wp-block-heading にのみ適用されるようになった'
+    summary: |
+      見出しの背景パディングのセレクタが h1〜h6.has-background から :where(.wp-block-heading).has-background に変わった（詳細度は 0-1-1 のまま）。
+      テーマが見出しブロック以外の h 要素に has-background を付けて既定パディングに頼っていた場合、パディングが消えるので明示的に指定すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: css_selector
+        name: .has-background
+      -
+        kind: css_selector
+        name: .wp-block-heading
+      -
+        kind: block
+        name: core/heading
+    match_hint: 'h[1-6][^{]*\.has-background'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/12/heading-block-css-specificity-fix-in-wordpress-6-9/'
+  -
+    id: 'css:select-control-classname-root'
+    type: css
+    title: 'SelectControl のクラス名（components-select-control と className）がルート要素に移った'
+    summary: |
+      @wordpress/components の SelectControl は、既定クラス components-select-control と className プロップを内部の
+      components-input-base 要素ではなくルートの components-base-control に付与するようになった。
+      内部構造を前提にしたカスタムCSS（例: .components-select-control の子孫セレクタ）は修正が必要。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: css_selector
+        name: .components-select-control
+      -
+        kind: js_package
+        name: '@wordpress/components'
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/25/miscellaneous-editor-changes-in-wordpress-6-9/'
+  -
+    id: 'css:video-block-dimensions'
+    type: css
+    title: 'Video ブロックの video 要素に width/height 属性と aspect-ratio が付与されるようになった'
+    summary: |
+      レイアウトシフト防止のため、Video ブロックの <video> に動画の width/height 属性とインラインの aspect-ratio が追加され、
+      ブロックCSSで height:auto が指定された。動画サイズを独自CSSで制御しているテーマは表示を確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: block
+        name: core/video
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'css:block-theme-minified-stylesheets'
+    type: css
+    title: 'Twenty Twenty-Two / Twenty Twenty-Five は style.min.css を配信するようになった'
+    summary: |
+      コアのブロックテーマ TT2・TT5 のスタイルシートはミニファイ版（style.min.css）が既定で読み込まれ、インライン化の対象にもなった。
+      style.css を直接編集している場合や、そのハンドルの出力形式（外部ファイル）に依存するコードは反映されないので注意。
+      変更は Site Editor か子テーマで行うこと。
+    status: shipped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'feature:template-management'
+    type: feature
+    title: 'テンプレートの有効化／無効化（拡張テンプレート管理）は 6.9 Beta 4 で差し戻され 7.0 へ延期'
+    summary: |
+      ロードマップと Beta 1 では「スラッグごとに複数テンプレート、下書き、有効化／無効化、テーマ切り替え時の保持」を予告していたが、
+      Beta 3 で見つかった不具合により Beta 4 でテンプレート有効化機能が revert され、7.0 に回された。6.9 の最終版には入っていない。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/11/07/wordpress-6-9-beta-4/'
+      - 'https://make.wordpress.org/core/2025/10/21/wordpress-6-9-beta-1/'
+      - 'https://make.wordpress.org/core/2025/07/28/roadmap-to-6-9/'
+  -
+    id: 'feature:icon-block'
+    type: feature
+    title: 'Icon ブロックは 6.9 では出荷されなかった'
+    summary: |
+      ロードマップでは新ブロックとして Accordion・Terms Query・Stretchy Type・Icon が挙げられていたが、Beta 1 の新ブロック一覧と
+      Field Guide に Icon ブロックはなく、6.9 には含まれない（Stretchy Type はブロックではなく fitText サポートとして出荷）。
+    status: dropped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: block
+        name: core/icon
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/07/28/roadmap-to-6-9/'
+      - 'https://make.wordpress.org/core/2025/10/21/wordpress-6-9-beta-1/'
+  -
+    id: 'feature:bfcache-instant-navigation'
+    type: feature
+    title: 'bfcache による履歴ナビゲーションの即時表示は Chromium のバグにより 6.9 から見送り'
+    summary: |
+      ログイン中など nocache のページでも bfcache を効かせる改善は 6.9 のパフォーマンス計画にあったが、
+      Clear-Site-Data ヘッダーに関する Chromium のバグで punt され、7.0 以降で再検討となった。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/07/28/roadmap-to-6-9/'
+      - 'https://make.wordpress.org/core/2025/11/18/wordpress-6-9-frontend-performance-field-guide/'
+  -
+    id: 'feature:simplified-site-editing'
+    type: feature
+    title: 'サイトエディタの「シンプル編集モード」は 6.9 の出荷機能に含まれなかった'
+    summary: |
+      ロードマップではコンテンツ編集中心の簡易サイト編集モードが予告されていたが、Beta 1 の機能一覧・Field Guide のいずれにも記載がなく、
+      6.9 で出荷された形跡はない（明示的なドロップ告知はなく、情報源からの推定）。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2025/07/28/roadmap-to-6-9/'
+      - 'https://make.wordpress.org/core/2025/10/21/wordpress-6-9-beta-1/'

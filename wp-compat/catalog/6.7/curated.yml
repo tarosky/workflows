@@ -1,0 +1,508 @@
+release: '6.7'
+status: final
+origin: curated
+compared:
+  from: 6.6.0
+  to: 6.7.0
+generated_at: '2026-10-08T00:00:00+00:00'
+sources:
+  - { type: field-guide, url: 'https://make.wordpress.org/core/2024/10/23/wordpress-6-7-field-guide/', title: 'WordPress 6.7 Field Guide', date: '2024-10-23' }
+  - { type: roadmap, url: 'https://make.wordpress.org/core/2024/09/03/roadmap-to-6-7/', title: 'Roadmap to 6.7', date: '2024-09-03' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/21/i18n-improvements-6-7/', title: 'Internationalization improvements in 6.7', date: '2024-10-21' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/21/block-bindings-improvements-to-the-editor-experience-in-6-7/', title: 'Block Bindings: Improvements to the Editor Experience in 6.7', date: '2024-10-21' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/21/updates-to-block-hooks-in-wordpress-6-7/', title: 'Updates to Block Hooks in WordPress 6.7', date: '2024-10-21' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/21/developer-notes-for-zoom-out-in-wordpress-6-7/', title: 'Developer Notes for Zoom Out in WordPress 6.7', date: '2024-10-21' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/20/new-plugin-template-registration-api-in-wordpress-6-7/', title: 'New Plugin Template Registration API in WordPress 6.7', date: '2024-10-20' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/', title: 'Miscellaneous Block Editor Changes in WordPress 6.7', date: '2024-10-20' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/18/auto-sizes-for-lazy-loaded-images-in-wordpress-6-7/', title: 'Auto Sizes for Lazy Loaded Images in WordPress 6.7', date: '2024-10-18' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/18/post-editor-iframing-with-meta-boxes-in-wordpress-6-7/', title: 'Post Editor iframing with meta boxes in WordPress 6.7', date: '2024-10-18' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/18/extending-the-preview-dropdown-menu-in-wordpress-6-7/', title: 'Extending the Preview Dropdown Menu in WordPress 6.7', date: '2024-10-18' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/18/editor-components-updates-in-wordpress-6-7/', title: 'Updates to user-interface components in WordPress 6.7', date: '2024-10-18' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/17/new-block-type-registration-apis-to-improve-performance-in-wordpress-6-7/', title: 'New block type registration APIs to improve performance in WordPress 6.7', date: '2024-10-17' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/17/roster-of-design-tools-per-block-wordpress-6-6-edition-2/', title: 'Roster of design tools per block (WordPress 6.7 edition)', date: '2024-10-17' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/17/updates-to-the-html-api-in-6-7/', title: 'Updates to the HTML API in 6.7', date: '2024-10-17' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/15/subscribe-to-changes-in-the-interactivity-api-state-and-context-on-client-side-navigation-in-6-7/', title: 'Subscribe to changes in the Interactivity API state and context on client-side navigation in 6.7', date: '2024-10-15' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/10/14/updates-to-script-modules-in-6-7/', title: 'Updates to Script Modules in 6.7', date: '2024-10-14' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/08/15/automatic-conversion-of-heic-images-to-jpeg-in-wordpress-6-7/', title: 'Automatic conversion of HEIC images to JPEG in WordPress 6.7', date: '2024-08-15' }
+  - { type: dev-note, url: 'https://make.wordpress.org/core/2024/11/07/getting-ready-for-php-8-4-some-code-changes-landing-in-6-7/', title: 'Getting ready for PHP 8.4: some code changes landing in 6.7', date: '2024-11-07' }
+  - { type: other, url: 'https://make.wordpress.org/core/2024/12/10/wordpress-6-7-performance-improvements/', title: 'WordPress 6.7 Performance Improvements', date: '2024-12-10' }
+  - { type: release, url: 'https://make.wordpress.org/core/2024/11/19/wordpress-6-7-1-release-schedule/', title: 'WordPress 6.7.1 Release Schedule', date: '2024-11-19' }
+  - { type: release, url: 'https://make.wordpress.org/core/2024/11/20/wordpress-6-7-1-rc1-is-now-available/', title: 'WordPress 6.7.1 RC1 is now available', date: '2024-11-20' }
+  - { type: release, url: 'https://make.wordpress.org/core/2024/11/11/wordpress-6-7-release-candidate-5/', title: 'WordPress 6.7 Release Candidate 5', date: '2024-11-11' }
+changes:
+  # ---------------------------------------------------------------- i18n
+  - id: 'behavior:jit-textdomain-loading-notice'
+    type: behavior
+    title: 翻訳の読み込みが早すぎると「_load_textdomain_just_in_time が誤って呼ばれた」Notice が出る
+    summary: |
+      after_setup_theme より前に翻訳を読み込むと _doing_it_wrong（_load_textdomain_just_in_time, 6.7.0）が出るようになった。
+      load_plugin_textdomain() / load_theme_textdomain() も実際の読み込みを JIT に委譲するよう変わった。
+      プラグイン本体ファイル直下での __() 呼び出し、init 前のクラス生成、$translate を省略した get_plugin_data() が典型的な原因。
+      翻訳関数・クラス生成は init 以降に遅らせ、get_plugin_data() は第3引数 false を渡すこと。WordPress.org 配布物なら load_*_textdomain() 自体を削除してよい。
+      なお load_theme_textdomain() で翻訳が適用されない回帰（#62337）は 6.7.1 で修正された。
+    status: shipped
+    severity: medium
+    confidence: medium
+    since: 6.7.0
+    symbols:
+      - { kind: function, name: _load_textdomain_just_in_time }
+      - { kind: function, name: load_plugin_textdomain }
+      - { kind: function, name: load_theme_textdomain }
+      - { kind: function, name: get_plugin_data }
+    match_hint: '(load_(plugin|theme|muplugin)_textdomain|get_plugin_data)\s*\('
+    related: ['hook_removed:hook:plugin_locale', 'hook_removed:hook:theme_locale']
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/21/i18n-improvements-6-7/'
+      - 'https://make.wordpress.org/core/2024/11/19/wordpress-6-7-1-release-schedule/'
+      - 'https://make.wordpress.org/core/2024/11/20/wordpress-6-7-1-rc1-is-now-available/'
+
+  - id: 'behavior:admin-email-user-locale'
+    type: behavior
+    title: admin_email 宛のメールが同じメールアドレスのユーザーのロケールで送られる
+    summary: |
+      admin_email 宛にメールを送る際、同じメールアドレスのユーザーが存在すればそのユーザーのロケールで送信されるようになった。
+      管理者向け通知メールの文面言語を前提にしているプラグイン（件名で判定するフィルタ等）は挙動が変わる可能性がある。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: option, name: admin_email }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/21/i18n-improvements-6-7/'
+
+  # ---------------------------------------------------------------- PHP / core behavior
+  - id: 'behavior:wp-trigger-error-throws-wp-exception'
+    type: behavior
+    title: wp_trigger_error() に E_USER_ERROR を渡すと WP_Exception を投げるようになった
+    summary: |
+      PHP 8.4 で trigger_error() への E_USER_ERROR が非推奨になったため、wp_trigger_error() は E_USER_ERROR のとき新設の WP_Exception を throw するようになった。
+      致命的エラーとして停止する点は同じだが、try/catch で捕捉される・カスタムエラーハンドラでは拾えなくなる点が異なる。
+      wp_trigger_error( ..., E_USER_ERROR ) を使っているコードやテストは例外前提に書き換えること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      - { kind: function, name: wp_trigger_error }
+      - { kind: class, name: WP_Exception }
+    match_hint: 'wp_trigger_error\s*\([^;]*E_USER_ERROR'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/11/07/getting-ready-for-php-8-4-some-code-changes-landing-in-6-7/'
+
+  - id: 'behavior:html-api-class-name-matching'
+    type: behavior
+    title: HTML API のクラス名照合がドキュメントモード準拠（標準モードでは大文字小文字を区別）になった
+    summary: |
+      HTML API の has_class() / add_class() / remove_class() がドキュメントモードに従うようになり、標準モード（既定）ではクラス名をバイト単位で照合する。
+      これまで一致していた FULL-WIDTH と full-width のような大文字小文字違いが一致しなくなる場合がある。
+      あわせて remove_class() は前置空白も除去し、set_attribute() は更新を拒否した場合に false を返すようになった。戻り値や照合結果に依存するコードを確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: method, name: 'WP_HTML_Tag_Processor::has_class' }
+      - { kind: method, name: 'WP_HTML_Tag_Processor::add_class' }
+      - { kind: method, name: 'WP_HTML_Tag_Processor::remove_class' }
+      - { kind: method, name: 'WP_HTML_Tag_Processor::set_attribute' }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/17/updates-to-the-html-api-in-6-7/'
+
+  - id: 'behavior:img-sizes-auto-lazy'
+    type: behavior
+    title: 遅延読み込み画像の sizes 属性先頭に auto が付与される
+    summary: |
+      loading="lazy" の画像について、wp_filter_content_tags() と wp_get_attachment_image() が sizes 属性の先頭に auto を付けるようになった。
+      生成後に loading 属性を書き換えるプラグイン（遅延読み込み・最適化系）は wp_img_tag_add_auto_sizes() で sizes を補正しないと、ブラウザが 100vw とみなして大きすぎる画像を選ぶ。
+      sizes を前提に CSS 幅を決めていないテーマでは画像が小さく表示される回帰（#62413）があり 6.7.1 で修正された。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      - { kind: hook, name: wp_calculate_image_sizes }
+      - { kind: function, name: wp_filter_content_tags }
+      - { kind: function, name: wp_get_attachment_image }
+      - { kind: function, name: wp_img_tag_add_auto_sizes }
+    match_hint: 'loading\s*=\s*[\x27"]?(lazy|eager)|wp_calculate_image_sizes'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/18/auto-sizes-for-lazy-loaded-images-in-wordpress-6-7/'
+      - 'https://make.wordpress.org/core/2024/11/19/wordpress-6-7-1-release-schedule/'
+
+  - id: 'behavior:heic-auto-convert-to-jpeg'
+    type: behavior
+    title: HEIC 画像のアップロードがサーバー側で JPEG に自動変換される
+    summary: |
+      Imagick が HEIC に対応している環境では、HEIC アップロードが自動的に JPEG へ変換される（元ファイルは添付ページからダウンロード可能）。
+      アップロード後の MIME タイプ・ファイル名を前提にしているプラグインは影響を受ける。無効化するには image_editor_output_format フィルタから image/heic を外す。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: hook, name: image_editor_output_format }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/08/15/automatic-conversion-of-heic-images-to-jpeg-in-wordpress-6-7/'
+      - 'https://make.wordpress.org/core/2024/11/11/wordpress-6-7-release-candidate-5/'
+
+  - id: 'behavior:image-editor-choose-cache'
+    type: behavior
+    title: 画像エディタ実装の選択結果がオブジェクトキャッシュされる
+    summary: |
+      _wp_image_editor_choose() の結果が image_editor グローバルキャッシュグループに1日保存されるようになった。
+      wp_image_editors フィルタで独自エディタを追加し、test() や supports_mime_type() の結果が実行時に変わるプラグインでは、古い選択結果が使われ得る。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: hook, name: wp_image_editors }
+      - { kind: function, name: _wp_image_editor_choose }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/12/10/wordpress-6-7-performance-improvements/'
+
+  - id: 'behavior:block-styles-cached-in-transient'
+    type: behavior
+    title: ブロックごとのグローバルスタイル CSS が transient にキャッシュされる
+    summary: |
+      theme.json 由来のブロック単位スタイル（WP_Theme_JSON::compute_style_properties の結果）が transient にキャッシュされるようになった。
+      theme.json 関連フィルタの結果をリクエストごとに変えているプラグインでは、出力 CSS が更新されないように見える場合がある。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: hook, name: wp_theme_json_data_theme }
+    match_hint: 'wp_theme_json_data_(default|blocks|theme|user)'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/12/10/wordpress-6-7-performance-improvements/'
+
+  - id: 'behavior:global-styles-read-for-edit-posts'
+    type: behavior
+    title: edit_posts 権限ユーザーがグローバルスタイルの生データを読めるようになった
+    summary: |
+      edit_posts 権限を持つユーザーに、グローバルスタイルの生データへの読み取りアクセスが許可された。
+      REST API のグローバルスタイル応答を権限で制御・前提にしているプラグインは確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: class, name: WP_REST_Global_Styles_Controller }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/'
+
+  - id: 'behavior:block-hooks-multiple-false-and-template-part'
+    type: behavior
+    title: 'Block Hooks が "multiple": false を尊重し、テンプレートパーツの先頭/末尾子要素にも挿入される'
+    summary: |
+      block.json で supports.multiple を false にしたフックブロックは、コンテキスト（テンプレート・パーツ・パターン等）ごとに最大1つしか挿入されなくなった。
+      また core/template-part への firstChild / lastChild 挿入が動作するようになった。
+      hooked_block_types フィルタで自前の重複チェックをしている場合は不要になり、宣言済みだが効いていなかった template-part 指定は 6.7 から実際に挿入される。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: hook, name: hooked_block_types }
+      - { kind: block, name: core/template-part }
+    match_hint: '"blockHooks"'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/21/updates-to-block-hooks-in-wordpress-6-7/'
+
+  - id: 'behavior:block-bindings-editor-ui-capability'
+    type: behavior
+    title: Block Bindings の編集 UI と edit_block_binding 権限が導入された
+    summary: |
+      ブロック設定に Attributes パネルが追加され、サーバー側で register_block_bindings_source() したソースもエディタに自動で登録・表示される。
+      UI 操作可否は canUpdateBlockBindings 設定（既定は edit_block_binding 権限＝投稿タイプ編集/テーマオプション編集）で決まり、block_editor_settings_all で上書きできる。
+      独自ソースを持つプラグインは、エディタ側で registerBlockBindingsSource() による上書き登録が必要か確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: function, name: register_block_bindings_source }
+      - { kind: hook, name: block_editor_settings_all }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/21/block-bindings-improvements-to-the-editor-experience-in-6-7/'
+
+  - id: 'behavior:interactivity-data-script-module-data'
+    type: behavior
+    title: Interactivity API の初期データ出力が script_module_data フィルタ経由に変わった
+    summary: |
+      Interactivity API のストアデータは script_module_data_@wordpress/interactivity フィルタで出力され、script 要素の ID が wp-interactivity-data から wp-script-module-data-@wordpress/interactivity に変わった。
+      この JSON を DOM から直接読んでいるコードは更新が必要。関連する WP_Interactivity_API のメソッド非推奨は extracted 側に記録済み。
+    status: shipped
+    severity: low
+    confidence: high
+    match_hint: 'wp-interactivity-data'
+    related: ['deprecated:method:WP_Interactivity_API::print_client_interactivity_data', 'deprecated:method:WP_Interactivity_API::register_script_modules']
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/14/updates-to-script-modules-in-6-7/'
+
+  # ---------------------------------------------------------------- editor / JS
+  - id: 'editor_js:post-editor-iframe-with-meta-boxes'
+    type: editor_js
+    title: メタボックスがあっても投稿エディタのキャンバスが iframe 化される
+    summary: |
+      投稿エディタはメタボックスの有無にかかわらず iframe で描画され、メタボックスは分割ビューに表示される。iframe 化を妨げる残りの条件は apiVersion 3 未満のブロックの存在のみ。
+      メタボックス内で上方向に開くドロップダウン等はコンテナで切り取られる。リッチテキストのフォーマット UI を独自に配置している場合は @wordpress/rich-text の useAnchor を使うこと。
+      エディタキャンバスに CSS/JS を注入しているプラグインも iframe 前提で見直す必要がある。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      - { kind: function, name: add_meta_box }
+      - { kind: js_package, name: '@wordpress/rich-text' }
+    match_hint: 'add_meta_box\s*\(|"apiVersion"\s*:\s*[12]\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/18/post-editor-iframing-with-meta-boxes-in-wordpress-6-7/'
+
+  - id: 'editor_js:block-attribute-role-stabilized'
+    type: editor_js
+    title: ブロック属性の __experimentalRole が role として安定化された
+    summary: |
+      block.json の属性プロパティ __experimentalRole は role に安定化された（content / local）。
+      @wordpress/block-editor の __experimentalHasContentRoleAttribute セレクタは非推奨かつ private 化、@wordpress/blocks の __experimentalGetBlockAttributesNamesByRole は getBlockAttributesNamesByRole に安定化された。
+      これらを使っている箇所を新名称に置き換えること。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      - { kind: js_package, name: '@wordpress/block-editor' }
+      - { kind: js_package, name: '@wordpress/blocks' }
+    match_hint: '__experimentalRole|__experimentalHasContentRoleAttribute|__experimentalGetBlockAttributesNamesByRole'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/'
+
+  - id: 'editor_js:contentonly-locked-not-transformable'
+    type: editor_js
+    title: contentOnly ロックのブロックは変換・バリエーション切替ができなくなった
+    summary: |
+      templateLock / lock が contentOnly のブロックでは、ブロック変換メニューとバリエーション切替が表示されなくなった（トップレベルではブロックスタイルは選べる）。
+      contentOnly ロックしたパターンやテンプレートで変換操作を前提にしている場合は見直すこと。
+    status: shipped
+    severity: low
+    confidence: manual
+    match_hint: 'contentOnly'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/'
+
+  - id: 'editor_js:query-loop-6-7-changes'
+    type: editor_js
+    title: Query Loop ブロックの設定配置・既定値が変わり、Posts List バリエーションが削除された
+    summary: |
+      Query Loop の表示件数・オフセット・最大ページ数の設定がツールバーからインスペクターへ移動し、投稿/固定ページ内では Query Type 設定が非表示で posts を既定とする。
+      テンプレート上では posts per page が継承される。Posts List バリエーションは削除されたため、これに依存するパターンや拡張は確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: block, name: core/query }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/'
+
+  - id: 'editor_js:use-resize-observer-new-api'
+    type: editor_js
+    title: '@wordpress/compose の useResizeObserver が新 API になり、旧 API は非推奨'
+    summary: |
+      useResizeObserver はコールバックを第1引数に取り、ref 用のセッターを返す新 API になった。従来の使い方（戻り値の要素を描画する形）はレガシー扱いで非推奨。
+      新しい呼び出し形式に移行すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: js_package, name: '@wordpress/compose' }
+    match_hint: 'useResizeObserver\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/'
+
+  - id: 'editor_js:components-experimental-apis-stabilized'
+    type: editor_js
+    title: '@wordpress/components の実験的 API が安定化され、旧名が非推奨になった'
+    summary: |
+      __experimentalNavigator*（→ Navigator / Navigator.Screen 等、ToParentButton と goToParent() は BackButton / goBack() と同じ挙動に）、__experimentalUseNavigator（→ useNavigator）、
+      __experimentalAlignmentMatrixControl（→ AlignmentMatrixControl）、__experimentalBoxControl（→ BoxControl）、__unstableComposite 系（→ Composite）が非推奨になった。
+      Button の __experimentalIsFocusable は accessibleWhenDisabled に改名（旧名も動作継続）。安定版の名前へ移行すること。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      - { kind: js_package, name: '@wordpress/components' }
+    match_hint: '__experimentalNavigator\w*|__experimentalUseNavigator|__experimentalAlignmentMatrixControl|__experimentalBoxControl|__unstableComposite\w*|__experimentalIsFocusable'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/18/editor-components-updates-in-wordpress-6-7/'
+
+  - id: 'editor_js:dimension-control-deprecated'
+    type: editor_js
+    title: DimensionControl が非推奨になった（7.0 で削除予定）
+    summary: |
+      @wordpress/components の DimensionControl は非推奨となり、WordPress 7.0 で削除予定と告知された。
+      SelectControl または CustomSelectControl に寸法の options を渡す形に置き換えること。
+    status: shipped
+    severity: medium
+    confidence: high
+    symbols:
+      - { kind: js_package, name: '@wordpress/components' }
+    match_hint: '\bDimensionControl\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/18/editor-components-updates-in-wordpress-6-7/'
+
+  - id: 'editor_js:components-bottom-margin-deprecation'
+    type: editor_js
+    title: 下マージン付きスタイルを使うフォーム系コンポーネントで非推奨警告が出る
+    summary: |
+      BaseControl, CheckboxControl, ComboboxControl, DimensionControl, FocalPointPicker, FormTokenField, RangeControl, SearchControl, SelectControl, TextControl, TextareaControl, ToggleControl, ToggleGroupControl, TreeSelect で、
+      __nextHasNoMarginBottom を指定していない場合にコンソールへ非推奨警告が出るようになった。将来マージンは削除されるため、__nextHasNoMarginBottom={ true } を付けてレイアウトを調整すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: js_package, name: '@wordpress/components' }
+    match_hint: '<(BaseControl|CheckboxControl|ComboboxControl|DimensionControl|FocalPointPicker|FormTokenField|RangeControl|SearchControl|SelectControl|TextControl|TextareaControl|ToggleControl|ToggleGroupControl|TreeSelect)\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/18/editor-components-updates-in-wordpress-6-7/'
+
+  - id: 'editor_js:custom-select-control-ariakit'
+    type: editor_js
+    title: CustomSelectControl が Ariakit で書き直され、トリガーの role が combobox になった
+    summary: |
+      CustomSelectControl が Ariakit ベースに書き直された（downshift 依存を削除）。公開 API に破壊的変更はないが、トリガーボタンの role が button から combobox に変わり、
+      __experimentalShowSelectedHint と options[].__experimentalHint は接頭辞なしの名前に安定化された。DOM/role に依存する E2E テストや CSS は確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: js_package, name: '@wordpress/components' }
+    match_hint: 'CustomSelectControl|__experimentalShowSelectedHint|__experimentalHint'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/18/editor-components-updates-in-wordpress-6-7/'
+
+  - id: 'editor_js:zoom-out-section-root'
+    type: editor_js
+    title: Zoom Out モードはメインコンテンツを core/post-content か tagName=main の Group から判定する
+    summary: |
+      新しい Zoom Out モードでは「メインコンテンツ」以外のブロックが編集不可になり、メインは core/post-content、なければ tagName が main の core/group で判定される。
+      テーマはテンプレートのメイン領域を tagName main の Group で包むこと。また zoom-out エディタモードはキャンバスの縮小と切り離された。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: block, name: core/group }
+      - { kind: block, name: core/post-content }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/21/developer-notes-for-zoom-out-in-wordpress-6-7/'
+
+  - id: 'editor_js:interactivity-navigate-no-overwrite'
+    type: editor_js
+    title: Interactivity Router の actions.navigate が既存の state/context を上書きしなくなった
+    summary: |
+      @wordpress/interactivity-router の actions.navigate() は新しいページの state / context で既存プロパティを上書きせず、新規プロパティの追加のみ行うようになった。
+      クライアントサイドナビゲーション後にサーバー値で更新されることを前提にしていたブロックは、getServerState() / getServerContext() を data-wp-watch 等で購読して自前で反映すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      - { kind: js_package, name: '@wordpress/interactivity-router' }
+    match_hint: 'actions\.navigate\s*\(|data-wp-router-region'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/15/subscribe-to-changes-in-the-interactivity-api-state-and-context-on-client-side-navigation-in-6-7/'
+
+  # ---------------------------------------------------------------- CSS / DOM
+  - id: 'css:media-text-img-instead-of-background'
+    type: css
+    title: Media & Text ブロックの「画像で埋める」が background-image ではなく img 要素になった
+    summary: |
+      Media & Text ブロックで「Crop image to fill」有効時も CSS background-image ではなく img 要素（is-image-fill-element クラス）で描画されるようになった。
+      .wp-block-media-text__media の background-image を前提にしたテーマ CSS や JS は見直すこと。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: block, name: core/media-text }
+      - { kind: css_selector, name: '.wp-block-media-text__media' }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/'
+
+  - id: 'css:block-inspector-control-spacing'
+    type: css
+    title: ブロックインスペクター内コントロールの標準間隔が 24px から 16px に縮小
+    summary: |
+      ブロックインスペクターのコントロール間の標準余白が 16px に変わった。BaseControl ベースのコントロールは自動で追従するが、
+      独自コントロールや下マージンを上書きしている場合は 16px に合わせて調整すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/10/20/miscellaneous-block-editor-changes-in-wordpress-6-7/'
+
+  - id: 'css:login-logo-markup'
+    type: css
+    title: ログイン画面のロゴ見出しの DOM が変わった
+    summary: |
+      wp-login.php に screen-reader-text の h1 が追加され、ロゴ側の h1 には wp-login-logo クラスと role="presentation" が付いた。
+      #login h1 a のようなセレクタでロゴを差し替えている CSS が意図通りに当たらない回帰（#62410）が報告され、6.7.1 で修正された。カスタムログインロゴを持つ場合は表示を確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      - { kind: hook, name: login_enqueue_scripts }
+      - { kind: css_selector, name: '.wp-login-logo' }
+    match_hint: '#login\s+h1|\.login\s+h1'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/11/20/wordpress-6-7-1-rc1-is-now-available/'
+
+  # ---------------------------------------------------------------- dropped
+  - id: 'feature:plugin-template-part-registration'
+    type: feature
+    title: プラグインからのテンプレートパーツ登録 API は 6.7 では出荷されなかった
+    summary: |
+      ロードマップではテンプレートとテンプレートパーツの登録 API が予告されたが、出荷された register_block_template() はブロックテンプレートのみ対象でテンプレートパーツは登録できない。
+      テンプレートパーツは従来どおりフィルタ等で対応する必要がある。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/09/03/roadmap-to-6-7/'
+      - 'https://make.wordpress.org/core/2024/10/20/new-plugin-template-registration-api-in-wordpress-6-7/'
+
+  - id: 'feature:gallery-lightbox'
+    type: feature
+    title: Gallery ブロックのライトボックスは 6.7 に入らなかった
+    summary: |
+      ロードマップで Interactivity API による Gallery ブロックのライトボックス対応が予告されたが、6.7.0 の gallery ブロックにライトボックス処理は含まれていない。
+    status: dropped
+    severity: low
+    confidence: manual
+    symbols:
+      - { kind: block, name: core/gallery }
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/09/03/roadmap-to-6-7/'
+
+  - id: 'feature:query-instant-search'
+    type: feature
+    title: Query / Search ブロックのインスタント検索は 6.7 に入らなかった
+    summary: |
+      ロードマップで予告された Query・Search ブロックのインスタント検索は、6.7 の Field Guide・Dev Notes に記載がなく出荷されていない。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/09/03/roadmap-to-6-7/'
+
+  - id: 'feature:html-api-css-selector-query'
+    type: feature
+    title: HTML API の querySelector 相当の機能は 6.7 に入らなかった
+    summary: |
+      ロードマップで HTML API への querySelector() 相当の追加が予告されたが、6.7 の HTML API Dev Note には含まれず出荷されていない。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/09/03/roadmap-to-6-7/'
+      - 'https://make.wordpress.org/core/2024/10/17/updates-to-the-html-api-in-6-7/'
+
+  - id: 'feature:stabilize-typography-block-supports'
+    type: feature
+    title: タイポグラフィ系ブロックサポートの安定化は 6.7 では完了しなかった
+    summary: |
+      ロードマップでタイポグラフィ系ブロックサポートの _experimental 接頭辞除去が予告されたが、6.7.0 でも __experimentalFontFamily 等の名前のままである。
+      block.json では引き続き __experimental 付きのキーを使うこと。
+    status: dropped
+    severity: low
+    confidence: manual
+    match_hint: '__experimentalFontFamily|__experimentalFontWeight|__experimentalLetterSpacing|__experimentalTextTransform'
+    source_urls:
+      - 'https://make.wordpress.org/core/2024/09/03/roadmap-to-6-7/'

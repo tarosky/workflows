@@ -1,3 +1,5 @@
 /node_modules/
 /tmp/
 /wiki/
+/wp-compat/vendor/
+/wp-compat/_site/

@@ -1,0 +1,839 @@
+release: '7.1'
+status: final
+origin: curated
+compared:
+  from: 7.0.0
+  to: 7.1.0
+generated_at: '2026-10-08T00:00:00+00:00'
+sources:
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2026/09/10/wordpress-7-1-1-rc1-is-now-available/'
+    title: 'WordPress 7.1.1 RC1 is now available'
+    date: '2026-09-10'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/09/04/replacing-dashicons-in-the-admin-bar-and-menu/'
+    title: 'Replacing Dashicons in the admin bar and menu'
+    date: '2026-09-04'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2026/08/17/wordpress-7-1-release-day-process/'
+    title: 'WordPress 7.1 Release Day Process'
+    date: '2026-08-17'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2026/08/17/wordpress-7-1-release-candidate-4/'
+    title: 'WordPress 7.1 Release Candidate 4'
+    date: '2026-08-17'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/13/accessibility-improvements-in-wordpress-7-1/'
+    title: 'Accessibility Improvements in WordPress 7.1'
+    date: '2026-08-13'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2026/08/12/wordpress-7-1-release-candidate-3/'
+    title: 'WordPress 7.1 Release Candidate 3'
+    date: '2026-08-12'
+  -
+    type: release
+    url: 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-release-candidate-phase/'
+    title: 'WordPress 7.1 Release Candidate Phase'
+    date: '2026-08-05'
+  -
+    type: field-guide
+    url: 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+    title: 'WordPress 7.1 Field Guide'
+    date: '2026-08-05'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/05/the-notify_post_author-filter-now-has-the-final-say-on-post-author-notifications/'
+    title: "The\_notify_post_author\_filter now has the final say on post author notifications"
+    date: '2026-08-05'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/05/filtering-registered-abilities-with-wp_get_abilities-in-wordpress-7-1/'
+    title: 'Filtering registered abilities with wp_get_abilities() in WordPress 7.1'
+    date: '2026-08-05'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/05/responsive-block-styles-and-configurable-viewports-in-wordpress-7-1/'
+    title: 'Responsive block styles and configurable viewports in WordPress 7.1'
+    date: '2026-08-05'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/05/pseudo-and-custom-style-states-in-wordpress-7-1/'
+    title: 'Pseudo and custom style states in WordPress 7.1'
+    date: '2026-08-05'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/04/a-unified-public-exposure-flag-for-abilities-in-wordpress-7-1/'
+    title: 'A unified public exposure flag for Abilities in WordPress 7.1'
+    date: '2026-08-04'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+    title: 'Miscellaneous Editor Changes in WordPress 7.1'
+    date: '2026-08-04'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/03/introducing-name-and-informational-tool-tips-in-wordpress-7-1/'
+    title: 'Introducing name and informational tool tips in WordPress 7.1'
+    date: '2026-08-03'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/03/post-list-tables-row-headers-changed/'
+    title: 'Post list tables row headers changed'
+    date: '2026-08-03'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/08/03/iframed-editor-changes-in-wordpress-7-1/'
+    title: 'Iframed Editor Changes in WordPress 7.1'
+    date: '2026-08-03'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/31/json-schema-preparation-for-client-compatibility-in-wordpress-7-1/'
+    title: 'JSON Schema preparation for client compatibility in WordPress 7.1'
+    date: '2026-07-31'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/31/abilities-api-improvements-in-wordpress-7-1/'
+    title: 'Abilities API improvements in WordPress 7.1'
+    date: '2026-07-31'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/31/design-system-theming-in-wordpress-7-1/'
+    title: 'Design System Theming in WordPress 7.1'
+    date: '2026-07-31'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/31/filtering-site-editor-screens-in-wordpress-7-1/'
+    title: 'Filtering Site Editor Screens in WordPress 7.1'
+    date: '2026-07-31'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/29/jquery-ui-updated-to-1-14-2-in-wordpress-7-1/'
+    title: 'jQuery UI updated to 1.14.2 in WordPress 7.1'
+    date: '2026-07-29'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/29/new-execution-lifecycle-filters-for-the-abilities-api-in-wordpress-7-1/'
+    title: 'New execution lifecycle filters for the Abilities API in WordPress 7.1'
+    date: '2026-07-29'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/26/new-block-support-in-wordpress-7-1-background-gradient-background-gradient/'
+    title: 'New Block Support in WordPress 7.1: Background Gradient (background.gradient)'
+    date: '2026-07-26'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/26/new-block-support-in-wordpress-7-1-minimum-width/'
+    title: 'New Block Support in WordPress 7.1: Minimum Width'
+    date: '2026-07-26'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/24/registering-and-rendering-svg-icons-in-wordpress-7-1/'
+    title: 'Registering and rendering SVG icons in WordPress 7.1'
+    date: '2026-07-24'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/24/react-19-punted-beyond-wordpress-7-1-experiment-in-gutenberg/'
+    title: 'React 19: punted beyond WordPress 7.1, experiment in Gutenberg'
+    date: '2026-07-24'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/23/editor-components-updates-in-wordpress-7-1/'
+    title: 'Editor components updates in WordPress 7.1'
+    date: '2026-07-23'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/23/editable-blocks-inside-the-custom-html-block/'
+    title: 'Editable blocks inside the Custom HTML block'
+    date: '2026-07-23'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/23/media-library-infinite-scrolling-is-now-enabled-by-default-with-a-per-user-opt-out/'
+    title: 'Media Library infinite scrolling is now enabled by default, with a per-user opt-out'
+    date: '2026-07-23'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/23/text-shadow-support-in-global-styles/'
+    title: 'Text Shadow Support in Global Styles'
+    date: '2026-07-23'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/'
+    title: 'Client-Side Media Processing in WordPress 7.1'
+    date: '2026-07-22'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/13/consistent-navigation-in-wordpress-7-1-with-persistent-toolbar/'
+    title: 'Consistent navigation in WordPress 7.1 with persistent toolbar'
+    date: '2026-07-13'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/07/07/merge-proposal-design-system-theming/'
+    title: 'Merge Proposal: Design System Theming'
+    date: '2026-07-07'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/07/07/the-classic-block-stays-in-the-inserter-for-wordpress-7-1/'
+    title: 'The Classic block stays in the inserter for WordPress 7.1'
+    date: '2026-07-07'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/07/02/merge-proposal-expanding-wordpress-core-abilities/'
+    title: 'Merge Proposal: Expanding WordPress Core Abilities'
+    date: '2026-07-02'
+  -
+    type: dev-note
+    url: 'https://make.wordpress.org/core/2026/06/23/hiding-the-classic-block-from-the-inserter-in-wordpress-7-1/'
+    title: 'Hiding the Classic block from the inserter in WordPress 7.1'
+    date: '2026-06-23'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/06/22/merge-proposal-guidelines-built-on-knowledge/'
+    title: 'Merge Proposal: Guidelines built on Knowledge'
+    date: '2026-06-22'
+  -
+    type: roadmap
+    url: 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+    title: 'Roadmap to 7.1'
+    date: '2026-06-19'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/06/10/call-for-testing-unicode-email-addresses/'
+    title: 'Call for Testing: Unicode email addresses.'
+    date: '2026-06-10'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/06/03/announcing-a-collaborative-editing-outreach-effort-for-7-1/'
+    title: 'Announcing a collaborative editing outreach effort for 7.1'
+    date: '2026-06-03'
+changes:
+  -
+    id: 'feature:enforced-iframe-editor'
+    type: editor_js
+    title: '投稿エディタが常に iframe 化された（ブロック API バージョン・メタボックスの有無に関係なく）'
+    summary: |
+      7.0 までは挿入されたブロックの API バージョンが 3 未満だと投稿エディタは非 iframe に戻っていたが、7.1 ではテーマ種別・ブロック API バージョン・レガシーメタボックスの有無に関係なく常に iframe で動作する。
+      エディタスクリプトから グローバルの document / window でキャンバス内の要素を探したり、イベントを登録したりするコードは別ドキュメントを見ることになり動かなくなる。
+      要素の ownerDocument / defaultView 経由でキャンバスのドキュメントを取得し、リスナーは useRefEffect で付け外しすること。エディタ向け CSS もキャンバス内に読み込まれるか（editorStyle / block.json の style）を確認すること。
+    status: shipped
+    severity: high
+    confidence: manual
+    match_hint: '\b(?:document|window)\.(?:querySelector(?:All)?|getElementById|getElementsBy\w+|addEventListener)\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/03/iframed-editor-changes-in-wordpress-7-1/'
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+  -
+    id: 'editor_js:block-editor-document-isolation-policy'
+    type: editor_js
+    title: 'ブロックエディタ画面に Document-Isolation-Policy（cross-origin isolation）が付与される'
+    summary: |
+      クライアントサイドメディア処理が有効な場合、Chromium 137+ ではブロックエディタ・サイトエディタ・ウィジェット画面に Document-Isolation-Policy: isolate-and-credentialless が送られる。
+      外部オリジンのスクリプトには crossorigin="anonymous" が自動付与され、ブラウザからの cross-origin fetch は credentialless 扱いとなり CORS で失敗しやすくなる。外部画像の取り込みはサーバー側（メディアエンドポイントの url パラメータ）で行うこと。
+      独自の Content-Security-Policy を送るプラグインは worker-src に blob: を含めないと WASM ワーカーが起動せずサーバー処理へフォールバックする。エディタ内で外部リソースや埋め込みを読み込むプラグインは要確認。無効化は wp_client_side_media_processing_enabled フィルターで false を返す。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: hook
+        name: wp_client_side_media_processing_enabled
+    match_hint: Content-Security-Policy|worker-src
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/'
+  -
+    id: 'css:navigation-font-size-no-propagation'
+    type: css
+    title: ナビゲーションブロックが子項目へフォントサイズのクラス・スタイルを付与しなくなった
+    summary: |
+      Navigation ブロックのフォントサイズ設定は core/navigation-link, core/navigation-submenu, core/page-list, core/home-link の各要素へ has-{slug}-font-size クラスやインライン font-size として伝播しなくなり、通常の CSS 継承に任せるようになった。
+      ナビゲーション項目の has-*-font-size を直接狙っているテーマ CSS は効かなくなる。必要なら dev note にある render_block_{block} フィルターで旧挙動を復元できる。
+    status: shipped
+    severity: medium
+    confidence: manual
+    symbols:
+      -
+        kind: block
+        name: core/navigation-link
+      -
+        kind: block
+        name: core/navigation-submenu
+      -
+        kind: block
+        name: core/page-list
+      -
+        kind: block
+        name: core/home-link
+    related:
+      - 'removed:function:block_core_home_link_build_css_font_sizes'
+      - 'removed:function:block_core_navigation_submenu_build_css_font_sizes'
+      - 'removed:function:block_core_page_list_build_css_font_sizes'
+      - 'deprecated:function:block_core_navigation_link_build_css_font_sizes'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+  -
+    id: 'deprecated:blocks-experimental-clone-sanitize'
+    type: deprecated
+    title: '@wordpress/blocks の __experimentalCloneSanitizedBlock / __experimentalSanitizeBlockAttributes が非推奨になった'
+    summary: |
+      安定版の cloneSanitizedBlock / sanitizeBlockAttributes が追加され、__experimental 版は動作するもののコンソールに非推奨警告を出す。
+      wp.blocks または @wordpress/blocks から呼んでいる箇所を安定版に置き換えること。
+    status: shipped
+    severity: low
+    confidence: medium
+    match_hint: '__experimental(?:CloneSanitizedBlock|SanitizeBlockAttributes)\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+  -
+    id: 'editor_js:paste-handler-markdown-parser-marked'
+    type: editor_js
+    title: '貼り付け時の Markdown パーサーが showdown から marked に変わった'
+    summary: |
+      @wordpress/blocks の pasteHandler() 内部で使う Markdown 変換が showdown から marked（CommonMark / GFM 準拠）に置き換わった。
+      API の変更はないが、エッジケースの変換結果が変わり得る。pasteHandler() を直接呼んでいるコードは代表的な Markdown 入力で生成ブロックを再確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    match_hint: '\bpasteHandler\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+  -
+    id: 'editor_js:core-data-non-paginated-entities-return-all'
+    type: editor_js
+    title: 'getEntityRecords() が非ページネーションのエンティティで全件を返すようになった'
+    summary: |
+      これまで getEntityRecords() は全エンティティに対してクライアント側で per_page=10 相当の切り詰めを行っていた（バグ）。7.1 では supportsPagination: true を宣言したエンティティだけが切り詰められ、それ以外は全件を返す。
+      10 件しか返らない前提で描画・ループしているコードは件数増加に注意。独自エンティティが非ページネーションの REST ルートに基づく場合は supportsPagination: false を宣言すること。per_page: -1 の回避策は不要だが害はない。
+    status: shipped
+    severity: medium
+    confidence: medium
+    match_hint: '\bgetEntityRecords\s*\(|supportsPagination'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+  -
+    id: 'css:block-level-preset-class-specificity'
+    type: css
+    title: ブロックレベルのプリセットクラスの詳細度がルートレベルと同じに下がった
+    summary: |
+      theme.json の settings.blocks.<block> や wp_theme_json_data_* フィルターで定義したブロックレベルプリセットのユーティリティクラス（.has-*-color, -background-color, -font-size など）は、ブロックセレクタが :where() で包まれ詳細度 0-1-0 になった。
+      トップレベルとブロックレベルのプリセットの間に割り込む !important 付きの独自 CSS を書いているテーマ・プラグインは優先順位が変わる可能性がある。
+    status: shipped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+  -
+    id: 'editor_js:wordpress-nux-noop'
+    type: editor_js
+    title: '@wordpress/nux が何もしない互換パッケージになった'
+    summary: |
+      5.4 から非推奨だった @wordpress/nux（wp-nux）は 7.1 で no-op になった。import やスクリプト依存は壊れないが、ヒントやガイドは一切表示されない。
+      オンボーディングに NUX を使っている場合は @wordpress/components の Guide コンポーネントへ移行すること。
+    status: shipped
+    severity: medium
+    confidence: high
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/nux'
+        replacement: '@wordpress/components (Guide)'
+      -
+        kind: js_handle
+        name: wp-nux
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+  -
+    id: 'deprecated:wordpress-reusable-blocks-package'
+    type: deprecated
+    title: '@wordpress/reusable-blocks の公開 API が非推奨警告を出すようになった'
+    summary: |
+      @wordpress/reusable-blocks（wp-reusable-blocks）のコンポーネントとデータ API が呼び出し時に非推奨警告を出す。将来は @wordpress/nux と同様に no-op 化される予定。
+      同期パターン（旧再利用ブロック）の取得・更新は core-data の標準エンティティメソッドへ移行すること。
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/reusable-blocks'
+      -
+        kind: js_handle
+        name: wp-reusable-blocks
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/miscellaneous-block-editor-changes-in-wordpress-7-1/'
+  -
+    id: 'editor_js:components-40px-default-size-enforced'
+    type: editor_js
+    title: '@wordpress/components のフォームコントロールが無条件で 40px 高になった'
+    summary: |
+      TextControl, SelectControl, InputControl, RangeControl, ComboboxControl, FontSizePicker など多数のフォームコントロールは 40px 高が既定となり、__next40pxDefaultSize は実行時に無視される。__next40pxDefaultSize={ false } で 36px に戻すこともできない。
+      BorderBoxControl, BorderControl, FontSizePicker, ToggleGroupControl の size プロップも無効。高さ 36px 前提のレイアウトや CSS を持つ設定画面・インスペクターは表示崩れを確認し、不要になったプロップを削除すること。Button は対象外。
+    status: shipped
+    severity: low
+    confidence: medium
+    match_hint: '__next40pxDefaultSize|size=[''"]__unstable-large[''"]'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/23/editor-components-updates-in-wordpress-7-1/'
+  -
+    id: 'editor_js:components-emotion-css-prop-noop'
+    type: editor_js
+    title: '@wordpress/components の View の css プロップが無効化され、Emotion から SCSS への移行が始まった'
+    summary: |
+      View は型互換のため css プロップを受け付けるが no-op になった。Divider, Surface, Truncate, View, Flex, Spacer は Emotion を経由しなくなったため、cx() に複数の css() 断片を渡している場合はオーバーライド順が変わり得る。
+      View の css プロップは style または className に置き換え、順序依存の断片は 1 つの css() 呼び出しにまとめてから cx() に渡すこと。対象コンポーネントは今後増える予定。
+    status: shipped
+    severity: medium
+    confidence: manual
+    match_hint: '\bcx\s*\(|\bcss=\{'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/23/editor-components-updates-in-wordpress-7-1/'
+  -
+    id: 'removed:components-navigation'
+    type: removed
+    title: '@wordpress/components の非推奨 Navigation コンポーネントが削除された'
+    summary: |
+      6.8 から非推奨だった Navigation コンポーネントとそのサブコンポーネントが @wordpress/components から削除された。参照すると undefined となりレンダリング時にエラーになる。
+      Navigator コンポーネントへ移行すること。
+    status: shipped
+    severity: high
+    confidence: medium
+    match_hint: '__experimentalNavigation(?:BackButton|Group|Item|Menu)?\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/23/editor-components-updates-in-wordpress-7-1/'
+  -
+    id: 'removed:components-apply-value-to-sides'
+    type: removed
+    title: '@wordpress/components の __experimentalApplyValueToSides が削除された'
+    summary: |
+      6.8 から非推奨だったユーティリティ __experimentalApplyValueToSides が削除された。呼び出すと TypeError になる。BoxControl 自体は影響なし。
+      値の各辺への展開は自前で実装すること。
+    status: shipped
+    severity: high
+    confidence: medium
+    match_hint: __experimentalApplyValueToSides\b
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/23/editor-components-updates-in-wordpress-7-1/'
+  -
+    id: 'behavior:client-side-media-server-image-hooks-skipped'
+    type: behavior
+    title: クライアントサイドメディア処理時はサーバー側の画像エディタ系フックが発火しない
+    summary: |
+      7.1 ではブロックエディタからのアップロード画像のサブサイズ生成・変換・EXIF 回転がブラウザ（wasm-vips）で行われる（Chromium 137+ で既定有効）。サーバーの画像エディタを使わないため image_make_intermediate_size, wp_image_editors, image_memory_limit は発火しない。
+      これらのフックでサブサイズを加工・最適化・記録しているプラグインは Chromium からのアップロードで処理が行われなくなる。wp_generate_attachment_metadata など別フックへ移すか、wp_client_side_media_processing_enabled フィルターで機能を無効化すること。
+      サポート MIME（jpeg/png/gif/webp/avif）は固定で、HEIC は JPEG に変換され、不透明なアニメーション GIF には動画のコンパニオンファイルが作られる点も確認すること。
+    status: shipped
+    severity: high
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: image_make_intermediate_size
+      -
+        kind: hook
+        name: wp_image_editors
+      -
+        kind: hook
+        name: image_memory_limit
+      -
+        kind: hook
+        name: wp_client_side_media_processing_enabled
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/'
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+  -
+    id: 'behavior:client-side-media-attachment-metadata-update-pass'
+    type: behavior
+    title: 'クライアントサイド処理では wp_generate_attachment_metadata が create と update の 2 回発火する'
+    summary: |
+      クライアントサイド処理のアップロードでは、初回アップロード時（サブサイズ作成前）に context 'create' で、全サブサイズの sideload 後に POST /wp/v2/media/{id}/finalize で context 'update' で wp_generate_attachment_metadata が発火する。
+      'create' 時点ではサブサイズのメタデータがまだ無い。透かし・CDN 同期・独自メタ処理などのフックは 2 回の呼び出しで冪等に動くようにすること。finalize の失敗はログのみでアップロード自体は成功扱いになる。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: wp_generate_attachment_metadata
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/22/client-side-media-processing-in-wordpress-7-1/'
+  -
+    id: 'behavior:media-library-infinite-scrolling-default-on'
+    type: behavior
+    title: メディアライブラリのグリッド表示が既定で無限スクロールになった
+    summary: |
+      media_library_infinite_scrolling フィルターの既定値が false から true に変わり、メディアライブラリのグリッド表示とメディアモーダルが既定で無限スクロールになった。ユーザーはプロフィールで個別に無効化でき、ユーザーメタ infinite_scrolling に文字列 'true' / 'false' で保存される。
+      優先順位はフィルター > ユーザー設定 > 既定値。「さらに読み込む」ボタン前提の UI 拡張をしているプラグインは確認し、旧挙動を全員に強制するならフィルターで false を返すこと。無限スクロールは既知のアクセシビリティ上の後退とされている。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: media_library_infinite_scrolling
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/23/media-library-infinite-scrolling-is-now-enabled-by-default-with-a-per-user-opt-out/'
+      - 'https://make.wordpress.org/core/2026/08/13/accessibility-improvements-in-wordpress-7-1/'
+  -
+    id: 'css:post-list-table-row-header-moved'
+    type: css
+    title: '投稿一覧テーブルの行見出し th がチェックボックス列からタイトル列へ移った'
+    summary: |
+      投稿一覧テーブルで scope="row" の th がチェックボックス列（check-column）からタイトル列に移り、check-column は td になった。タイトル列の th には投稿タイトルの aria-label が付く。レスポンシブ表示の折り畳みセルは flex レイアウトになった。
+      th.check-column や th input[type="checkbox"]、td.column-title / td.column-primary / td .row-actions などを狙う CSS・JS は効かなくなる。7.1 未満とも互換を保つなら td と th の両方のセレクタを書くこと。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: css_selector
+        name: th.check-column
+      -
+        kind: css_selector
+        name: td.column-title
+      -
+        kind: css_selector
+        name: td.column-primary
+      -
+        kind: css_selector
+        name: 'td .row-actions'
+    match_hint: 'th\.check-column|th\s+input\[type=|td\.(?:title|column-title|column-primary|page-title)\b|td\s+\.(?:row-title|row-actions|post-state)\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/03/post-list-tables-row-headers-changed/'
+  -
+    id: 'css:admin-bar-persistent-in-editors'
+    type: css
+    title: ツールバー（管理バー）が投稿エディタ・サイトエディタで常時表示されるようになった
+    summary: |
+      7.1 では集中モード以外のとき、投稿エディタとサイトエディタでもツールバーが表示される。左上の W ロゴ／サイトアイコンは戻るボタン（シェブロン）に置き換わった。サイトエディタでツールバーが出るのは新しい挙動。
+      admin_bar_menu でノードを追加しているプラグインは、サイトエディタやクライアントサイド遷移で正しく動くか確認すること。エディタで出したくなければ get_current_screen() の is_block_editor() や id で判定して追加をスキップする。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: admin_bar_menu
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/13/consistent-navigation-in-wordpress-7-1-with-persistent-toolbar/'
+  -
+    id: 'removed:jquery-ui-1-14-removed-apis'
+    type: removed
+    title: 'jQuery UI が 1.14.2 に更新され、一部の内部 API と IE サポートが削除された'
+    summary: |
+      同梱の jQuery UI が 1.13.3 から 1.14.2 になり、Internet Explorer / 旧 Edge のサポートが削除された。$.fn._form, $.ui.ie, $.ui.safeActiveElement, $.ui.safeBlur が削除されている（jQuery.uiBackCompat は true に設定）。
+      これらを使っているコードは書き換えること。jQuery UI のウィジェットの挙動やスタイルに依存する管理画面は動作確認すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    match_hint: '\$\.ui\.(?:ie|safeActiveElement|safeBlur)\b|\.fn\._form\b|\)\._form\s*\('
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/29/jquery-ui-updated-to-1-14-2-in-wordpress-7-1/'
+  -
+    id: 'behavior:notify-post-author-filter-final-say'
+    type: behavior
+    title: 'notify_post_author フィルターの戻り値が最終決定になり、未承認コメントの既定値が false になった'
+    summary: |
+      wp_new_comment_notify_postauthor() はフィルター適用前に承認状態を判定するようになった。未承認（保留・スパム・ゴミ箱）コメントでは既定値が false、承認済みは comments_notify オプションに従い、既定値は常に厳密な bool になる。コメント ID が無効なら フィルターを通さず false を返す。
+      フィルターで true を返すと未承認コメントでも通知が送られるようになったため、__return_true などで通知を強制しているコードはスパムや保留コメントでもメールが飛ぶ。承認状態を確認してから true を返すこと。$maybe_notify を '1' と厳密比較しているコードも修正が必要。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: notify_post_author
+      -
+        kind: function
+        name: wp_new_comment_notify_postauthor
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/05/the-notify_post_author-filter-now-has-the-final-say-on-post-author-notifications/'
+  -
+    id: 'behavior:wp-hook-callback-ids-integer-keys'
+    type: behavior
+    title: 'フックのコールバック ID 生成が spl_object_id ベースになり、WP_Hook::$callbacks のキーが整数になり得る'
+    summary: |
+      _wp_filter_build_unique_id() はクロージャ・オブジェクトのコールバックに spl_object_hash ではなく spl_object_id を使うようになった。クロージャの ID は数値文字列になるため、PHP 配列のキーとしては整数に変換される。
+      $wp_filter[...]->callbacks のキーを文字列前提で strpos() 等に渡すコード（strict_types 下）は Fatal になる報告があり、7.1.1 で修正対象（#65919）。フックの内部構造を走査するデバッグ系・フック管理系プラグインは確認すること。
+    status: shipped
+    severity: high
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: _wp_filter_build_unique_id
+      -
+        kind: class
+        name: WP_Hook
+    match_hint: '\$wp_filter\s*\[|->callbacks\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/10/wordpress-7-1-1-rc1-is-now-available/'
+  -
+    id: 'css:block-style-variation-layout-regression'
+    type: css
+    title: '7.1.0 でブロックスタイルバリエーションの spacing.blockGap などレイアウトスタイルが出力されない回帰'
+    summary: |
+      7.1.0 ではブロックスタイルバリエーションに定義した spacing.blockGap が gap を出力しなくなる回帰があり（#66044 / Gutenberg #82335）、7.1.1 で修正対象。
+      スタイルバリエーションでレイアウト・gap を指定しているテーマは 7.1.0 での表示を確認し、7.1.1 へ更新すること。
+    status: shipped
+    severity: medium
+    confidence: manual
+    match_hint: blockGap
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/10/wordpress-7-1-1-rc1-is-now-available/'
+  -
+    id: 'behavior:multisite-delete-user-reassign-missing'
+    type: behavior
+    title: '7.1.0 のマルチサイトでユーザー削除時にコンテンツ移譲ドロップダウンが表示されない回帰'
+    summary: |
+      7.1.0 のマルチサイトではユーザー削除時に投稿の移譲先ドロップダウンが表示されず、コンテンツが黙って削除される回帰が報告されている（#66012）。7.1.1 で修正対象。
+      マルチサイトを運用・ユーザー削除フローを拡張しているプラグインは、7.1.1 までユーザー削除を避けるか動作を確認すること。
+    status: shipped
+    severity: high
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/10/wordpress-7-1-1-rc1-is-now-available/'
+  -
+    id: 'behavior:wp-get-abilities-global-filters'
+    type: behavior
+    title: 'wp_get_abilities() の結果が引数なしでもグローバルフィルターで変わり得るようになった'
+    summary: |
+      wp_get_abilities() は category / namespace / meta などで絞り込める $args を受け取るようになり、新フィルター wp_get_abilities_item_include と wp_get_abilities_result が引数なしの呼び出しでも適用される。
+      引数なしの呼び出しが「登録済み全件」を意味しなくなったため、未加工の登録内容が必要なら WP_Abilities_Registry::get_all_registered() を使うこと。REST の一覧も wp_get_abilities() 経由になり namespace でも絞り込める。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_get_abilities
+        replacement: 'WP_Abilities_Registry::get_all_registered'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/05/filtering-registered-abilities-with-wp_get_abilities-in-wordpress-7-1/'
+  -
+    id: 'behavior:abilities-rest-run-input-coercion'
+    type: behavior
+    title: 'REST からの Ability 実行時に入力が input_schema の型へ変換されるようになった'
+    summary: |
+      GET / DELETE の run リクエストでは、クエリ文字列の値が input_schema の型（integer, boolean, array など）に変換されてから permission_callback と execute_callback に渡るようになった。
+      これまで文字列 "10" や "true" を前提に自前でキャスト・比較していた Ability は、受け取る型が変わるため厳密比較の分岐を見直すこと。検証で拒否される入力の扱いは変わらない。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_register_ability
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/31/abilities-api-improvements-in-wordpress-7-1/'
+  -
+    id: 'behavior:abilities-rest-schema-prepared-for-client'
+    type: behavior
+    title: 'Abilities REST API のレスポンス内スキーマが Draft 4 形式に整形されるようになった'
+    summary: |
+      /wp-json/wp-abilities/v1/abilities のレスポンスに含まれる input / output スキーマは wp_prepare_json_schema_for_client() で整形され、プロパティ単位の required は親の required 配列に移り、sanitize_callback / validate_callback / arg_options は除去され、空オブジェクトの default は {} になる。
+      WP_Ability::get_input_schema() の戻り値は従来どおりなので、REST 経由のスキーマと PHP 側のスキーマを比較・依存しているクライアントは差異に注意すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: method
+        name: 'WP_Ability::get_input_schema'
+      -
+        kind: method
+        name: 'WP_Ability::get_output_schema'
+    match_hint: wp-abilities/v1
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/31/json-schema-preparation-for-client-compatibility-in-wordpress-7-1/'
+  -
+    id: 'behavior:abilities-public-meta-flag'
+    type: behavior
+    title: 'Ability のメタデータに public フラグが追加され、core/get-user-info が REST に公開された'
+    summary: |
+      解決後の Ability メタデータには常に bool の public が含まれ（既定 false）、show_in_rest は show_in_rest ?? public ?? false で決まる。コア Ability（core/get-site-info, core/get-user-info, core/get-environment-info）は public を使うようになり、core/get-user-info が新たに REST から発見可能になった。
+      また wp_before_execute_ability / wp_after_execute_ability は最後の引数に WP_Ability を追加で受け取る（既存コールバックはそのまま動く）。メタデータのキー有無で判定しているコードや、REST に出る Ability 一覧を前提にしたクライアントは確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: wp_register_ability_args
+      -
+        kind: hook
+        name: wp_before_execute_ability
+      -
+        kind: hook
+        name: wp_after_execute_ability
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/04/a-unified-public-exposure-flag-for-abilities-in-wordpress-7-1/'
+      - 'https://make.wordpress.org/core/2026/07/31/abilities-api-improvements-in-wordpress-7-1/'
+  -
+    id: 'feature:classic-block-hidden-from-inserter'
+    type: feature
+    title: 'Classic ブロックをインサーターから隠す変更は 7.1 で取り消された'
+    summary: |
+      7.1 で core/freeform をインサーターから隠し、wp_classic_block_supports_inserter フィルターで戻せるようにする変更が一度マージされたが、リリース前に取り消された。Classic ブロックは従来どおりインサーターに表示される。
+      wp_classic_block_supports_inserter フィルターは 7.1 に存在しない。ベータ期間中にこのフィルターを使ったコードは削除してよい（Enable Classic Block プラグインもクローズ予定）。
+    status: dropped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: wp_classic_block_supports_inserter
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/07/the-classic-block-stays-in-the-inserter-for-wordpress-7-1/'
+      - 'https://make.wordpress.org/core/2026/06/23/hiding-the-classic-block-from-the-inserter-in-wordpress-7-1/'
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+  -
+    id: 'feature:react-19'
+    type: feature
+    title: 'React 19 へのアップグレードは 7.1 でも見送られた（React 18.3 のまま）'
+    summary: |
+      7.1 は React 18.3 のまま出荷された。Gutenberg 23.3 で一度 React 19 に上げたが、react/jsx-runtime を自前でバンドルしたプラグインなどとの非互換で差し戻され、Gutenberg 23.4 以降の実験フラグとして継続している。
+      将来に備え、react/jsx-runtime をバンドルせず WordPress 提供の react-jsx-runtime を外部化すること、文字列 ref や関数コンポーネントの defaultProps など React 19 で削除された API を使わないことを確認しておくとよい。
+    status: dropped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_handle
+        name: react-jsx-runtime
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/24/react-19-punted-beyond-wordpress-7-1-experiment-in-gutenberg/'
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+  -
+    id: 'feature:real-time-collaboration'
+    type: feature
+    title: 'リアルタイム共同編集は 7.1 でも出荷されなかった'
+    summary: |
+      7.0 で削除されたリアルタイム共同編集は、7.1 サイクルでアウトリーチによる広範なテストが行われたが、最終リリースでは有効化されなかった。引き続き Gutenberg プラグイン（設定 > 投稿設定）で試せる。
+      投稿ロック（_edit_lock）前提の処理は 7.1 でも従来どおり。共同編集を前提とした対応はまだ不要。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+      - 'https://make.wordpress.org/core/2026/06/03/announcing-a-collaborative-editing-outreach-effort-for-7-1/'
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+  -
+    id: 'feature:on-this-day-dashboard-widget'
+    type: feature
+    title: 'ダッシュボードの「On This Day」ウィジェットは 7.1 に入らなかった'
+    summary: |
+      ロードマップにあった過去の投稿を振り返るダッシュボードウィジェット「On This Day」は 7.1 に含まれなかった。議論は Trac #65801 で継続。
+      ダッシュボードウィジェットの並びや ID を前提にしたコードへの影響はない。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+  -
+    id: 'feature:guidelines-knowledge-post-type'
+    type: feature
+    title: 'Guidelines と wp_knowledge 投稿タイプのコア統合は 7.1 に入らなかった'
+    summary: |
+      新しい投稿タイプ wp_knowledge と、その上に構築する Guidelines 機能のマージ提案は 7.1 に含まれず、Gutenberg プラグインで継続している。7.1.0 のコードに wp_knowledge は存在しない。
+      Guidelines をコア機能として前提にしたプラグインは、引き続き Gutenberg プラグインの有無で分岐すること。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+      - 'https://make.wordpress.org/core/2026/06/22/merge-proposal-guidelines-built-on-knowledge/'
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+  -
+    id: 'feature:design-system-theming-admin-rollout'
+    type: feature
+    title: 'Design System Theming の管理画面全体への適用は見送られ、基盤のみ出荷された'
+    summary: |
+      Design System Theming のマージ提案のうち、7.1 で入ったのは wp-theme スタイルシート（デザイントークン）と wp-theme スクリプト（ThemeProvider）などの基盤と、サイトエディタへの管理画面配色の反映だけ。管理画面全体への適用は今後のリリースで検討される。
+      管理画面の見た目が 7.1 で全面的に変わる前提の対応は不要。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/05/wordpress-7-1-field-guide/'
+      - 'https://make.wordpress.org/core/2026/07/07/merge-proposal-design-system-theming/'
+      - 'https://make.wordpress.org/core/2026/07/31/design-system-theming-in-wordpress-7-1/'
+  -
+    id: 'feature:core-read-abilities'
+    type: feature
+    title: 'コア Ability の拡張（core/read-settings, core/read-content, core/read-users）は 7.1 に入らなかった'
+    summary: |
+      読み取り専用のコア Ability 3 種と show_in_abilities フラグを追加するマージ提案は、7.1.0 のコードに含まれていない。7.1 で入ったのは既存 3 種（core/get-site-info など）のスキーマ整備と fields 入力のみ。
+      これらの Ability が存在する前提の AI・MCP 連携は、wp_get_ability() の戻り値を確認して分岐すること。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/07/02/merge-proposal-expanding-wordpress-core-abilities/'
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+  -
+    id: 'feature:unicode-email-addresses'
+    type: feature
+    title: 'Unicode メールアドレス対応は 7.1 に入らなかった'
+    summary: |
+      is_email() / sanitize_email() で非 ASCII のメールアドレスを受け付け、WP_Email_Address クラスを追加する変更は trunk に [62482] でマージされテスト募集も行われたが、7.1.0 のコードには含まれていない（wp_is_unicode_email / WP_Email_Address が存在しない）。
+      メールアドレスが ASCII のみである前提は 7.1 でも維持される。将来の導入に備え、マルチバイト文字を含むメールアドレスの扱いは引き続き注視すること。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/06/10/call-for-testing-unicode-email-addresses/'
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+  -
+    id: 'feature:speculative-loading-auto-moderate-eagerness'
+    type: feature
+    title: 'オブジェクト／ページキャッシュ検出時に投機的読み込みを moderate にする変更は入らなかった'
+    summary: |
+      ロードマップでは、オブジェクトキャッシュとページキャッシュを検出したサイトで投機的読み込みの既定 eagerness を conservative から moderate に上げる予定だったが、7.1.0 の既定は conservative のまま。
+      代わりに WP_SPECULATIVE_LOADING_DEFAULT_MODE / WP_SPECULATIVE_LOADING_DEFAULT_EAGERNESS 定数（または同名の環境変数）でホスティング側が既定値を変えられるようになった。
+    status: dropped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: constant
+        name: WP_SPECULATIVE_LOADING_DEFAULT_EAGERNESS
+      -
+        kind: constant
+        name: WP_SPECULATIVE_LOADING_DEFAULT_MODE
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+  -
+    id: 'feature:admin-dashicons-to-svg'
+    type: feature
+    title: '管理バーの Dashicons を SVG アイコンに置き換える変更は 7.1 に入らなかった'
+    summary: |
+      ロードマップでは管理バーの Dashicons を wordpress/icons の SVG に置き換え、「Howdy」表記を削除する予定だったが、7.1.0 の管理バーは従来どおり（Howdy も残っている）。置き換えは 7.1 リリース後も提案段階で、wp_get_icon() を使ったパッチがレビュー中。
+      #wpadminbar の .ab-icon:before など Dashicons 前提の CSS は 7.1 では壊れないが、次期リリースで影響を受ける可能性がある。
+    status: dropped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: css_selector
+        name: '#wpadminbar .ab-icon'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'
+      - 'https://make.wordpress.org/core/2026/09/04/replacing-dashicons-in-the-admin-bar-and-menu/'
+  -
+    id: 'feature:table-of-contents-block'
+    type: feature
+    title: '目次（Table of Contents）ブロックは 7.1 に入らなかった'
+    summary: |
+      ロードマップで Playlist・Tabs と並んで予定されていた Table of Contents ブロックは 7.1.0 に含まれていない（Playlist と Tabs は出荷）。
+      目次ブロックをコア提供と見なして独自実装を外す判断はまだしないこと。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/06/19/roadmap-to-7-1/'

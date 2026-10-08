@@ -1,0 +1,265 @@
+release: '7.2'
+status: trunk
+origin: extracted
+compared:
+  from: 7.1.0
+  to: trunk
+  to_commit: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+generated_at: '2026-10-08T06:18:56+00:00'
+sources:
+  -
+    type: git
+    url: 'https://github.com/WordPress/wordpress-develop/compare/7.1.0...ab2373ad7f5d7cb8883e2152a2779e29965ddd2f'
+changes:
+  -
+    id: 'deprecated:function:_truncate_post_slug'
+    type: deprecated
+    title: '`_truncate_post_slug` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: function
+        name: _truncate_post_slug
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6598
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/deprecated.php#L6598'
+  -
+    id: 'deprecated:function:wp_kses_html_error'
+    type: deprecated
+    title: '`wp_kses_html_error` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: function
+        name: wp_kses_html_error
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 3864
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/deprecated.php#L3864'
+  -
+    id: 'deprecated:class:WP_Sitemaps_Stylesheet'
+    type: deprecated
+    title: '`WP_Sitemaps_Stylesheet` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: class
+        name: WP_Sitemaps_Stylesheet
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php
+      line: 20
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php#L20'
+  -
+    id: 'deprecated:method:WP_Sitemaps_Renderer::get_sitemap_index_stylesheet_url'
+    type: deprecated
+    title: '`WP_Sitemaps_Renderer::get_sitemap_index_stylesheet_url` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Sitemaps_Renderer::get_sitemap_index_stylesheet_url'
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php
+      line: 83
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php#L83'
+  -
+    id: 'deprecated:method:WP_Sitemaps_Renderer::get_sitemap_stylesheet_url'
+    type: deprecated
+    title: '`WP_Sitemaps_Renderer::get_sitemap_stylesheet_url` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Sitemaps_Renderer::get_sitemap_stylesheet_url'
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php
+      line: 55
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php#L55'
+  -
+    id: 'deprecated:method:WP_Sitemaps_Stylesheet::get_sitemap_index_stylesheet'
+    type: deprecated
+    title: '`WP_Sitemaps_Stylesheet::get_sitemap_index_stylesheet` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Sitemaps_Stylesheet::get_sitemap_index_stylesheet'
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php
+      line: 58
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php#L58'
+  -
+    id: 'deprecated:method:WP_Sitemaps_Stylesheet::get_sitemap_stylesheet'
+    type: deprecated
+    title: '`WP_Sitemaps_Stylesheet::get_sitemap_stylesheet` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Sitemaps_Stylesheet::get_sitemap_stylesheet'
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php
+      line: 45
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php#L45'
+  -
+    id: 'deprecated:method:WP_Sitemaps_Stylesheet::get_stylesheet_css'
+    type: deprecated
+    title: '`WP_Sitemaps_Stylesheet::get_stylesheet_css` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Sitemaps_Stylesheet::get_stylesheet_css'
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php
+      line: 71
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php#L71'
+  -
+    id: 'deprecated:method:WP_Sitemaps_Stylesheet::render_stylesheet'
+    type: deprecated
+    title: '`WP_Sitemaps_Stylesheet::render_stylesheet` が非推奨になった（7.2.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Sitemaps_Stylesheet::render_stylesheet'
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php
+      line: 30
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php#L30'
+  -
+    id: 'hook_deprecated:hook:wp_sitemaps_stylesheet_content'
+    type: hook_deprecated
+    title: 'filter `wp_sitemaps_stylesheet_content` が非推奨になった'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: hook
+        name: wp_sitemaps_stylesheet_content
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php
+      line: 276
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php#L276'
+  -
+    id: 'hook_deprecated:hook:wp_sitemaps_stylesheet_css'
+    type: hook_deprecated
+    title: 'filter `wp_sitemaps_stylesheet_css` が非推奨になった'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: hook
+        name: wp_sitemaps_stylesheet_css
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php
+      line: 85
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-stylesheet.php#L85'
+  -
+    id: 'hook_deprecated:hook:wp_sitemaps_stylesheet_index_content'
+    type: hook_deprecated
+    title: 'filter `wp_sitemaps_stylesheet_index_content` が非推奨になった'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: hook
+        name: wp_sitemaps_stylesheet_index_content
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php
+      line: 260
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php#L260'
+  -
+    id: 'hook_deprecated:hook:wp_sitemaps_stylesheet_index_url'
+    type: hook_deprecated
+    title: 'filter `wp_sitemaps_stylesheet_index_url` が非推奨になった'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: hook
+        name: wp_sitemaps_stylesheet_index_url
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php
+      line: 98
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php#L98'
+  -
+    id: 'hook_deprecated:hook:wp_sitemaps_stylesheet_url'
+    type: hook_deprecated
+    title: 'filter `wp_sitemaps_stylesheet_url` が非推奨になった'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 7.2.0
+    symbols:
+      -
+        kind: hook
+        name: wp_sitemaps_stylesheet_url
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php
+      line: 70
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/sitemaps/class-wp-sitemaps-renderer.php#L70'

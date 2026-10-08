@@ -1,0 +1,354 @@
+release: '7.2'
+status: trunk
+origin: curated
+compared:
+  from: 7.1.0
+  to: trunk
+  to_commit: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+generated_at: '2026-10-08T00:00:00+00:00'
+sources:
+  -
+    type: roadmap
+    url: 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+    title: 'Roadmap to 7.2'
+    date: '2026-09-18'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/10/07/progress-report-wp_kses/'
+    title: 'Progress Report: wp_kses()'
+    date: '2026-10-07'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/08/25/proposal-a-secrets-api-for-wordpress-7-2/'
+    title: 'Proposal: A Secrets API for WordPress 7.2'
+    date: '2026-08-25'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/09/04/replacing-dashicons-in-the-admin-bar-and-menu/'
+    title: 'Replacing Dashicons in the admin bar and menu'
+    date: '2026-09-04'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/09/18/moving-to-a-server-aware-approach-for-collaboration/'
+    title: 'Moving to a server-aware approach for collaboration'
+    date: '2026-09-18'
+  -
+    type: other
+    url: 'https://make.wordpress.org/core/2026/10/02/presence-api-whats-new/'
+    title: 'Presence API: What’s new'
+    date: '2026-10-02'
+  -
+    type: git
+    url: 'https://github.com/WordPress/wordpress-develop/compare/7.1.0...ab2373ad7f5d7cb8883e2152a2779e29965ddd2f'
+changes:
+  -
+    id: 'behavior:wp-kses-html-api-parser'
+    type: behavior
+    title: 'wp_kses() が HTML API ベースの新実装に置き換わった（旧実装はフィルターで復帰可能）'
+    summary: |
+      trunk では wp_kses() が HTML API（Tag Processor）ベースの実装に置き換わり、既定で有効になっている。出力は再シリアライズされるため、タグの小文字化・属性の二重引用符化・文字参照の正規化が起き、許可されていない script/style は中身ごと削除、途中で切れた末尾のタグ断片は破棄、複雑な SVG/MathML はそこで打ち切りになる。
+      wp_kses 系の出力を文字列比較しているテストや、セミコロンなしの & を含むテキストを通しているコードは結果が変わる可能性がある。`wp_kses_force_legacy_parser` フィルターで true を返すと旧実装に戻せるが、旧実装は 7.2.0 で消える可能性もあるため、ベータ期間中に新実装で検証すること。
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: wp_kses
+      -
+        kind: function
+        name: wp_kses_post
+      -
+        kind: function
+        name: wp_kses_data
+      -
+        kind: hook
+        name: wp_kses_force_legacy_parser
+    evidence:
+      file: src/wp-includes/kses.php
+      line: 979
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    related:
+      - 'deprecated:function:wp_kses_html_error'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/10/07/progress-report-wp_kses/'
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/kses.php#L979'
+  -
+    id: 'behavior:application-password-created-email'
+    type: behavior
+    title: アプリケーションパスワード作成時にユーザーへ通知メールが送られるようになった
+    summary: |
+      `wp_create_application_password` アクションに `wp_application_password_created_notification()` が登録され、アプリケーションパスワードが追加されるとそのユーザーにメールが送られる。
+      プログラムでアプリケーションパスワードを大量発行するプラグイン（連携・プロビジョニング系）は意図しないメールが飛ぶ。抑止は `wp_send_application_password_created_email` フィルター、文面変更は `wp_application_password_created_email` フィルターで行う。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: method
+        name: 'WP_Application_Passwords::create_new_application_password'
+      -
+        kind: hook
+        name: wp_create_application_password
+      -
+        kind: hook
+        name: wp_send_application_password_created_email
+      -
+        kind: hook
+        name: wp_application_password_created_email
+    evidence:
+      file: src/wp-includes/default-filters.php
+      line: 350
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/functions.php#L9544'
+  -
+    id: 'behavior:absint-int-return-type'
+    type: behavior
+    title: 'absint() に int 戻り値型が付き、範囲外の float は PHP_INT_MAX に丸められる'
+    summary: |
+      `absint()` のシグネチャが `absint( $maybeint ): int` になり、整数範囲を超える有限の float はオーバーフローではなく `PHP_INT_MAX` を返すようになった。NAN/INF は従来どおり 0。
+      通常の利用では影響しないが、巨大な数値やオーバーフロー後の値に依存したテスト・ID 計算があれば確認すること。
+    status: shipped
+    severity: low
+    confidence: medium
+    symbols:
+      -
+        kind: function
+        name: absint
+    evidence:
+      file: src/wp-includes/load.php
+      line: 1474
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/load.php#L1474'
+  -
+    id: 'behavior:theme-json-preset-reference-kebab-case'
+    type: behavior
+    title: 'theme.json の `var:preset|...` 参照のスラッグがケバブケースに変換されるようになった'
+    summary: |
+      `WP_Theme_JSON::convert_custom_properties()` が、`var:preset|color|...` などのプリセット参照のスラッグを、生成される CSS カスタムプロパティ名に合わせてケバブケース化するようになった。
+      キャメルケースなどのスラッグを持つプリセットを `var:preset|` で参照しているテーマ・ブロックスタイルは、出力される `var(--wp--preset--...)` の名前が変わる。これまで参照が解決されず壊れていたケースが直る方向の変更だが、旧名に合わせた手書き CSS がないか確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    match_hint: 'var:preset\|[a-z-]+\|[^"]*[A-Z_]'
+    evidence:
+      file: src/wp-includes/class-wp-theme-json.php
+      line: 5675
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/class-wp-theme-json.php#L5675'
+  -
+    id: 'editor_js:jquery-migrate-3-6'
+    type: editor_js
+    title: 'jQuery Migrate が 3.4.1 から 3.6.0 に更新された'
+    summary: |
+      `jquery-migrate` ハンドルのバンドル版が 3.6.0 に上がった（jQuery 本体は 3.7.1 のまま）。
+      非推奨 jQuery API を使う管理画面スクリプトは、SCRIPT_DEBUG 時のコンソール警告の内容・件数が変わる可能性がある。古い jQuery API に依存したコードがあれば警告を確認すること。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_handle
+        name: jquery-migrate
+    evidence:
+      file: src/wp-includes/script-loader.php
+      line: 909
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/script-loader.php#L909'
+  -
+    id: 'db:attachment-edit-root-id-meta'
+    type: db
+    title: '画像編集で作られた添付ファイルに元画像 ID のメタ `_wp_attachment_edit_root_id` が記録されるようになった'
+    summary: |
+      Media Editor Modal の系譜管理の一環で、画像の切り抜き・編集から新規作成された添付ファイルに、編集チェーンの起点となる添付 ID が `_wp_attachment_edit_root_id` として保存される。取得は `wp_get_edit_root_attachment_id()`。起点が完全削除されるとこのメタは一括削除される。
+      メディアの複製・移行・同期プラグインは、このメタの ID を移行先で付け替えないと誤った添付を指すことがある。
+    status: shipped
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: function
+        name: wp_get_edit_root_attachment_id
+    match_hint: _wp_attachment_edit_root_id
+    evidence:
+      file: src/wp-includes/post.php
+      line: 8899
+      ref: ab2373ad7f5d7cb8883e2152a2779e29965ddd2f
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/post.php#L8899'
+  -
+    id: 'behavior:admin-script-concatenation-retirement'
+    type: behavior
+    title: 管理画面のスクリプト/スタイル連結（load-scripts.php）の廃止が予定されている
+    summary: |
+      7.2 ではスクリプト/スタイルの連結をやめ、プリフェッチに置き換える方針。trunk には `wp_prefetch_admin_assets()` と暫定フィルター `wp_should_concatenate_admin_scripts` が入っているが、連結自体はまだ既定で有効で、このフィルターは 7.2-beta1 前に削除予定と明記されている。
+      `CONCATENATE_SCRIPTS` 定数や `$concatenate_scripts` グローバルに依存するコード、連結を前提にしたハンドル順序・依存関係の不備があるプラグインは、連結廃止後に読み込み順の違いが表面化する可能性がある。暫定フィルターには依存しないこと。
+    status: planned
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: constant
+        name: CONCATENATE_SCRIPTS
+      -
+        kind: hook
+        name: wp_should_concatenate_admin_scripts
+      -
+        kind: function
+        name: script_concat_settings
+    match_hint: \$concatenate_scripts|load-(scripts|styles)\.php
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+      - 'https://github.com/WordPress/wordpress-develop/blob/ab2373ad7f5d7cb8883e2152a2779e29965ddd2f/src/wp-includes/script-loader.php#L2517'
+  -
+    id: 'feature:admin-dashicons-to-svg'
+    type: css
+    title: '管理バー・管理メニューのアイコンを Dashicons から SVG（wp_get_icon）に置き換える予定'
+    summary: |
+      管理バーとサイドメニューのコアアイコンを、アイコンフォントの Dashicons から `wp_get_icon()` による SVG に置き換えるパッチがレビュー中（trunk の menu-header.php はまだ Dashicons のまま）。
+      コアのメニュー項目・管理バー項目のアイコンを CSS の `:before` 疑似要素やフォントグリフ前提で上書き・装飾しているプラグインや管理画面テーマは、表示が崩れる可能性がある。プラグイン自身が登録したメニューの Dashicons 指定まで廃止されるかは未確定。
+    status: planned
+    severity: medium
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/04/replacing-dashicons-in-the-admin-bar-and-menu/'
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'behavior:widgets-accessibility-mode-removal'
+    type: behavior
+    title: ウィジェット画面の「アクセシビリティモード」の削除が予定されている
+    summary: |
+      クラシックウィジェット画面の管理モードを減らすため、アクセシビリティモード（`widgets-access`）の削除がロードマップに挙がっている。trunk ではまだ残っている。
+      このモードの URL パラメータや画面構造を前提にしたウィジェット系プラグインは、削除後の挙動を確認すること。
+    status: planned
+    severity: low
+    confidence: manual
+    match_hint: widgets-access
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'editor_js:dataform-post-inspector'
+    type: editor_js
+    title: '投稿エディタのインスペクター（アイキャッチ・抜粋・ステータス等）が DataForm に置き換わる予定'
+    summary: |
+      投稿サイドバーのドキュメント設定（アイキャッチ画像、抜粋、ステータス、日付、作成者、テンプレート等）を DataForm ベースに置き換える作業が進行中で、テスト募集が出ている。
+      これらのパネルに SlotFill やフィルターで UI を差し込んでいるプラグイン、DOM・CSS クラスに依存した E2E テストは、置き換え後に表示位置や構造が変わる可能性がある。具体的な影響 API は Dev Note 待ち。
+    status: planned
+    severity: medium
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'editor_js:interactivity-router-navigation-state'
+    type: editor_js
+    title: 'Interactivity Router の navigation.hasStarted / hasFinished に代わる遷移監視 API が予定されている'
+    summary: |
+      クライアントサイド遷移を監視・発火元を判別できる公式の仕組みを Interactivity Router に追加し、非推奨の `state.navigation.hasStarted` / `hasFinished` を置き換える予定。あわせて信頼済み HTML を描画する `data-wp-html` ディレクティブ（`asDangerousHTML()` 経由）も計画中。
+      `navigation.hasStarted` / `hasFinished` を参照しているブロックは移行先 API の Dev Note を待って対応すること。
+    status: planned
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: js_package
+        name: '@wordpress/interactivity-router'
+    match_hint: navigation\.has(Started|Finished)
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'feature:react-19'
+    type: editor_js
+    title: 'React 19 への移行は 7.2 でも完了しない見込み'
+    summary: |
+      Gutenberg の React 19 対応（型、依存、レンダリング修正）は大半が入ったが、ロードマップ上 7.2 での完全移行は「見込み薄」とされている。将来リリースでの移行に備えた周知。
+      `react-dom` の旧 API（render 等）や React 18 前提の挙動に依存するブロック・管理画面 UI は、引き続き移行準備を進めること。
+    status: planned
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: js_handle
+        name: react
+      -
+        kind: js_handle
+        name: react-dom
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'css:navigation-link-current-state-supports'
+    type: css
+    title: 'Navigation Link ブロックに -current カスタム状態と色・枠線・余白サポートが追加される予定'
+    summary: |
+      カスタム状態の作業として、Navigation Link と Tabs ブロックに `-current` 状態、Navigation Link に color・border・spacing のブロックサポートを追加する予定。
+      現在ページのメニュー項目をテーマ CSS で装飾している場合、ブロックサポート由来のクラスやインラインスタイルが加わって詳細度・見た目が変わる可能性がある。
+    status: planned
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: block
+        name: core/navigation-link
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'behavior:application-passwords-hardening'
+    type: behavior
+    title: 'アプリケーションパスワードと default_role の追加ハードニングが予定されている'
+    summary: |
+      通知メール（trunk 入り済み）以外に、非 HTTPS 環境での判定の見直し、`default_role` に危険な値を設定できないようにする制限、Cookie の SameSite 属性対応が予定されている。
+      `default_role` を管理者相当の権限グループに設定するプラグインや、認証 Cookie を独自に発行・検証するプラグインは影響を受ける可能性がある。
+    status: planned
+    severity: low
+    confidence: manual
+    symbols:
+      -
+        kind: option
+        name: default_role
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'behavior:sudo-mode'
+    type: behavior
+    title: '権限の高い管理操作を再認証で保護する「sudo モード」の導入が検討されている'
+    summary: |
+      ログイン済みでも高権限の管理操作の前に再認証を求める「sudo モード」の初期作業が始まった。提案と対象操作は未公開。
+      管理画面の操作を自動化しているプラグインや、プラグイン/ユーザー管理画面をリモート操作するツールは、再認証プロンプトで処理が止まる可能性がある。提案公開後に再評価すること。
+    status: planned
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'feature:secrets-api'
+    type: feature
+    title: '認証情報を暗号化保存する Secrets API が 7.2 向けに提案されている'
+    summary: |
+      プラグインが API キー等をオプションに平文保存している現状を改め、暗号化必須の Secrets API（`wp_set_secret()` / `wp_get_secret()` / `wp_delete_secret()` / `wp_import_option_as_secret()`、値オブジェクト `WP_Secret`、`manage_secrets` 権限、`secrets.php` ドロップイン）を 7.2 に入れる提案。UI は 7.3。trunk には未コミットで、Beta 1 までにコミットか 7.3 送りかが決まる。
+      既存コードを壊すものではないが、同名の関数・クラスを独自定義しているプラグインは衝突する。API キーを扱うプラグインは移行（import）計画を検討すること。
+    status: planned
+    severity: low
+    confidence: manual
+    match_hint: 'function\s+wp_(set|get|delete)_secret\s*\(|class\s+WP_Secret\b'
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/08/25/proposal-a-secrets-api-for-wordpress-7-2/'
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+  -
+    id: 'feature:real-time-collaboration'
+    type: feature
+    title: 'リアルタイム共同編集は 7.2 のロードマップに含まれていない'
+    summary: |
+      7.0・7.1 で見送られたリアルタイム共同編集は、7.2 では意図的にロードマップから外された。ブラウザ間で直接同期する方式から、サーバーが編集者の帰属・権限確認・マージを担う「サーバー主導」方式への転換が検討されており、候補の同期エンジンは探索段階でコア入りの準備はできていない。
+      関連する Presence API も機能プラグイン段階。7.2 で共同編集が入る前提の対応は不要。
+    status: dropped
+    severity: low
+    confidence: manual
+    source_urls:
+      - 'https://make.wordpress.org/core/2026/09/18/roadmap-to-7-2/'
+      - 'https://make.wordpress.org/core/2026/09/18/moving-to-a-server-aware-approach-for-collaboration/'
+      - 'https://make.wordpress.org/core/2026/10/02/presence-api-whats-new/'

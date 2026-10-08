@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/tarosky/workflows/wp-compat/schema/catalog.schema.json",
+  "title": "WordPress compatibility catalog",
+  "description": "1リリース分の変更カタログ。extracted.yml（機械抽出）と curated.yml（Claude＋人間）の両方がこの形式に従う。",
+  "type": "object",
+  "required": ["release", "status", "origin", "changes"],
+  "additionalProperties": false,
+  "properties": {
+    "release": {
+      "description": "対象のメジャーリリース（例: 7.1）",
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "description": "カタログ作成時点のリリース段階。trunk/beta/rc の間は作り直される",
+      "enum": ["trunk", "beta", "rc", "final"]
+    },
+    "origin": {
+      "description": "extracted: スクリプトが毎回再生成。curated: 人間がPRでレビューする",
+      "enum": ["extracted", "curated"]
+    },
+    "compared": {
+      "description": "比較した wordpress-develop の ref",
+      "type": "object",
+      "required": ["from", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "to_commit": { "type": "string" }
+      }
+    },
+    "generated_at": { "type": "string" },
+    "sources": {
+      "description": "参照した情報源",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "type": { "enum": ["field-guide", "dev-note", "release", "roadmap", "trac", "git", "other"] },
+          "url": { "type": "string" },
+          "title": { "type": "string" },
+          "date": { "type": "string" }
+        }
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/change" }
+    }
+  },
+  "$defs": {
+    "change": {
+      "type": "object",
+      "required": ["id", "type", "title", "severity", "confidence", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "リリースをまたいで不変のID。抽出物は type:kind:name、手書きは slug",
+          "type": "string",
+          "pattern": "^\\S+$"
+        },
+        "type": {
+          "enum": [
+            "removed",
+            "deprecated",
+            "hook_removed",
+            "hook_deprecated",
+            "file_deprecated",
+            "argument_deprecated",
+            "behavior",
+            "php_requirement",
+            "editor_js",
+            "css",
+            "db",
+            "feature"
+          ]
+        },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "status": {
+          "description": "planned: ロードマップ等で予告のみ。shipped: 出荷（trunk/beta ではコードに入った）。dropped: 予告・ベータに入ったが最終版に入らなかった。reverted: 出荷後に差し戻された",
+          "enum": ["planned", "shipped", "dropped", "reverted"]
+        },
+        "severity": {
+          "description": "high: Fatal/機能停止。medium: 挙動変化・Notice。low: 情報",
+          "enum": ["high", "medium", "low"]
+        },
+        "confidence": {
+          "description": "high: シンボルで機械照合できる。medium: 照合できるが偽陽性/偽陰性がある。manual: 目視が必要",
+          "enum": ["high", "medium", "manual"]
+        },
+        "symbols": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["kind", "name"],
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "enum": ["function", "class", "method", "hook", "file", "js_package", "js_handle", "css_handle", "css_selector", "option", "block", "constant", "php"]
+              },
+              "name": { "type": "string" },
+              "replacement": { "type": "string" }
+            }
+          }
+        },
+        "match_hint": {
+          "description": "シンボルで表せない場合の照合用正規表現（PCRE）",
+          "type": "string"
+        },
+        "since": {
+          "description": "非推奨・削除が宣言されたバージョン",
+          "type": "string"
+        },
+        "related": {
+          "description": "関連する変更ID（例: 過去リリースでの dropped）",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "file": { "type": "string" },
+            "line": { "type": "integer" },
+            "ref": { "type": "string" }
+          }
+        },
+        "source_urls": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

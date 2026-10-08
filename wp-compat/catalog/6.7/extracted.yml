@@ -1,0 +1,1234 @@
+release: '6.7'
+status: final
+origin: extracted
+compared:
+  from: 6.6.0
+  to: 6.7.0
+  to_commit: 262f4b6add2d1503bdd35611764ec58742b10fb9
+generated_at: '2026-10-08T06:18:44+00:00'
+sources:
+  -
+    type: git
+    url: 'https://github.com/WordPress/wordpress-develop/compare/6.6.0...262f4b6add2d1503bdd35611764ec58742b10fb9'
+changes:
+  -
+    id: 'removed:class:ParagonIE_Sodium_Core_Base64_Common'
+    type: removed
+    title: 'クラス `ParagonIE_Sodium_Core_Base64_Common` が削除された'
+    status: shipped
+    severity: low
+    confidence: high
+    symbols:
+      -
+        kind: class
+        name: ParagonIE_Sodium_Core_Base64_Common
+    evidence:
+      file: src/wp-includes/sodium_compat/src/Core/Base64/Common.php
+      line: 13
+      ref: 6.6.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.6.0/src/wp-includes/sodium_compat/src/Core/Base64/Common.php#L13'
+  -
+    id: 'deprecated:function:current_user_can_for_blog'
+    type: deprecated
+    title: '`current_user_can_for_blog` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: current_user_can_for_blog
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6424
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/deprecated.php#L6424'
+  -
+    id: 'deprecated:function:wp_create_block_style_variation_instance_name'
+    type: deprecated
+    title: '`wp_create_block_style_variation_instance_name` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_create_block_style_variation_instance_name
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6405
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/deprecated.php#L6405'
+  -
+    id: 'deprecated:function:wp_enqueue_global_styles_custom_css'
+    type: deprecated
+    title: '`wp_enqueue_global_styles_custom_css` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_enqueue_global_styles_custom_css
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6375
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/deprecated.php#L6375'
+  -
+    id: 'deprecated:function:wp_get_global_styles_custom_css'
+    type: deprecated
+    title: '`wp_get_global_styles_custom_css` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_get_global_styles_custom_css
+    evidence:
+      file: src/wp-includes/deprecated.php
+      line: 6323
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/deprecated.php#L6323'
+  -
+    id: 'deprecated:function:wp_init_targeted_link_rel_filters'
+    type: deprecated
+    title: '`wp_init_targeted_link_rel_filters` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_init_targeted_link_rel_filters
+    evidence:
+      file: src/wp-includes/formatting.php
+      line: 3399
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/formatting.php#L3399'
+  -
+    id: 'deprecated:function:wp_remove_targeted_link_rel_filters'
+    type: deprecated
+    title: '`wp_remove_targeted_link_rel_filters` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_remove_targeted_link_rel_filters
+    evidence:
+      file: src/wp-includes/formatting.php
+      line: 3409
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/formatting.php#L3409'
+  -
+    id: 'deprecated:function:wp_simplepie_autoload'
+    type: deprecated
+    title: '`wp_simplepie_autoload` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_simplepie_autoload
+    evidence:
+      file: src/wp-includes/class-simplepie.php
+      line: 18
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/class-simplepie.php#L18'
+  -
+    id: 'deprecated:function:wp_targeted_link_rel'
+    type: deprecated
+    title: '`wp_targeted_link_rel` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_targeted_link_rel
+    evidence:
+      file: src/wp-includes/formatting.php
+      line: 3307
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/formatting.php#L3307'
+  -
+    id: 'deprecated:function:wp_targeted_link_rel_callback'
+    type: deprecated
+    title: '`wp_targeted_link_rel_callback` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: function
+        name: wp_targeted_link_rel_callback
+    evidence:
+      file: src/wp-includes/formatting.php
+      line: 3348
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/formatting.php#L3348'
+  -
+    id: 'deprecated:class:SimplePie_Author'
+    type: deprecated
+    title: '`SimplePie_Author` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Author
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Author.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Author.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache'
+    type: deprecated
+    title: '`SimplePie_Cache` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache_Base'
+    type: deprecated
+    title: '`SimplePie_Cache_Base` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache_Base
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache/Base.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache/Base.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache_DB'
+    type: deprecated
+    title: '`SimplePie_Cache_DB` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache_DB
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache/DB.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache/DB.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache_File'
+    type: deprecated
+    title: '`SimplePie_Cache_File` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache_File
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache/File.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache/File.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache_Memcache'
+    type: deprecated
+    title: '`SimplePie_Cache_Memcache` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache_Memcache
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache/Memcache.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache/Memcache.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache_Memcached'
+    type: deprecated
+    title: '`SimplePie_Cache_Memcached` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache_Memcached
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache/Memcached.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache/Memcached.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache_MySQL'
+    type: deprecated
+    title: '`SimplePie_Cache_MySQL` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache_MySQL
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache/MySQL.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache/MySQL.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Cache_Redis'
+    type: deprecated
+    title: '`SimplePie_Cache_Redis` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Cache_Redis
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Cache/Redis.php
+      line: 21
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Cache/Redis.php#L21'
+  -
+    id: 'deprecated:class:SimplePie_Caption'
+    type: deprecated
+    title: '`SimplePie_Caption` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Caption
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Caption.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Caption.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Category'
+    type: deprecated
+    title: '`SimplePie_Category` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Category
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Category.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Category.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Content_Type_Sniffer'
+    type: deprecated
+    title: '`SimplePie_Content_Type_Sniffer` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Content_Type_Sniffer
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Content/Type/Sniffer.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Content/Type/Sniffer.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Copyright'
+    type: deprecated
+    title: '`SimplePie_Copyright` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Copyright
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Copyright.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Copyright.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Credit'
+    type: deprecated
+    title: '`SimplePie_Credit` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Credit
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Credit.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Credit.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Enclosure'
+    type: deprecated
+    title: '`SimplePie_Enclosure` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Enclosure
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Enclosure.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Enclosure.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Exception'
+    type: deprecated
+    title: '`SimplePie_Exception` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Exception
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Exception.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Exception.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_File'
+    type: deprecated
+    title: '`SimplePie_File` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_File
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/File.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/File.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_HTTP_Parser'
+    type: deprecated
+    title: '`SimplePie_HTTP_Parser` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_HTTP_Parser
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/HTTP/Parser.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/HTTP/Parser.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_IRI'
+    type: deprecated
+    title: '`SimplePie_IRI` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_IRI
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/IRI.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/IRI.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Item'
+    type: deprecated
+    title: '`SimplePie_Item` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Item
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Item.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Item.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Locator'
+    type: deprecated
+    title: '`SimplePie_Locator` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Locator
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Locator.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Locator.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Misc'
+    type: deprecated
+    title: '`SimplePie_Misc` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Misc
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Misc.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Misc.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Net_IPv6'
+    type: deprecated
+    title: '`SimplePie_Net_IPv6` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Net_IPv6
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Net/IPv6.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Net/IPv6.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Parse_Date'
+    type: deprecated
+    title: '`SimplePie_Parse_Date` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Parse_Date
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Parse/Date.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Parse/Date.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Parser'
+    type: deprecated
+    title: '`SimplePie_Parser` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Parser
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Parser.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Parser.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Rating'
+    type: deprecated
+    title: '`SimplePie_Rating` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Rating
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Rating.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Rating.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Registry'
+    type: deprecated
+    title: '`SimplePie_Registry` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Registry
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Registry.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Registry.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Restriction'
+    type: deprecated
+    title: '`SimplePie_Restriction` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Restriction
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Restriction.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Restriction.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Sanitize'
+    type: deprecated
+    title: '`SimplePie_Sanitize` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Sanitize
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Sanitize.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Sanitize.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_Source'
+    type: deprecated
+    title: '`SimplePie_Source` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_Source
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/Source.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/Source.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_XML_Declaration_Parser'
+    type: deprecated
+    title: '`SimplePie_XML_Declaration_Parser` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_XML_Declaration_Parser
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/XML/Declaration/Parser.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/XML/Declaration/Parser.php#L53'
+  -
+    id: 'deprecated:class:SimplePie_gzdecode'
+    type: deprecated
+    title: '`SimplePie_gzdecode` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: class
+        name: SimplePie_gzdecode
+    evidence:
+      file: src/wp-includes/SimplePie/library/SimplePie/gzdecode.php
+      line: 53
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/library/SimplePie/gzdecode.php#L53'
+  -
+    id: 'deprecated:method:SimplePie::force_cache_fallback'
+    type: deprecated
+    title: '`SimplePie::force_cache_fallback` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::force_cache_fallback'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 904
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L904'
+  -
+    id: 'deprecated:method:SimplePie::set_author_class'
+    type: deprecated
+    title: '`SimplePie::set_author_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_author_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1137
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1137'
+  -
+    id: 'deprecated:method:SimplePie::set_cache_class'
+    type: deprecated
+    title: '`SimplePie::set_cache_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_cache_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1041
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1041'
+  -
+    id: 'deprecated:method:SimplePie::set_cache_location'
+    type: deprecated
+    title: '`SimplePie::set_cache_location` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_cache_location'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 939
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L939'
+  -
+    id: 'deprecated:method:SimplePie::set_cache_name_function'
+    type: deprecated
+    title: '`SimplePie::set_cache_name_function` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_cache_name_function'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1321
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1321'
+  -
+    id: 'deprecated:method:SimplePie::set_caption_class'
+    type: deprecated
+    title: '`SimplePie::set_caption_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_caption_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1185
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1185'
+  -
+    id: 'deprecated:method:SimplePie::set_category_class'
+    type: deprecated
+    title: '`SimplePie::set_category_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_category_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1153
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1153'
+  -
+    id: 'deprecated:method:SimplePie::set_content_type_sniffer_class'
+    type: deprecated
+    title: '`SimplePie::set_content_type_sniffer_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_content_type_sniffer_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1265
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1265'
+  -
+    id: 'deprecated:method:SimplePie::set_copyright_class'
+    type: deprecated
+    title: '`SimplePie::set_copyright_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_copyright_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1201
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1201'
+  -
+    id: 'deprecated:method:SimplePie::set_credit_class'
+    type: deprecated
+    title: '`SimplePie::set_credit_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_credit_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1217
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1217'
+  -
+    id: 'deprecated:method:SimplePie::set_enclosure_class'
+    type: deprecated
+    title: '`SimplePie::set_enclosure_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_enclosure_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1169
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1169'
+  -
+    id: 'deprecated:method:SimplePie::set_file_class'
+    type: deprecated
+    title: '`SimplePie::set_file_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_file_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1089
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1089'
+  -
+    id: 'deprecated:method:SimplePie::set_item_class'
+    type: deprecated
+    title: '`SimplePie::set_item_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_item_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1121
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1121'
+  -
+    id: 'deprecated:method:SimplePie::set_locator_class'
+    type: deprecated
+    title: '`SimplePie::set_locator_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_locator_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1057
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1057'
+  -
+    id: 'deprecated:method:SimplePie::set_parser_class'
+    type: deprecated
+    title: '`SimplePie::set_parser_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_parser_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1073
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1073'
+  -
+    id: 'deprecated:method:SimplePie::set_rating_class'
+    type: deprecated
+    title: '`SimplePie::set_rating_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_rating_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1233
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1233'
+  -
+    id: 'deprecated:method:SimplePie::set_restriction_class'
+    type: deprecated
+    title: '`SimplePie::set_restriction_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_restriction_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1249
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1249'
+  -
+    id: 'deprecated:method:SimplePie::set_sanitize_class'
+    type: deprecated
+    title: '`SimplePie::set_sanitize_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_sanitize_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1105
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1105'
+  -
+    id: 'deprecated:method:SimplePie::set_source_class'
+    type: deprecated
+    title: '`SimplePie::set_source_class` が非推奨になった（unknown）'
+    status: shipped
+    severity: low
+    confidence: high
+    since: unknown
+    symbols:
+      -
+        kind: method
+        name: 'SimplePie::set_source_class'
+    evidence:
+      file: src/wp-includes/SimplePie/src/SimplePie.php
+      line: 1281
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/SimplePie/src/SimplePie.php#L1281'
+  -
+    id: 'deprecated:method:WP_Interactivity_API::print_client_interactivity_data'
+    type: deprecated
+    title: '`WP_Interactivity_API::print_client_interactivity_data` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Interactivity_API::print_client_interactivity_data'
+    evidence:
+      file: src/wp-includes/interactivity-api/class-wp-interactivity-api.php
+      line: 208
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/interactivity-api/class-wp-interactivity-api.php#L208'
+  -
+    id: 'deprecated:method:WP_Interactivity_API::print_router_loading_and_screen_reader_markup'
+    type: deprecated
+    title: '`WP_Interactivity_API::print_router_loading_and_screen_reader_markup` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Interactivity_API::print_router_loading_and_screen_reader_markup'
+    evidence:
+      file: src/wp-includes/interactivity-api/class-wp-interactivity-api.php
+      line: 1049
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/interactivity-api/class-wp-interactivity-api.php#L1049'
+  -
+    id: 'deprecated:method:WP_Interactivity_API::register_script_modules'
+    type: deprecated
+    title: '`WP_Interactivity_API::register_script_modules` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Interactivity_API::register_script_modules'
+    evidence:
+      file: src/wp-includes/interactivity-api/class-wp-interactivity-api.php
+      line: 339
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/interactivity-api/class-wp-interactivity-api.php#L339'
+  -
+    id: 'deprecated:method:WP_Sitemaps::redirect_sitemapxml'
+    type: deprecated
+    title: '`WP_Sitemaps::redirect_sitemapxml` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Sitemaps::redirect_sitemapxml'
+    evidence:
+      file: src/wp-includes/sitemaps/class-wp-sitemaps.php
+      line: 231
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/sitemaps/class-wp-sitemaps.php#L231'
+  -
+    id: 'deprecated:method:WP_Theme_JSON::get_custom_css'
+    type: deprecated
+    title: '`WP_Theme_JSON::get_custom_css` が非推奨になった（6.7.0）'
+    status: shipped
+    severity: medium
+    confidence: high
+    since: 6.7.0
+    symbols:
+      -
+        kind: method
+        name: 'WP_Theme_JSON::get_custom_css'
+    evidence:
+      file: src/wp-includes/class-wp-theme-json.php
+      line: 1504
+      ref: 262f4b6add2d1503bdd35611764ec58742b10fb9
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/262f4b6add2d1503bdd35611764ec58742b10fb9/src/wp-includes/class-wp-theme-json.php#L1504'
+  -
+    id: 'hook_removed:hook:plugin_locale'
+    type: hook_removed
+    title: 'filter `plugin_locale` が発火しなくなった'
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: plugin_locale
+    evidence:
+      file: src/wp-includes/l10n.php
+      line: 1010
+      ref: 6.6.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.6.0/src/wp-includes/l10n.php#L1010'
+  -
+    id: 'hook_removed:hook:theme_locale'
+    type: hook_removed
+    title: 'filter `theme_locale` が発火しなくなった'
+    status: shipped
+    severity: medium
+    confidence: medium
+    symbols:
+      -
+        kind: hook
+        name: theme_locale
+    evidence:
+      file: src/wp-includes/l10n.php
+      line: 1105
+      ref: 6.6.0
+    source_urls:
+      - 'https://github.com/WordPress/wordpress-develop/blob/6.6.0/src/wp-includes/l10n.php#L1105'
