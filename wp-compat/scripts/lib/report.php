@@ -21,6 +21,7 @@ function report_markdown( array $result, string $repo = '', string $ref = 'HEAD'
 	$out  = [];
 
 	$out[] = report_marker( $result['to'] );
+	$out[] = report_ids_marker( report_significant_ids( $result ) );
 	$sources = [
 		'tested_up_to'     => 'readme の Tested up to',
 		'previous_release' => '直前のリリース',
@@ -126,6 +127,22 @@ function report_item( array $item, callable $link, int $limit = 10 ): array {
  */
 function report_marker( string $to ): string {
 	return sprintf( '<!-- wp-compat:%s -->', major( $to ) );
+}
+
+/**
+ * Issue の再オープン判定に使う変更ID（"ID@リリース"）。コードに該当した重大度 中以上の項目だけ.
+ * 目視チェックはコードと無関係に全リポジトリに出るので含めない.
+ * HTMLコメントに入れるので "--" を含めない.
+ */
+function report_significant_ids( array $result ): array {
+	$items = array_filter( $result['matched'], fn( $item ) => 'low' !== $item['severity'] );
+	$ids   = array_map( fn( $item ) => $item['id'] . '@' . $item['release'], $items );
+	sort( $ids );
+	return array_values( array_unique( $ids ) );
+}
+
+function report_ids_marker( array $ids ): string {
+	return '<!-- wp-compat-ids: ' . implode( ' ', $ids ) . ' -->';
 }
 
 /**
