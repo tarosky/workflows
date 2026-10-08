@@ -83,16 +83,21 @@ function gh( array $args, bool $dry_run = false ): string {
 		echo '[dry-run] ', preg_replace( "/--comment '[^']*'/", "--comment '…'", $command ), "\n";
 		return '';
 	}
-	exec( $command . ' 2>&1', $output, $code );
+	// stderr は JSON に混ぜないよう分けて受け取る.
+	$process = proc_open( $command, [ 1 => [ 'pipe', 'w' ], 2 => [ 'pipe', 'w' ] ], $pipes );
+	$stdout  = stream_get_contents( $pipes[1] );
+	$stderr  = stream_get_contents( $pipes[2] );
+	$code    = proc_close( $process );
 	if ( 0 !== $code ) {
-		fwrite( STDERR, implode( "\n", $output ) . "\n" );
+		fwrite( STDERR, "Failed: {$command}\n{$stderr}\n" );
 		exit( 1 );
 	}
-	return implode( "\n", $output );
+	return $stdout;
 }
 
 function gh_json( array $args ): array {
-	return json_decode( gh( $args ), true, 512, JSON_THROW_ON_ERROR ) ?? [];
+	$output = trim( gh( $args ) );
+	return '' === $output ? [] : json_decode( $output, true, 512, JSON_THROW_ON_ERROR );
 }
 
 function temp_file( string $content ): string {

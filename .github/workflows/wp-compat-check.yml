@@ -107,6 +107,8 @@ jobs:
           cat report.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Create or update issue
+        # パイプ（tee）の途中で失敗してもジョブを失敗させる.
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
           LABEL: ${{ inputs.label }}
