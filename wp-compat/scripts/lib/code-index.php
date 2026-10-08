@@ -6,7 +6,7 @@
  * JS / CSS / JSON / HTML は行単位のテキストとして保持し、正規表現で照合する。
  */
 
-const WP_COMPAT_EXCLUDE_DIRS = [ '.git', 'node_modules', 'vendor', 'wp', 'wordpress', 'tests', 'test', '.github', 'wp-compat' ];
+const WP_COMPAT_EXCLUDE_DIRS = [ 'node_modules', 'vendor', 'wp', 'wordpress', 'tests', 'test', 'wp-compat' ];
 
 const WP_COMPAT_TEXT_EXTENSIONS = [ 'js', 'jsx', 'mjs', 'ts', 'tsx', 'css', 'scss', 'sass', 'json', 'html', 'twig' ];
 
@@ -34,16 +34,17 @@ function code_index_build( string $root, array $exclude_dirs = WP_COMPAT_EXCLUDE
 	$root     = rtrim( realpath( $root ), '/' );
 	$filter   = new RecursiveCallbackFilterIterator(
 		new RecursiveDirectoryIterator( $root, FilesystemIterator::SKIP_DOTS ),
-		fn( $file ) => ! ( $file->isDir() && in_array( $file->getFilename(), $exclude_dirs, true ) )
+		// ドットで始まるディレクトリ（.git, .github, .claude など）は常に除外.
+		fn( $file ) => ! ( $file->isDir() && ( str_starts_with( $file->getFilename(), '.' ) || in_array( $file->getFilename(), $exclude_dirs, true ) ) )
 	);
 	foreach ( new RecursiveIteratorIterator( $filter ) as $file ) {
 		$ext = strtolower( $file->getExtension() );
 		if ( 'php' !== $ext && ! in_array( $ext, WP_COMPAT_TEXT_EXTENSIONS, true ) ) {
 			continue;
 		}
-		// ビルド成果物（*.min.js、build/、dist/）はソースと重複するので除く.
+		// ビルド成果物（*.min.js、build/、dist/）とロックファイルはソースではないので除く.
 		$path = substr( $file->getPathname(), strlen( $root ) + 1 );
-		if ( preg_match( '#(^|/)(build|dist)/|\.min\.(js|css)$|\.asset\.php$#', $path ) ) {
+		if ( preg_match( '#(^|/)(build|dist)/|\.min\.(js|css)$|\.asset\.php$|(^|/)(package-lock|composer|npm-shrinkwrap)\.(json|lock)$|(^|/)composer\.json$#', $path ) ) {
 			continue;
 		}
 		$code = file_get_contents( $file->getPathname() );

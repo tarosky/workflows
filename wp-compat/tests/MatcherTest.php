@@ -45,6 +45,13 @@ class MatcherTest extends TestCase {
 		$this->assertSame( 'none', $result['strength'] );
 	}
 
+	public function test_dot_dirs_and_lockfiles_are_excluded(): void {
+		$paths = array_keys( self::$index['lines'] );
+		$this->assertNotContains( '.claude/banner.js', $paths );
+		$this->assertNotContains( 'package-lock.json', $paths );
+		$this->assertSame( 'none', $this->match( [ [ 'kind' => 'js_handle', 'name' => 'esprima' ] ] )['strength'] );
+	}
+
 	public function test_removed_function_defined_by_plugin_adds_note(): void {
 		$result = $this->match( [ [ 'kind' => 'function', 'name' => 'removed_core_function' ] ], [ 'type' => 'removed' ] );
 		$this->assertSame( 'strong', $result['strength'] );
