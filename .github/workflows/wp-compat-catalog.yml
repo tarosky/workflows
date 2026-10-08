@@ -34,38 +34,56 @@ concurrency:
 jobs:
   update:
     name: Update catalog
-    # GitHub App が未設定の間は何もしない（毎日失敗させない）.
-    if: vars.WP_COMPAT_APP_CLIENT_ID != ''
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       WORK_DIR: tmp/wp-compat
+      # Client ID は Variable・Secret のどちらに登録してもよい.
+      APP_CLIENT_ID: ${{ vars.WP_COMPAT_APP_CLIENT_ID || secrets.WP_COMPAT_APP_CLIENT_ID }}
     steps:
+      - name: Check GitHub App settings
+        id: settings
+        env:
+          HAS_KEY: ${{ secrets.WP_COMPAT_APP_PRIVATE_KEY != '' }}
+        run: |
+          if [ -z "${APP_CLIENT_ID}" ] || [ "${HAS_KEY}" != "true" ]; then
+            echo "::warning::WP_COMPAT_APP_CLIENT_ID / WP_COMPAT_APP_PRIVATE_KEY が未設定のため、カタログ更新をスキップしました"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create GitHub App token
         id: app
+        if: steps.settings.outputs.ready == 'true'
         uses: actions/create-github-app-token@v3
         with:
-          client-id: ${{ vars.WP_COMPAT_APP_CLIENT_ID }}
+          client-id: ${{ env.APP_CLIENT_ID }}
           private-key: ${{ secrets.WP_COMPAT_APP_PRIVATE_KEY }}
 
       - uses: actions/checkout@v6
+        if: steps.settings.outputs.ready == 'true'
         with:
           token: ${{ steps.app.outputs.token }}
 
       - name: Setup PHP
+        if: steps.settings.outputs.ready == 'true'
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           tools: composer
 
       - name: Install dependencies
+        if: steps.settings.outputs.ready == 'true'
         working-directory: wp-compat
         run: composer install --no-interaction --no-progress
 
       - name: Clone wordpress-develop
+        if: steps.settings.outputs.ready == 'true'
         run: git clone --quiet --filter=blob:none --bare https://github.com/WordPress/wordpress-develop.git "${WORK_DIR}/wp-develop.git"
 
       - name: Detect updates
+        if: steps.settings.outputs.ready == 'true'
         id: detect
         working-directory: wp-compat
         run: |
@@ -75,7 +93,7 @@ jobs:
           echo "posts=$(jq '[.targets[].new_posts | length] | add // 0' ../targets.json)" >> "$GITHUB_OUTPUT"
 
       - name: Extract
-        if: steps.detect.outputs.count != '0'
+        if: steps.settings.outputs.ready == 'true' && (steps.detect.outputs.count != '0')
         working-directory: wp-compat
         run: |
           jq -r '.targets[] | "\(.release) \(.status) \(.from_ref) \(.to_ref)"' ../targets.json | while read -r release status from to; do
@@ -83,7 +101,7 @@ jobs:
           done
 
       - name: Prepare curation prompt
-        if: steps.detect.outputs.posts != '0'
+        if: steps.settings.outputs.ready == 'true' && (steps.detect.outputs.posts != '0')
         run: |
           {
             echo "## 対象"
@@ -98,7 +116,7 @@ jobs:
 
       - name: Curate with Claude
         id: claude
-        if: steps.detect.outputs.posts != '0'
+        if: steps.settings.outputs.ready == 'true' && (steps.detect.outputs.posts != '0')
         uses: anthropics/claude-code-action@v1
         env:
           GH_TOKEN: ${{ github.token }}
@@ -132,7 +150,7 @@ jobs:
             --allowedTools "Read(*),Glob(*),Grep(*),Edit(wp-compat/catalog/**),Write(wp-compat/catalog/**),Bash(php scripts/validate.php:*),Bash(php scripts/verify-symbols.php:*),Bash(cd wp-compat:*),Bash(rg:*),Bash(jq:*),Bash(cat:*),Bash(ls:*),Bash(gh api repos/WordPress/gutenberg/:*),Bash(base64:*)"
 
       - name: Report Claude model
-        if: always() && steps.claude.outputs.execution_file != ''
+        if: steps.settings.outputs.ready == 'true' && (always() && steps.claude.outputs.execution_file != '')
         uses: tarosky/workflows/actions/claude-model-summary@main
         with:
           execution_file: ${{ steps.claude.outputs.execution_file }}
@@ -140,7 +158,7 @@ jobs:
 
       - name: Check
         id: check
-        if: steps.detect.outputs.count != '0'
+        if: steps.settings.outputs.ready == 'true' && (steps.detect.outputs.count != '0')
         working-directory: wp-compat
         run: |
           set +e -o pipefail
@@ -153,7 +171,7 @@ jobs:
           echo "ok=${ok}" >> "$GITHUB_OUTPUT"
 
       - name: Create pull request
-        if: steps.detect.outputs.count != '0'
+        if: steps.settings.outputs.ready == 'true' && (steps.detect.outputs.count != '0')
         env:
           GH_TOKEN: ${{ steps.app.outputs.token }}
           APP_SLUG: ${{ steps.app.outputs.app-slug }}
