@@ -44,6 +44,9 @@ jobs:
       - name: Install dependencies
         run: composer install --no-interaction --no-progress
 
+      - name: Run unit tests
+        run: composer test
+
       - name: Validate catalogs
         run: php scripts/validate.php
 
@@ -55,6 +58,21 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: wp-compat/_site
+
+  check:
+    name: Self-test of wp-compat-check (dry run)
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/wp-compat-check.yml
+    permissions:
+      contents: read
+      issues: write
+    with:
+      from: '6.6'
+      to: '7.1'
+      path: wp-compat/tests/fixtures/plugin
+      dry_run: true
+      catalog_url: https://tarosky.github.io/workflows/catalog.json
+      tool_ref: ${{ github.head_ref }}
 
   deploy:
     name: Deploy to GitHub Pages

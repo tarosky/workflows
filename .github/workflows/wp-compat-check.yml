@@ -1,0 +1,121 @@
+name: WP Compat Check
+
+# WordPress本体の互換性カタログ（https://tarosky.github.io/workflows/）と
+# 呼び出し元リポジトリのコードを照合し、影響があれば Issue を作成・更新する。
+# 1リポジトリ×1リリースにつき1 Issue。再実行時は本文を更新し、チェック済みの項目は引き継ぐ。
+
+on:
+  workflow_call:
+    inputs:
+      to:
+        description: 更新先の WordPress バージョン（例 7.2）。latest でカタログの最新（ベータ・trunk を含む）
+        required: false
+        type: string
+        default: 'latest'
+      from:
+        description: 現在の WordPress バージョン（例 6.6）。空なら更新先の直前のリリース
+        required: false
+        type: string
+        default: ''
+      path:
+        description: 照合するディレクトリ（リポジトリルートからの相対パス）
+        required: false
+        type: string
+        default: '.'
+      exclude:
+        description: 追加で除外するディレクトリ名（カンマ区切り）。vendor・node_modules・build・dist などは常に除外
+        required: false
+        type: string
+        default: ''
+      label:
+        description: Issue に付けるラベル
+        required: false
+        type: string
+        default: 'wp-compat'
+      dry_run:
+        description: true なら Issue を作成・更新せず、Job Summary にのみ出力する
+        required: false
+        type: boolean
+        default: false
+      catalog_url:
+        description: カタログの URL
+        required: false
+        type: string
+        default: 'https://tarosky.github.io/workflows/catalog.json'
+      tool_ref:
+        description: 照合スクリプトを取得する tarosky/workflows の ref
+        required: false
+        type: string
+        default: 'main'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    name: Check WordPress compatibility
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v6
+        with:
+          path: target
+
+      - name: Checkout wp-compat tool
+        uses: actions/checkout@v6
+        with:
+          repository: tarosky/workflows
+          ref: ${{ inputs.tool_ref }}
+          path: wp-compat-tool
+          sparse-checkout: wp-compat
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+
+      - name: Install tool dependencies
+        working-directory: wp-compat-tool/wp-compat
+        run: composer install --no-dev --no-interaction --no-progress
+
+      - name: Run check
+        id: check
+        env:
+          TO: ${{ inputs.to }}
+          FROM: ${{ inputs.from }}
+          TARGET_PATH: ${{ inputs.path }}
+          EXCLUDE: ${{ inputs.exclude }}
+          CATALOG_URL: ${{ inputs.catalog_url }}
+        run: |
+          set +e
+          php wp-compat-tool/wp-compat/scripts/check.php \
+            --path="target/${TARGET_PATH}" \
+            --to="${TO}" --from="${FROM}" \
+            --exclude="${EXCLUDE}" \
+            --catalog="${CATALOG_URL}" \
+            --repo="${GITHUB_REPOSITORY}" --ref="${GITHUB_SHA}" \
+            > report.md 2> check.log
+          code=$?
+          set -e
+          cat check.log
+          if [ "${code}" -eq 1 ]; then
+            exit 1
+          fi
+          echo "significant=$([ "${code}" -eq 2 ] && echo 1 || echo 0)" >> "$GITHUB_OUTPUT"
+          # 照合したリリース（マーカーから取得）.
+          release=$(head -1 report.md | sed -E 's/<!-- wp-compat:([0-9.]+) -->/\1/')
+          echo "release=${release}" >> "$GITHUB_OUTPUT"
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Create or update issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE: ${{ steps.check.outputs.release }}
+          SIGNIFICANT: ${{ steps.check.outputs.significant }}
+          LABEL: ${{ inputs.label }}
+          DRY_RUN: ${{ inputs.dry_run && '--dry-run' || '' }}
+        run: |
+          bash wp-compat-tool/wp-compat/scripts/upsert-issue.sh \
+            "${GITHUB_REPOSITORY}" "${RELEASE}" report.md "${SIGNIFICANT}" "${LABEL}" ${DRY_RUN}

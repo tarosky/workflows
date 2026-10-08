@@ -56,7 +56,8 @@ WordPress本体の1リリース分について、**プラグイン・テーマ�
   - `removed` / `deprecated` / `hook_removed` / `hook_deprecated`: 機械抽出漏れを補う場合のみ
 - `status`: `shipped` / `dropped` / `planned`（trunk でロードマップにのみある）/ `reverted`
   - ベータ・RC 中に差し戻されて **x.y.0 に入らなかったものは `dropped`**。`reverted` は x.y.0 で出荷され、その後のマイナーで差し戻されたものだけ
-  - x.y.0 で壊れて x.y.1 で直ったリグレッションは `shipped` のまま、`summary` に修正バージョンを書く
+  - x.y.0 で壊れて x.y.1 で直ったリグレッション（項目そのものがリグレッションの場合）は `shipped` のまま `fixed_in: x.y.1` を付ける。照合では修正済みバージョンへの更新なら除外される
+  - `fixed_in` は推測で付けない。`git log --format='%s%n%b' x.y.0..x.y.1 | rg '#<ticket>'` で修正コミットを確認する
 - `severity`: `high` = Fatal・機能停止 / `medium` = 挙動変化・Notice / `low` = 情報
 - `confidence`:
   - `high`: `symbols` が自社コードにあれば影響がほぼ確実

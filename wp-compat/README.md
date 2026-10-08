@@ -43,6 +43,53 @@ php scripts/validate.php
 php scripts/build-site.php      # → _site/
 ```
 
+## 照合（自社リポジトリ側）
+
+各リポジトリには薄い呼び出し側だけを置く。カタログは実行時に Pages から取得するので、ワークフローのタグを固定してもカタログは最新になる。
+
+```yaml
+name: WP Compat Check
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'   # 毎週月曜
+  workflow_dispatch:
+    inputs:
+      to:
+        description: 更新先（例 7.2、latest）
+        default: latest
+      from:
+        description: 現在のバージョン（空なら直前のリリース）
+        default: ''
+
+jobs:
+  check:
+    uses: tarosky/workflows/.github/workflows/wp-compat-check.yml@main
+    permissions:
+      contents: read
+      issues: write
+    with:
+      to: ${{ inputs.to || 'latest' }}
+      from: ${{ inputs.from || '' }}
+```
+
+ローカルでの実行:
+
+```bash
+php scripts/check.php --path=../my-plugin --from=6.6 --to=7.1          # Markdown
+php scripts/check.php --path=../my-plugin --to=latest --format=json    # 直前→最新
+```
+
+判定の分類:
+
+| 区分 | 条件 | Issue での扱い |
+|---|---|---|
+| 該当 | 確度が high/medium の項目で、シンボルか `match_hint` が一致 | 重大度 高・中は本文、低は折りたたみ |
+| 目視チェック | 重大度 high・確度 manual | 一致箇所を候補として表示 |
+| 参考 | `js_package` だけが一致、または manual 項目のヒント一致 | 折りたたみ |
+
+`fixed_in` がある項目は、修正済みバージョン以降への更新なら除外する（`--to=7.1` は 7.1 系の最新とみなす）。
+
 ## 状態（status）
 
 - カタログ全体: `trunk` → `beta` → `rc` → `final`。リリース前は節目ごとに作り直す
@@ -53,5 +100,6 @@ php scripts/build-site.php      # → _site/
 ## 既知の限界
 
 - 動的なフック名（`"save_post_{$post_type}"` など）は機械抽出できない
-- JS パッケージ・スクリプトハンドル・CSS の変更は機械抽出していない（curated に頼る）
+- JS パッケージ、パッケージ由来のスクリプトハンドル（`wp-views` など）、CSS の変更は機械抽出していない（curated に頼る）。`script-loader.php` で登録されるハンドルは抽出する
 - バンドルライブラリ（SimplePie など）と `block_core_*` は重大度 low
+- 照合では `vendor/` を除外する。同梱したサードパーティライブラリ（plugin-update-checker など）が壊れても検出できない

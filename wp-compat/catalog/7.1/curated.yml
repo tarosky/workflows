@@ -571,6 +571,7 @@ changes:
     match_hint: '\$wp_filter\s*\[|->callbacks\b'
     source_urls:
       - 'https://make.wordpress.org/core/2026/09/10/wordpress-7-1-1-rc1-is-now-available/'
+    fixed_in: 7.1.1
   -
     id: 'css:block-style-variation-layout-regression'
     type: css
@@ -584,6 +585,7 @@ changes:
     match_hint: blockGap
     source_urls:
       - 'https://make.wordpress.org/core/2026/09/10/wordpress-7-1-1-rc1-is-now-available/'
+    fixed_in: 7.1.1
   -
     id: 'behavior:multisite-delete-user-reassign-missing'
     type: behavior
@@ -596,6 +598,7 @@ changes:
     confidence: manual
     source_urls:
       - 'https://make.wordpress.org/core/2026/09/10/wordpress-7-1-1-rc1-is-now-available/'
+    fixed_in: 7.1.1
   -
     id: 'behavior:wp-get-abilities-global-filters'
     type: behavior
