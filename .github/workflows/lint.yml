@@ -66,6 +66,9 @@ jobs:
           files: "tests/plugin-main.php,tests/style.css"
           prefix: "prefix/tag/"
 
+      - name: Run versioning tests
+        run: bash tests/versioning/run.sh
+
   tag-in-branch:
     name: "Check if this commit is in allowed branch"
     uses: ./.github/workflows/check-tag-in-branch.yml
