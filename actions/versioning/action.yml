@@ -1,8 +1,8 @@
 name: Versioning
-description: Change version string in readme, plugin file, or style.css.
+description: Change version string in readme, plugin file, or style.css, and verify it before release.
 inputs:
   version:
-    description: 'Version string. In many cases, github.ref'
+    description: 'Version string. In many cases, github.ref. refs/tags/ and leading v are removed.'
     required: true
   files:
     description: 'Files to convert in CSV format. e.g. style.css, readme.txt'
@@ -11,37 +11,24 @@ inputs:
     description: 'Prefix to remove'
     required: false
     default: 'refs/tags/'
+  wporg_slug:
+    description: 'Plugin slug on WordPress.org. If set, the version must be greater than the published one.'
+    required: false
+    default: ''
+outputs:
+  version:
+    description: 'Normalized version string. e.g. 1.2.3'
+    value: ${{ steps.versioning.outputs.version }}
 
 runs:
   using: "composite"
   steps:
-    - name: Check file existence.
-      id: check_files
-      uses: andstor/file-existence-action@v3
-      with:
-        files: ${{ inputs.files }}
-
-    - name: Change version and remove .bak
-      if: steps.check_files.outputs.files_exists == 'true'
+    - name: Change and verify version
+      id: versioning
       shell: bash
-      run: |
-        # Set variables.
-        PREFIX="${{ inputs.prefix }}"
-        VERSION_STR="${{ inputs.version }}"
-        VERSION=${VERSION_STR#"$PREFIX"}
-        FILES="${{ inputs.files }}"
-        for file in ${FILES//,/ }
-        do
-          # call your procedure/other scripts here below
-          sed -i.bak "s/\(Version\|Stable Tag\)\(:[[:space:]]*\).*$/\1\2$VERSION/i" $file
-          cat $file
-          EXISTS=$(cat $file | grep $VERSION)
-          if [ -z "$EXISTS" ]; then
-              echo "Version string not found in $file"
-              exit 1
-          fi
-          echo "$file is updated to $VERSION."
-          rm "$file.bak"
-        done
-
-
+      env:
+        VERSIONING_VERSION: ${{ inputs.version }}
+        VERSIONING_FILES: ${{ inputs.files }}
+        VERSIONING_PREFIX: ${{ inputs.prefix }}
+        VERSIONING_WPORG_SLUG: ${{ inputs.wporg_slug }}
+      run: bash "${{ github.action_path }}/versioning.sh"
