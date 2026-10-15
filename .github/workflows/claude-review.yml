@@ -106,7 +106,9 @@ jobs:
           # instead of re-raising points that were already declined with a reason.
           all=$(gh api "repos/${{ github.repository }}/issues/${{ inputs.pr_number }}/comments" 2>/dev/null || echo "[]")
           conversation=$(echo "$all" | jq -r '[.[] | "### @\(.user.login) (\(.created_at)):\n\(.body)"] | join("\n\n")' 2>/dev/null || echo "")
-          claude_count=$(echo "$all" | jq -r '[.[] | select(.user.login == "claude[bot]")] | length' 2>/dev/null || echo "0")
+          # Count only past triage reviews. Claude Assistant (@claude) replies are also posted
+          # by claude[bot] and must not switch this review into incremental mode.
+          claude_count=$(echo "$all" | jq -r '[.[] | select(.user.login == "claude[bot]" and (.body | contains("AI トリアージ")))] | length' 2>/dev/null || echo "0")
 
           # Commit messages carry maintainer intent (e.g. "pre-release, breaking changes OK").
           commits=$(gh pr view "${{ inputs.pr_number }}" --repo "${{ github.repository }}" \
