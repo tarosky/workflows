@@ -34,6 +34,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      # actions/checkout が残す GITHUB_TOKEN の認証ヘッダーは claude-code-action が消しきれず、
+      # App トークンより優先されて push が 403 になる（anthropics/claude-code-action#1721）。
+      # ヘッダーは残さず、ブランチ準備の fetch 用に GITHUB_TOKEN をリモート URL に入れておく。
+      # この URL は claude-code-action が App トークン入りの URL で上書きするため、push は App として行われる。
+      - name: Configure git remote for branch setup
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
 
       - name: Run Claude Assistant
         id: claude
