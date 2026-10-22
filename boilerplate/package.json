@@ -37,7 +37,7 @@
 		"wordpress"
 	],
 	"engines": {
-		"node": ">=16.0.0"
+		"node": ">=24.0.0"
 	},
 	"author": "Tarosky INC.",
 	"license": "GPL-3.0-or-later",

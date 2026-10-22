@@ -70,6 +70,8 @@ jobs:
         with:
           node-version: ${{ inputs.node_version || '' }}
           node-version-file: ${{ inputs.node_version && '' || format('{0}/.node-version', inputs.working_directory) }}
+          # メジャー指定（例: 22）でもランナーのキャッシュではなく最新パッチを使う（セキュリティリリース即時反映）
+          check-latest: true
 
       - name: Install NPM Packages
         if:   ${{ inputs.package != '' }}
