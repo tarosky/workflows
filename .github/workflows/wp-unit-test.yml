@@ -42,7 +42,9 @@ on:
 jobs:
   wp-unit-test:
     name: "PHP Unit test with WordPress ${{ inputs.wp_version }} in PHP ${{ inputs.php_version }}"
-    runs-on: ubuntu-latest
+    # ubuntu-latest (26.04) ships MySQL 8.4, where mysql_native_password is disabled by default
+    # and the "Start MySQL" step fails. Pin to 24.04 (MySQL 8.0) until the step supports 8.4.
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: ${{ inputs.working_directory }}
