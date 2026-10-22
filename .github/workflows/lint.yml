@@ -21,6 +21,8 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '22'
+          # メジャー指定（例: 22）でもランナーのキャッシュではなく最新パッチを使う（セキュリティリリース即時反映）
+          check-latest: true
 
       - name: Check Yaml Syntax
         run: |
