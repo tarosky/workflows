@@ -95,8 +95,8 @@ jobs:
         with:
           execution_file: tests/claude-model-summary/execution.json
           requested_model: sonnet
-          # 呼び出し側と同じく、比較式の結果（boolean）を渡して文字列 'true' になることも確かめる
-          save_metrics: ${{ 'true' == 'true' }}
+          # 再利用ワークフローと同じ式。変数未設定の tarosky リポジトリでは保存が有効になることを確かめる
+          save_metrics: ${{ vars.TAROSKY_CLAUDE_METRICS == 'true' || (vars.TAROSKY_CLAUDE_METRICS == '' && github.repository_owner == 'tarosky') }}
 
       - name: Check metrics file
         run: jq -e '.repository == "${{ github.repository }}" and .num_turns == 55' "$RUNNER_TEMP/claude-metrics.json"
