@@ -17,8 +17,8 @@ runs:
       env:
         EXECUTION_FILE: ${{ inputs.execution_file }}
         REQUESTED_MODEL: ${{ inputs.requested_model }}
-        # この action は公開されており org 外からも呼ばれうる。メトリクスの保存は tarosky の実行に限る。
-        METRICS_FILE: ${{ github.repository_owner == 'tarosky' && format('{0}/claude-metrics.json', runner.temp) || '' }}
+        # この action は公開されており org 外からも呼ばれうる。メトリクスの保存は管理者が同じ組織（tarosky / hametuha）の実行に限る。
+        METRICS_FILE: ${{ contains(fromJSON('["tarosky","hametuha"]'), github.repository_owner) && format('{0}/claude-metrics.json', runner.temp) || '' }}
       run: |
         bash "${{ github.action_path }}/summarize.sh"
         if [ -n "$METRICS_FILE" ] && [ -f "$METRICS_FILE" ]; then
