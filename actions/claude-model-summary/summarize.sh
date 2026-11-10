@@ -23,12 +23,11 @@ if [ -z "${EXECUTION_FILE:-}" ] || [ ! -f "$EXECUTION_FILE" ]; then
 fi
 
 metrics=$(jq -c --arg requested "${REQUESTED_MODEL:-}" '
-	# Bash コマンドを「コマンド名 + サブコマンド」に縮める。先頭の環境変数代入は読み飛ばす。
-	def command_head:
-		(.command // "" | tostring)
-		| sub("^(\\s*[A-Za-z_][A-Za-z0-9_]*=\\S*)*\\s*"; "")
+	# 単一のコマンドを「コマンド名 + サブコマンド」に縮める。先頭の環境変数代入は読み飛ばす。
+	def segment_head:
+		sub("^(\\s*[A-Za-z_][A-Za-z0-9_]*=\\S*)*\\s*"; "")
 		| [splits("\\s+")] | map(select(length > 0))
-		| if length == 0 then "?"
+		| if length == 0 then empty
 		  else
 			(if .[0] == "gh" then 3
 			 elif (.[0] | IN("git", "npm", "npx", "composer", "wp", "yarn", "pnpm")) then 2
@@ -38,6 +37,16 @@ metrics=$(jq -c --arg requested "${REQUESTED_MODEL:-}" '
 				| join(" ")
 			  else "?" end
 		  end;
+	# Claude Code は複合コマンドを分割して1つずつ許可ルールと照合するので、こちらも分割して並べる
+	# （例: "cd src && php -l x.php" → "cd + php"）。どれが拒否されたかまでは分からない。
+	# クォート内の ; や | で誤って分割しないよう、先にクォートの中身を消す。
+	# heredoc の本文を拾わないよう、見るのは1行目だけ。
+	def command_head:
+		(.command // "" | tostring)
+		| split("\n")[0]
+		| gsub("\"([^\"\\\\]|\\\\.)*\""; "\"\"") | gsub("\u0027[^\u0027]*\u0027"; "\u0027\u0027")
+		| [splits("&&|\\|\\||;|\\|") | segment_head]
+		| if length == 0 then "?" else .[0:4] | join(" + ") end;
 	def denial_label:
 		if .tool_name == "Bash" then "Bash(\(.tool_input // {} | command_head))"
 		else (.tool_name // "unknown") end;
