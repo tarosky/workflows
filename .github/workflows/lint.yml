@@ -80,12 +80,23 @@ jobs:
       - name: Run claude-model-summary tests
         run: bash tests/claude-model-summary/run.sh
 
-      # composite action としての配線（tarosky 判定・artifact 保存）を実際に動かして確認する
-      - name: Run claude-model-summary action
+      # composite action としての配線（オプトイン判定・artifact 保存）を実際に動かして確認する
+      - name: Run claude-model-summary action (default)
         uses: ./actions/claude-model-summary
         with:
           execution_file: tests/claude-model-summary/execution.json
           requested_model: sonnet
+
+      - name: Check metrics are not saved by default
+        run: test ! -e "$RUNNER_TEMP/claude-metrics.json"
+
+      - name: Run claude-model-summary action (save_metrics)
+        uses: ./actions/claude-model-summary
+        with:
+          execution_file: tests/claude-model-summary/execution.json
+          requested_model: sonnet
+          # 呼び出し側と同じく、比較式の結果（boolean）を渡して文字列 'true' になることも確かめる
+          save_metrics: ${{ 'true' == 'true' }}
 
       - name: Check metrics file
         run: jq -e '.repository == "${{ github.repository }}" and .num_turns == 55' "$RUNNER_TEMP/claude-metrics.json"

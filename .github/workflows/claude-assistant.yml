@@ -63,3 +63,5 @@ jobs:
         with:
           execution_file: ${{ steps.claude.outputs.execution_file }}
           requested_model: ${{ inputs.model }}
+          # 呼び出し側の組織・リポジトリ変数でオプトインした場合だけ、メトリクスを artifact に保存する
+          save_metrics: ${{ vars.TAROSKY_CLAUDE_METRICS == 'true' }}

@@ -7,6 +7,10 @@ inputs:
   requested_model:
     description: '--model に渡した値（エイリアスまたはフル ID）'
     required: true
+  save_metrics:
+    description: 'true のとき、中身を含まないメトリクス JSON を artifact（claude-metrics-*）として30日保存する'
+    required: false
+    default: 'false'
 
 runs:
   using: "composite"
@@ -17,8 +21,8 @@ runs:
       env:
         EXECUTION_FILE: ${{ inputs.execution_file }}
         REQUESTED_MODEL: ${{ inputs.requested_model }}
-        # この action は公開されており org 外からも呼ばれうる。メトリクスの保存は管理者が同じ組織（tarosky / hametuha）の実行に限る。
-        METRICS_FILE: ${{ contains(fromJSON('["tarosky","hametuha"]'), github.repository_owner) && format('{0}/claude-metrics.json', runner.temp) || '' }}
+        # 公開 action なので、保存するかどうかは呼び出し側が決める（デフォルトは保存しない）
+        METRICS_FILE: ${{ inputs.save_metrics == 'true' && format('{0}/claude-metrics.json', runner.temp) || '' }}
       run: |
         bash "${{ github.action_path }}/summarize.sh"
         if [ -n "$METRICS_FILE" ] && [ -f "$METRICS_FILE" ]; then
