@@ -1,0 +1,4 @@
+[
+  {"type": "system", "subtype": "init", "model": "claude-opus-5"},
+  {"type": "result", "subtype": "success", "duration_ms": 42000, "num_turns": 3, "total_cost_usd": 0.12, "modelUsage": {"claude-opus-5": {}}}
+]

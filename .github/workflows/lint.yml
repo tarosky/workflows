@@ -71,6 +71,36 @@ jobs:
       - name: Run versioning tests
         run: bash tests/versioning/run.sh
 
+  claude-model-summary:
+    name: Claude model summary
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run claude-model-summary tests
+        run: bash tests/claude-model-summary/run.sh
+
+      # composite action としての配線（オプトイン判定・artifact 保存）を実際に動かして確認する
+      - name: Run claude-model-summary action (default)
+        uses: ./actions/claude-model-summary
+        with:
+          execution_file: tests/claude-model-summary/execution.json
+          requested_model: sonnet
+
+      - name: Check metrics are not saved by default
+        run: test ! -e "$RUNNER_TEMP/claude-metrics.json"
+
+      - name: Run claude-model-summary action (save_metrics)
+        uses: ./actions/claude-model-summary
+        with:
+          execution_file: tests/claude-model-summary/execution.json
+          requested_model: sonnet
+          # 再利用ワークフローと同じ式。変数未設定の tarosky リポジトリでは保存が有効になることを確かめる
+          save_metrics: ${{ vars.TAROSKY_CLAUDE_METRICS == 'true' || (vars.TAROSKY_CLAUDE_METRICS == '' && github.repository_owner == 'tarosky') }}
+
+      - name: Check metrics file
+        run: jq -e '.repository == "${{ github.repository }}" and .num_turns == 55' "$RUNNER_TEMP/claude-metrics.json"
+
   tag-in-branch:
     name: "Check if this commit is in allowed branch"
     uses: ./.github/workflows/check-tag-in-branch.yml
@@ -82,7 +112,7 @@ jobs:
     name: Status Check
     runs-on: ubuntu-latest
     if: always()
-    needs: [ readme, lint, versioning, phplint, php-shor-open-tag ]
+    needs: [ readme, lint, versioning, claude-model-summary, phplint, php-shor-open-tag ]
     steps:
       - uses: re-actors/alls-green@release/v1
         with:
